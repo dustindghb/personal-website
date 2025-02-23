@@ -1,14 +1,12 @@
 import { Box, Typography } from '@mui/material';
-import Terminal from '../components/Terminal';
 
-export default function Home() {
+export default function Projects() {
   return (
     <Box>
       <Typography variant="h4" component="h1" gutterBottom>
-        Welcome to my website
+        My Projects
       </Typography>
-      <Terminal />
+      {/* Add your projects list here */}
     </Box>
   );
 }
-
