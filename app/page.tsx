@@ -3,7 +3,11 @@ import { Box, Typography } from '@mui/material';
 
 export default function Home() {
   return (
-    <Box sx = {{}}>
+    <Box sx={{ 
+      display: 'flex',
+      flexDirection: 'column',
+      padding: 2
+    }}>
       <Typography variant="h2" sx={{ mb: 2 }}>
         Welcome to my website!
       </Typography>
