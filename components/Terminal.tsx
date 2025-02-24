@@ -1,18 +1,33 @@
 'use client';
-import { useState, KeyboardEvent } from 'react';
-import { TextField, Box, Typography } from '@mui/material';
+import { useState, KeyboardEvent, useEffect } from 'react';
+import { TextField, Box, Button } from '@mui/material';
 import { useRouter, usePathname } from 'next/navigation';
 import { validPaths } from '@/config/navigation';
 import WaveAnimation from './WaveAnimation';
 
 export default function Terminal() {
-  const [command, setCommand] = useState<string>('');
+  const [mounted, setMounted] = useState(false);
+  const [command, setCommand] = useState('');
   const router = useRouter();
   const pathname = usePathname();
 
-  const getCurrentPathDisplay = () => {
-    const segments = pathname.split('/').filter(Boolean);
-    return segments.length === 0 ? 'Home' : segments.join('/');
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null; // Prevent hydration mismatch by not rendering anything on server
+  }
+
+  const pathSegments = pathname === '/' ? ['Home'] : ['Home', ...pathname.split('/').filter(Boolean)]
+
+  const handlePathClick = (index: number) => {
+    if (index === 0) {
+      router.push('/');
+    } else {
+      const newPath = '/' + pathSegments.slice(1, index + 1).join('/');
+      router.push(newPath);
+    }
   };
 
   const handleCommand = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -40,14 +55,67 @@ export default function Terminal() {
         p: 2,
         bgcolor: '#666666',
       }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Typography sx={{ mr: 1 }}>/{getCurrentPathDisplay()} &gt;</Typography>
+        <Box sx={{ 
+          display: 'flex', 
+          alignItems: 'center',
+          gap: 1,
+        }}>
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 1,
+            flexShrink: 0, // Prevent breadcrumb from shrinking
+            overflowX: 'auto', // Allow horizontal scroll if needed
+            '&::-webkit-scrollbar': { display: 'none' }, // Hide scrollbar
+            scrollbarWidth: 'none', // Firefox
+          }}>
+            {pathSegments.map((segment, index) => (
+              <Box key={index} sx={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+                <Button
+                  onClick={() => handlePathClick(index)}
+                  sx={{
+                    color: 'white',
+                    bgcolor: 'rgba(255, 255, 255, 0.08)',
+                    borderRadius: 1,
+                    px: 1,
+                    py: 0.5,
+                    minWidth: 'auto',
+                    textTransform: 'none',
+                    fontFamily: 'monospace',
+                    fontSize: '0.9rem',
+                    whiteSpace: 'nowrap',
+                    '&:hover': {
+                      bgcolor: 'rgba(255, 255, 255, 0.15)',
+                    }
+                  }}
+                >
+                  {segment}
+                </Button>
+                {index < pathSegments.length - 1 && (
+                  <Box sx={{ 
+                    color: 'white',
+                    mx: 1,
+                    fontSize: '0.9rem',
+                    fontFamily: 'monospace',
+                    flexShrink: 0
+                  }}>/</Box>
+                )}
+              </Box>
+            ))}
+          </Box>
+          <Box sx={{ 
+            color: 'white',
+            fontFamily: 'monospace',
+            fontSize: '0.9rem',
+            flexShrink: 0
+          }}>&gt;</Box>
           <TextField
             value={command}
             onChange={(e) => setCommand(e.target.value)}
             onKeyDown={handleCommand}
             placeholder="Enter a command"
             variant="standard"
+            fullWidth
             sx={{
               flex: 1,
               '& .MuiInput-root': {
@@ -57,7 +125,9 @@ export default function Terminal() {
                 }
               },
               '& .MuiInput-input': {
-                pl: 1
+                pl: 1,
+                fontFamily: 'monospace',
+                fontSize: '0.9rem'
               }
             }}
             InputProps={{

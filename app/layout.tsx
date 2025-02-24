@@ -1,10 +1,13 @@
 'use client';
 import { Box } from '@mui/material';
 import { Inter } from 'next/font/google';
-import Sidebar from '../components/Sidebar';
-import Terminal from '../components/Terminal';
+import dynamic from 'next/dynamic';
 
 const inter = Inter({ subsets: ['latin'] });
+
+// Dynamically import components that use client-side features
+const Sidebar = dynamic(() => import('@/components/Sidebar'), { ssr: false });
+const Terminal = dynamic(() => import('@/components/Terminal'), { ssr: false });
 
 export default function RootLayout({
   children,
@@ -28,7 +31,7 @@ export default function RootLayout({
             <Box sx={{ 
               flex: 1,
               p: 4,
-              pb: 8, // Add padding to prevent content from being hidden behind terminal
+              pb: 8,
             }}>
               {children}
             </Box>

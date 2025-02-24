@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { Box, List, ListItem, ListItemText, ListItemButton } from '@mui/material';
 import { useRouter, usePathname } from 'next/navigation';
 import { NavItem, siteStructure } from '@/config/navigation';
@@ -62,7 +63,16 @@ const FileTreeItem = ({
 };
 
 export default function Sidebar() {
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null; // Prevent hydration mismatch by not rendering anything on server
+  }
 
   const handleSelect = (path: string) => {
     router.push(path);
