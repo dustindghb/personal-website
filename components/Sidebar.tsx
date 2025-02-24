@@ -1,47 +1,7 @@
 'use client';
-
-import { Box, List, ListItem, ListItemIcon, ListItemText, ListItemButton } from '@mui/material';
-import FolderIcon from '@mui/icons-material/Folder';
-import DescriptionIcon from '@mui/icons-material/Description';
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
-
-interface NavItem {
-  id: string;
-  label: string;
-  isFolder: boolean;
-  children?: NavItem[];
-}
-
-const siteStructure: NavItem = {
-  id: '/',
-  label: 'my-website',
-  isFolder: true,
-  children: [
-    {
-      id: '/about',
-      label: 'about',
-      isFolder: false,
-    },
-    {
-      id: '/projects',
-      label: 'projects',
-      isFolder: true,
-      children: [
-        {
-          id: '/projects/project1',
-          label: 'project1',
-          isFolder: false,
-        },
-        {
-          id: '/projects/project2',
-          label: 'project2',
-          isFolder: false,
-        },
-      ],
-    },
-  ],
-};
+import { Box, List, ListItem, ListItemText, ListItemButton } from '@mui/material';
+import { useRouter, usePathname } from 'next/navigation';
+import { NavItem, siteStructure } from '@/config/navigation';
 
 const FileTreeItem = ({ 
   item, 
@@ -61,15 +21,15 @@ const FileTreeItem = ({
         disablePadding 
         sx={{ 
           display: 'block',
-          borderLeft: level > 0 ? '1px dashed rgba(255, 255, 255, 0.12)' : 'none',
-          ml: level > 0 ? 2 : 0,
+          pl: level * 3,
         }}
       >
         <ListItemButton
           onClick={() => onSelect(item.id)}
           selected={isSelected}
           sx={{
-            pl: level > 0 ? 2 : 1,
+            pl: 2,
+            color: 'white',
             '&:hover': {
               backgroundColor: 'rgba(255, 255, 255, 0.08)',
             },
@@ -78,9 +38,6 @@ const FileTreeItem = ({
             },
           }}
         >
-          <ListItemIcon sx={{ minWidth: 36 }}>
-            {item.isFolder ? <FolderIcon /> : <DescriptionIcon />}
-          </ListItemIcon>
           <ListItemText 
             primary={item.label}
             primaryTypographyProps={{
@@ -112,21 +69,33 @@ export default function Sidebar() {
   };
 
   return (
-    <Box
-      sx={{
-        width: 250,
-        bgcolor: 'background.paper',
-        borderRight: 1,
-        borderColor: 'divider',
-        minHeight: '100vh',
-      }}
-    >
-      <List component="nav" dense sx={{ pt: 1 }}>
+    <Box sx={{ 
+      width: '250px', 
+      borderRight: '1px solid rgba(255,255,255,0.3)',
+      bgcolor: '#666666',
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
+      <List component="nav" dense sx={{ flex: 1 }}>
         <FileTreeItem 
           item={siteStructure} 
           onSelect={handleSelect}
         />
       </List>
+      <Box sx={{ p: 2, borderTop: '1px solid rgba(255,255,255,0.3)' }}>
+        <ListItemText 
+          primary="Available Commands:"
+          secondary={
+            <>
+              cd ..<br />
+              cd projects/scu-schedule-helper
+            </>
+          }
+          secondaryTypographyProps={{
+            sx: { color: 'rgba(255,255,255,0.7)' }
+          }}
+        />
+      </Box>
     </Box>
   );
 }

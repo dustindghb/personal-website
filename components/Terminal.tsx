@@ -1,75 +1,71 @@
 'use client';
 import { useState, KeyboardEvent } from 'react';
-import { TextField, Paper, Box, Typography } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import { TextField, Box, Typography } from '@mui/material';
+import { useRouter, usePathname } from 'next/navigation';
+import { validPaths } from '@/config/navigation';
+import WaveAnimation from './WaveAnimation';
 
 export default function Terminal() {
-  // Initialize with null to avoid hydration mismatch
-  const [command, setCommand] = useState<string | null>(null);
+  const [command, setCommand] = useState<string>('');
   const router = useRouter();
+  const pathname = usePathname();
+
+  const getCurrentPathDisplay = () => {
+    const segments = pathname.split('/').filter(Boolean);
+    return segments.length === 0 ? 'Home' : segments.join('/');
+  };
 
   const handleCommand = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' && command) {
-      if (command.startsWith('cd ')) {
-        const path = command.slice(3);
-        router.push(path);
+      if (command === 'cd ..') {
+        const segments = pathname.split('/').filter(Boolean);
+        if (segments.length > 0) {
+          const newPath = segments.slice(0, -1).join('/');
+          router.push(newPath ? `/${newPath}` : '/');
+        }
+      } else if (command.startsWith('cd ')) {
+        const targetPath = command.slice(3).replace(/^\/+|\/+$/g, '').toLowerCase();
+        if (validPaths[targetPath]) {
+          router.push(`/${targetPath}`);
+        }
       }
       setCommand('');
     }
   };
 
-  // Use early return for initial render
-  if (command === null) {
-    setCommand('');
-    return null;
-  }
-
   return (
-    <Box component="div">
-      <Paper
-        elevation={1}
-        sx={{
-          bgcolor: 'grey.900',
-          p: 3,
-          mt: 3,
-          borderRadius: 1,
-        }}
-      >
-        <Box sx={{ color: 'success.main', mb: 2 }}>
-          <Typography variant="body2" component="div">
-            Available commands:
-            <br />
-            cd /about
-            <br />
-            cd /projects
-          </Typography>
+    <Box>
+      <WaveAnimation />
+      <Box sx={{ 
+        p: 2,
+        bgcolor: '#666666',
+      }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Typography sx={{ mr: 1 }}>/{getCurrentPathDisplay()} &gt;</Typography>
+          <TextField
+            value={command}
+            onChange={(e) => setCommand(e.target.value)}
+            onKeyDown={handleCommand}
+            placeholder="Enter a command"
+            variant="standard"
+            sx={{
+              flex: 1,
+              '& .MuiInput-root': {
+                color: 'white',
+                '&:before, &:after': {
+                  borderBottomColor: 'transparent'
+                }
+              },
+              '& .MuiInput-input': {
+                pl: 1
+              }
+            }}
+            InputProps={{
+              disableUnderline: true
+            }}
+          />
         </Box>
-        <TextField
-          fullWidth
-          value={command}
-          onChange={(e) => setCommand(e.target.value)}
-          onKeyDown={handleCommand}
-          placeholder="Enter command..."
-          variant="outlined"
-          inputProps={{
-            'aria-label': 'command input',
-          }}
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              color: 'success.main',
-              '& fieldset': {
-                borderColor: 'grey.700',
-              },
-              '&:hover fieldset': {
-                borderColor: 'grey.600',
-              },
-              '&.Mui-focused fieldset': {
-                borderColor: 'success.main',
-              },
-            },
-          }}
-        />
-      </Paper>
+      </Box>
     </Box>
   );
 }
