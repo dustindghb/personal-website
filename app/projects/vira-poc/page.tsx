@@ -30,7 +30,7 @@ export default function Vira() {
       <Typography variant="body1" paragraph>
         Our work experience form allows professionals to share their diverse work experiences and 
         routes those experiences to career-specific agents. These agents reference that data to offer 
-        guidance for users. Additionally, Vira's student form and career mentor allow users to explore 
+        guidance for users. Additionally, Vira&apos;s student form and career mentor allow users to explore 
         careers based off their interests and personality traits, and talk with any career-specific agent.
       </Typography>
 
@@ -38,7 +38,7 @@ export default function Vira() {
         Technical Implementation
       </Typography>
       <Typography variant="body1" paragraph>
-        The frontend was built on Node.js with Next.js in Typescript with Material UI's component 
+        The frontend was built on Node.js with Next.js in Typescript with Material UI&apos;s component 
         library, hosted on Vercel. For the backend, we implemented Node.js with routes written in 
         Typescript and built authentication using Google OAuth. Our database infrastructure utilizes 
         PostgreSQL with Neon as our cloud service provider.
@@ -55,7 +55,7 @@ export default function Vira() {
       </Typography>
       <Typography variant="body1" paragraph>
         While architecture and data flow presented significant challenges, we successfully streamlined 
-        frontend-backend integration using API specifications in Hono. We're particularly proud of 
+        frontend-backend integration using API specifications in Hono. We&apos;re particularly proud of 
         developing a solution that addresses a real humanitarian problem and implementing it 
         successfully. Through this project, we learned the importance of having assigned roles, 
         comprehensive documentation, planned architecture, and clearly outlined tech stacks for 

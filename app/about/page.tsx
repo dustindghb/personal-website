@@ -7,7 +7,7 @@ export default function About() {
         About Me
       </Typography>
       <Typography variant="h6" component="h1" gutterBottom>
-        Hi, my name is Dustin and I'm a third-year student at Santa Clara University pursuing a B.S. in computer science with an emphasis in software engineering, expecting to graduate in Mar 2026.
+        Hi, my name is Dustin and I&apos;m a third-year student at Santa Clara University pursuing a B.S. in computer science with an emphasis in software engineering, expecting to graduate in Mar 2026.
       </Typography>
 
       <Typography variant="h6" component="h1" gutterBottom>
