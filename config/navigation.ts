@@ -52,8 +52,13 @@ export const siteStructure: NavItem = {
       ],
     },
     {
-      id: '/reflections',
-      label: 'Reflections',
+      id: '/timeline',
+      label: 'Timeline',
+      isFolder: false,
+    },
+    {
+      id: '/book-reviews',
+      label: 'Book-Reviews',
       isFolder: false,
     },
   ],
@@ -66,5 +71,6 @@ export const validPaths: PathMap = {
   'projects/scu-schedule-helper': ['projects', 'scu-schedule-helper'],
   'projects/viginere-cypher': ['projects', 'viginere-cypher'],
   'projects/dice-animations': ['projects', 'dice-animations'],
-  'reflections': ['reflections']
+  'book-reviews': ['book-reviews'],
+  'timeline': ['timeline']
 };

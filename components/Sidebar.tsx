@@ -71,7 +71,7 @@ export default function Sidebar() {
   }, []);
 
   if (!mounted) {
-    return null; // Prevent hydration mismatch by not rendering anything on server
+    return null;
   }
 
   const handleSelect = (path: string) => {
@@ -81,10 +81,16 @@ export default function Sidebar() {
   return (
     <Box sx={{ 
       width: '250px', 
-      borderRight: '1px solid rgba(255,255,255,0.3)',
-      bgcolor: '#666666',
+      borderRight: '3px solid rgba(255,255,255,0.5)', // Restored border
+      bgcolor: '#222222',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      height: '100%',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      zIndex: 950, // Adjusted to be higher than content but lower than terminal
     }}>
       <List component="nav" dense sx={{ flex: 1 }}>
         <FileTreeItem 
@@ -92,7 +98,7 @@ export default function Sidebar() {
           onSelect={handleSelect}
         />
       </List>
-      <Box sx={{ p: 2, borderTop: '1px solid rgba(255,255,255,0.3)' }}>
+      <Box sx={{ p: 2, borderTop: '3px solid rgba(255,255,255,0.5)' }}>
         <ListItemText 
           primary="Available Commands:"
           secondary={

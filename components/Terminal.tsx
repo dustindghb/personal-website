@@ -8,6 +8,8 @@ import WaveAnimation from './WaveAnimation';
 export default function Terminal() {
   const [mounted, setMounted] = useState(false);
   const [command, setCommand] = useState('');
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -16,7 +18,7 @@ export default function Terminal() {
   }, []);
 
   if (!mounted) {
-    return null; // Prevent hydration mismatch by not rendering anything on server
+    return null; 
   }
 
   const pathSegments = pathname === '/' ? ['Home'] : ['Home', ...pathname.split('/').filter(Boolean)]
@@ -32,6 +34,11 @@ export default function Terminal() {
 
   const handleCommand = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' && command) {
+      // Save command to history
+      setCommandHistory(prev => [...prev, command]);
+      setHistoryIndex(-1); // Reset history index after command execution
+      
+      // Process command
       if (command === 'cd ..') {
         const segments = pathname.split('/').filter(Boolean);
         if (segments.length > 0) {
@@ -43,17 +50,56 @@ export default function Terminal() {
         if (validPaths[targetPath]) {
           router.push(`/${targetPath}`);
         }
+      } else if (command === 'history') {
+        // Display command history (potentially implement visual feedback)
+        console.log('Command history:', commandHistory);
+      } else if (command === 'clear') {
+        // Option to clear history
+        setCommandHistory([]);
       }
       setCommand('');
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      // Navigate up through command history
+      if (commandHistory.length > 0 && historyIndex < commandHistory.length - 1) {
+        const newIndex = historyIndex + 1;
+        setHistoryIndex(newIndex);
+        setCommand(commandHistory[commandHistory.length - 1 - newIndex]);
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      // Navigate down through command history
+      if (historyIndex > 0) {
+        const newIndex = historyIndex - 1;
+        setHistoryIndex(newIndex);
+        setCommand(commandHistory[commandHistory.length - 1 - newIndex]);
+      } else if (historyIndex === 0) {
+        // Clear command when reaching the end of history
+        setHistoryIndex(-1);
+        setCommand('');
+      }
     }
   };
 
   return (
-    <Box>
+    <Box sx={{
+      position: 'fixed',
+      bottom: 0,
+      left: '250px', // Account for sidebar width
+      right: 0,
+      zIndex: 900, // Set to same as sidebar to keep divider visible
+      // Remove border here to prevent double-line effect
+    }}>
       <WaveAnimation />
       <Box sx={{ 
         p: 2,
-        bgcolor: '#666666',
+        bgcolor: '#222222',
+        height: '120px', // Increased height
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        boxShadow: '0px -4px 12px rgba(0,0,0,0.4)',
+        borderTop: '3px solid rgba(255,255,255,0.5)',
       }}>
         <Box sx={{ 
           display: 'flex', 
@@ -64,10 +110,10 @@ export default function Terminal() {
             display: 'flex', 
             alignItems: 'center', 
             gap: 1,
-            flexShrink: 0, // Prevent breadcrumb from shrinking
-            overflowX: 'auto', // Allow horizontal scroll if needed
-            '&::-webkit-scrollbar': { display: 'none' }, // Hide scrollbar
-            scrollbarWidth: 'none', // Firefox
+            flexShrink: 0, 
+            overflowX: 'auto', 
+            '&::-webkit-scrollbar': { display: 'none' }, 
+            scrollbarWidth: 'none', 
           }}>
             {pathSegments.map((segment, index) => (
               <Box key={index} sx={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
