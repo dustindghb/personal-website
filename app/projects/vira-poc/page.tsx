@@ -1,12 +1,12 @@
 import { Box, Typography, Divider, Grid, Link } from '@mui/material';
-import { School, Work, Code, Storage, Devices, OpenInNew } from '@mui/icons-material';
+import { Code, Storage, Devices, OpenInNew } from '@mui/icons-material';
 
 export default function Vira() {
   return (
     <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '24px', bgcolor: '#383838', color: 'white', minHeight: '100vh' }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Typography variant="h3" gutterBottom>
-          Vira - Democratizing Mentorship
+          Vira - Reviving Apprenticeship
         </Typography>
         <Link 
           href="https://devpost.com/software/vira-vi4umh" 
@@ -25,10 +25,9 @@ export default function Vira() {
           Inspiration
         </Typography>
         <Typography variant="body1">
-          A lot of my team shared the sentiment of feeling lost career-wise at some point in life and 
-          wished there was some kind of figure for guidance or mentorship or opportunities to do 
-          interesting work. Mentorship is a valuable experience not everyone can have. Likewise hands 
-          on experience in specific fields is as well.
+          Vira aims to be a platform that reconnects masters with aspiring learners, reviving the apprenticeship where wisdom transfers through meaningful relationships,
+          not just information—because true mastery has always been cultivated through the personalized guidance, tacit knowledge, and character development that only a
+          dedicated mentor can provide.
         </Typography>
       </Box>
 
@@ -48,7 +47,7 @@ export default function Vira() {
             Work Experience Opportunities:
           </Typography>
           <Typography variant="body1" paragraph>
-            Vira's gig work platform allows professionals to share side projects they would like volunteers for. 
+            Vira&apos;s gig work platform allows professionals to share side projects they would like volunteers for. 
             This not only incentivizes professionals to share their work experience, but also offers the opportunity 
             for hands on learning for users.
           </Typography>
@@ -59,7 +58,7 @@ export default function Vira() {
             Mentorship and Guidance Opportunities:
           </Typography>
           <Typography variant="body1" paragraph>
-            Vira's work experience form allows professionals to share their diverse work experiences and 
+            Vira&apos;s work experience form allows professionals to share their diverse work experiences and 
             routes those experiences to career-specific agents. These agents reference that data to offer 
             guidance for users.
           </Typography>
@@ -70,7 +69,7 @@ export default function Vira() {
             Commodifies Career Information:
           </Typography>
           <Typography variant="body1" paragraph>
-            Vira's student form and career mentor allow users to explore careers based off their interests 
+            Vira&apos;s student form and career mentor allow users to explore careers based off their interests 
             and personality traits, and talk with any career-specific agent.
           </Typography>
         </Box>
@@ -167,7 +166,7 @@ export default function Vira() {
 
           <Grid item xs={12} md={4}>
             <Typography variant="h5" gutterBottom>
-              What's Next for Vira
+              What&apos;s Next for Vira
             </Typography>
             <Typography variant="body1">
               Vira is looking to launch to the public, but before that improving the quality of forms, 

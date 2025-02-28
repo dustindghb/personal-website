@@ -5,7 +5,6 @@ import {
   Box, 
   Typography, 
   Container,
-  useTheme,
   Tabs,
   Tab,
   Chip
@@ -49,7 +48,7 @@ const timelineEntries: TimelineEntry[] = [
     type: 'project',
     path: '/projects/personal-website'
   },
-    {
+  {
     id: 'vira-poc',
     label: 'Vira - Apprenticeship Platform (POC)',
     description: 'Developed proof of concept platform where apprentices can seek guidance from agents trained from data given from professionals, depending on career interests',
@@ -129,13 +128,10 @@ const timelineEntries: TimelineEntry[] = [
     type: 'certificate',
     image: '/certificates/databases-1.png'
   },
-  
 ];
 
 export default function Projects(): React.ReactElement {
-  const theme = useTheme();
   const [filter, setFilter] = useState<'all' | 'project' | 'certificate'>('all');
-  const [openImage, setOpenImage] = useState<string | null>(null);
   
   const filteredEntries = timelineEntries.filter(entry => {
     if (filter === 'all') return true;
@@ -147,11 +143,9 @@ export default function Projects(): React.ReactElement {
   };
   
   const handleOpenImage = (imageSrc: string) => {
-    setOpenImage(imageSrc);
-  };
-  
-  const handleCloseImage = () => {
-    setOpenImage(null);
+    // Functionality for handling image opening can be implemented later
+    // For now we'll keep the function but not use the state
+    console.log('Image clicked:', imageSrc);
   };
   
   return (
