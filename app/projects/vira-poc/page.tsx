@@ -169,8 +169,8 @@ export default function Vira() {
               What&apos;s Next for Vira
             </Typography>
             <Typography variant="body1">
-              Vira is looking to launch to the public, but before that improving the quality of forms, 
-              quality of prompt engineering, quality of security, and quality of usability is next.
+              I am planning on continuing the project, adding connect and live chat features allowing mentors and mentees
+              to stay in touch.
             </Typography>
           </Grid>
         </Grid>
