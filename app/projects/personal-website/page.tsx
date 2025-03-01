@@ -1,5 +1,5 @@
 import { Box, Typography, Divider, Grid, Link } from '@mui/material';
-import { Code, Storage, OpenInNew, Terminal, Psychology } from '@mui/icons-material';
+import { Code, Storage, OpenInNew, Terminal} from '@mui/icons-material';
 
 export default function PortfolioWebsite() {
   return (
@@ -149,7 +149,7 @@ export default function PortfolioWebsite() {
               Material-UI Implementation
             </Typography>
             <Typography variant="body1" paragraph>
-              The UI leverages Material-UI's theming capabilities with custom palette configurations, responsive 
+              The UI leverages Material-UI&apos;s theming capabilities with custom palette configurations, responsive 
               breakpoints, and typography overrides. Component composition follows best practices with styled components, 
               sx prop patterns, and theme-aware styling to maintain consistency across the application.
             </Typography>
