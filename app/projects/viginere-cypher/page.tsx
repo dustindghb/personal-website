@@ -116,8 +116,7 @@ export default function Vigenere() {
         </Typography>
         <Typography variant="body1">
           Vigenere Cipher Webevent is a coded webapp featuring productivity resources and an interactive puzzle competition.
-          Built with React and NextJs, this project increased fraternity engagement by 15% through its innovative approach to
-          cryptography challenges. The platform implements a comprehensive Google authentication system, data retrieval, and
+          Built with React and NextJs, the platform implements a comprehensive Google authentication system, data retrieval, and
           publishing mechanisms powered by Firebase.
         </Typography>
       </Box>

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Box, Typography, Divider, Grid, Link, Tabs, Tab, Button, Paper, IconButton, Modal } from '@mui/material';
-import { Code, Storage, Devices, Download, Close, ArrowBack, ArrowForward, Image, GitHub } from '@mui/icons-material';
+import { Box, Typography, Divider, Grid, Link, Tabs, Tab, Paper, IconButton, Modal } from '@mui/material';
+import { Code, Storage, Devices, Close, ArrowBack, ArrowForward, GitHub } from '@mui/icons-material';
 
 type DocumentFile = {
   title: string;
@@ -48,7 +48,7 @@ export default function Vira() {
   const documentationFiles: DocumentFile[] = [
     { 
       title: "User Requirements Document", 
-      description: "Comprehensive documentation of user stories, system specifications, and functional requirements for the Vira platform", 
+      description: "Comprehensive documentation of user and functional requirements for the Vira platform", 
       filename: "vira_requirements.png",
       previewImages: [
         "/viraPOC-docs/ViraRequirementsPreview1.png",
@@ -350,33 +350,11 @@ export default function Vira() {
                   {/* Document Info */}
                   <Box sx={{ p: 3, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <Image 
-                        sx={{ mr: 2, color: '#64b5f6' }} 
-                        aria-label={`${doc.title} icon`}  // Add accessibility label
-                        role="img"  // Explicitly define role as image
-                      />
                       <Typography variant="h6">{doc.title}</Typography>
                     </Box>
                     <Typography variant="body2" paragraph sx={{ mb: 3, flexGrow: 1 }}>
                       {doc.description}
                     </Typography>
-                    <Button
-                      variant="outlined"
-                      startIcon={<Download />}
-                      href={`/documents/${doc.filename}`}
-                      target="_blank"
-                      sx={{
-                        alignSelf: 'flex-start',
-                        color: 'white',
-                        borderColor: 'white',
-                        '&:hover': {
-                          borderColor: 'white',
-                          bgcolor: 'rgba(255, 255, 255, 0.08)'
-                        }
-                      }}
-                    >
-                      Download Image
-                    </Button>
                   </Box>
                 </Paper>
               </Grid>
