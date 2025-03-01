@@ -304,7 +304,7 @@ export default function Vira() {
             Project Documentation
           </Typography>
           <Typography variant="body1" paragraph>
-            Below you'll find comprehensive documentation created throughout the development process of Vira.
+            Below you&apos;ll find comprehensive documentation created throughout the development process of Vira.
             Click on any preview to see more images from the document or download the full PDF.
           </Typography>
 
