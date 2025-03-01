@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Box, Typography, Divider, Grid, Link, Tabs, Tab, Button, Paper, IconButton, Modal } from '@mui/material';
-import { Code, Storage, Extension, OpenInNew, School, Download, Close, ArrowBack, ArrowForward} from '@mui/icons-material';
+import { Box, Typography, Divider, Grid, Link, Tabs, Tab, Paper, IconButton, Modal } from '@mui/material';
+import { Code, Storage, Extension, OpenInNew, School, Close, ArrowBack, ArrowForward} from '@mui/icons-material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 // PDF documentation files type
@@ -437,7 +437,7 @@ export default function SCUScheduleHelper() {
         </>
       )}
 
-      {/* Documentation Tab - Updated with correct icons and preview handling */}
+      {/* Documentation Tab */}
       {tabValue === 1 && (
         <Box sx={{ my: 4 }}>
           <Typography variant="h5" gutterBottom>
@@ -510,7 +510,7 @@ export default function SCUScheduleHelper() {
                         color: 'white',
                       }}
                     >
-                      <Typography variant="body1">
+                      <Typography variant="body1" sx={{ color: 'white' }}>
                         Click to preview
                       </Typography>
                     </Box>
@@ -524,44 +524,12 @@ export default function SCUScheduleHelper() {
                     <Typography variant="body2" paragraph sx={{ mb: 3, flexGrow: 1 }}>
                       {doc.description}
                     </Typography>
-                    <Button
-                      variant="outlined"
-                      startIcon={<Download />}
-                      href={doc.filename}
-                      target="_blank"
-                      sx={{
-                        alignSelf: 'flex-start',
-                        color: 'white',
-                        borderColor: 'white',
-                        '&:hover': {
-                          borderColor: 'white',
-                          bgcolor: 'rgba(255, 255, 255, 0.08)'
-                        }
-                      }}
-                    >
-                      Download {doc.fileType === 'pdf' ? 'PDF' : 'Image'}
-                    </Button>
+                    {/* Download button removed */}
                   </Box>
                 </Paper>
               </Grid>
             ))}
           </Grid>
-
-          <Box sx={{ mt: 4, p: 3, bgcolor: 'rgba(0,0,0,0.2)', borderRadius: 2 }}>
-            <Typography variant="h6" gutterBottom>
-              About the Documentation
-            </Typography>
-            <Typography variant="body1" paragraph>
-              These documents were created as part of our software development class at Santa Clara University. 
-              They represent the complete software development lifecycle for the SCU Schedule Helper, from initial 
-              requirements gathering through implementation and testing. The diagrams follow standard UML conventions 
-              and were developed to help visualize the system&apos;s structure and behavior.
-            </Typography>
-            <Typography variant="body1" paragraph>
-              Our API documentation at <Link href="https://api.scu-schedule-helper.me/" target="_blank" rel="noopener noreferrer" sx={{ color: '#90caf9' }}>api.scu-schedule-helper.me</Link> provides 
-              additional technical details for developers looking to integrate with our system.
-            </Typography>
-          </Box>
         </Box>
       )}
 
@@ -587,7 +555,7 @@ export default function SCUScheduleHelper() {
           flexDirection: 'column'
         }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <Typography variant="h6" component="h2">
+            <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
               {currentDoc?.title} - Preview {currentPreviewIndex + 1}/{currentDoc?.previewImages.length}
             </Typography>
             <IconButton onClick={handleClosePreview} sx={{ color: 'white' }}>
@@ -654,23 +622,7 @@ export default function SCUScheduleHelper() {
             )}
           </Box>
           
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-            <Button
-              variant="contained"
-              startIcon={<Download />}
-              href={currentDoc ? currentDoc.filename : '#'}
-              target="_blank"
-              sx={{
-                bgcolor: 'white',
-                color: '#333',
-                '&:hover': {
-                  bgcolor: '#e0e0e0',
-                }
-              }}
-            >
-              Download {currentDoc?.fileType === 'pdf' ? 'Full PDF' : 'Image'}
-            </Button>
-          </Box>
+          {/* Download button removed */}
         </Box>
       </Modal>
     </Box>

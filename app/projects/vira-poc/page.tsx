@@ -407,7 +407,7 @@ export default function Vira() {
           flexDirection: 'column'
         }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-            <Typography variant="h6" component="h2">
+            <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
               {currentDoc?.title}
               {currentDoc && currentDoc.previewImages.length > 1 && 
                 ` - Preview ${currentPreviewIndex + 1}/${currentDoc.previewImages.length}`
@@ -476,24 +476,7 @@ export default function Vira() {
               </>
             )}
           </Box>
-          
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-            <Button
-              variant="contained"
-              startIcon={<Download />}
-              href={currentDoc ? `/documents/${currentDoc.filename}` : '#'}
-              target="_blank"
-              sx={{
-                bgcolor: 'white',
-                color: '#333',
-                '&:hover': {
-                  bgcolor: '#e0e0e0',
-                }
-              }}
-            >
-              Download {currentDoc?.fileType === 'pdf' ? 'Full PDF' : 'Image'}
-            </Button>
-          </Box>
+
         </Box>
       </Modal>
     </Box>
