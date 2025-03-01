@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Box, Typography, Divider, Grid, Link, Tabs, Tab, Button, Paper, IconButton, Modal } from '@mui/material';
-import { Code, Storage, Extension, OpenInNew, School, PictureAsPdf, Download, Close, ArrowBack, ArrowForward, Image} from '@mui/icons-material';
+import { Code, Storage, Extension, OpenInNew, School, Download, Close, ArrowBack, ArrowForward} from '@mui/icons-material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 // PDF documentation files type
@@ -563,7 +563,7 @@ export default function SCUScheduleHelper() {
               These documents were created as part of our software development class at Santa Clara University. 
               They represent the complete software development lifecycle for the SCU Schedule Helper, from initial 
               requirements gathering through implementation and testing. The diagrams follow standard UML conventions 
-              and were developed to help visualize the system's structure and behavior.
+              and were developed to help visualize the system&apos;s structure and behavior.
             </Typography>
             <Typography variant="body1" paragraph>
               Our API documentation at <Link href="https://api.scu-schedule-helper.me/" target="_blank" rel="noopener noreferrer" sx={{ color: '#90caf9' }}>api.scu-schedule-helper.me</Link> provides 
