@@ -100,11 +100,14 @@ export default function Sidebar() {
       </List>
       <Box sx={{ p: 2, borderTop: '3px solid rgba(255,255,255,0.5)' }}>
         <ListItemText 
-          primary="Available Commands:"
+          primary="Example Commands:"
           secondary={
             <>
-              cd ..<br />
-              cd projects/scu-schedule-helper
+              to go back:
+              cd .. <br />
+              to navigate to a page: <br></br>
+              cd projects/scu-schedule-helper <br />
+              cd about
             </>
           }
           secondaryTypographyProps={{

@@ -18,7 +18,7 @@ const WaveAnimation = () => {
       preserveAspectRatio="none"
       style={{
         width: '100%',
-        height: '150px',
+        height: '100px',
         display: 'block',
         marginBottom: -1,
       }}

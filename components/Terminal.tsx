@@ -1,8 +1,9 @@
 'use client';
 import { useState, KeyboardEvent, useEffect } from 'react';
-import { TextField, Box, Button } from '@mui/material';
+import { TextField, Box, Button, IconButton, Typography } from '@mui/material';
 import { useRouter, usePathname } from 'next/navigation';
 import { validPaths } from '@/config/navigation';
+import { GitHub, LinkedIn, Code } from '@mui/icons-material';
 import WaveAnimation from './WaveAnimation';
 
 export default function Terminal() {
@@ -94,12 +95,13 @@ export default function Terminal() {
       <Box sx={{ 
         p: 2,
         bgcolor: '#222222',
-        height: '120px', // Increased height
+        height: '60px', // Increased height
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         boxShadow: '0px -4px 12px rgba(0,0,0,0.4)',
         borderTop: '3px solid rgba(255,255,255,0.5)',
+        position: 'relative', // Added for footer positioning
       }}>
         <Box sx={{ 
           display: 'flex', 
@@ -180,6 +182,73 @@ export default function Terminal() {
               disableUnderline: true
             }}
           />
+        </Box>
+        
+        {/* Footer in bottom right corner */}
+        <Box
+          sx={{
+            position: 'absolute',
+            right: 16,
+            top: '50%',
+            transform: 'translateY(-10%)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            color: 'rgba(255,255,255,0.5)',
+            zIndex: 1000,
+          }}
+        >
+          <Typography 
+            variant="caption" 
+            sx={{ 
+              fontFamily: 'monospace',
+              fontSize: '0.75rem',
+              display: { xs: 'none', sm: 'flex' },
+              alignItems: 'center',
+              gap: 0.5,
+              mr: 1,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            <Code fontSize="inherit" />
+            Designed by Dustin Duong
+          </Typography>
+          
+          <IconButton 
+            href="https://github.com/dustinduong" 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub Profile"
+            size="small"
+            sx={{ 
+              color: 'rgba(255,255,255,0.5)',
+              padding: '4px',
+              '&:hover': { 
+                color: 'white',
+                backgroundColor: 'rgba(255,255,255,0.08)' 
+              }
+            }}
+          >
+            <GitHub fontSize="small" />
+          </IconButton>
+          
+          <IconButton 
+            href="https://www.linkedin.com/in/dustin-duong-ab505b2a5/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
+            size="small"
+            sx={{ 
+              color: 'rgba(255,255,255,0.5)',
+              padding: '4px',
+              '&:hover': { 
+                color: 'white',
+                backgroundColor: 'rgba(255,255,255,0.08)' 
+              }
+            }}
+          >
+            <LinkedIn fontSize="small" />
+          </IconButton>
         </Box>
       </Box>
     </Box>
