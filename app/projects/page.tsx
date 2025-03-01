@@ -65,20 +65,20 @@ const timelineEntries: TimelineEntry[] = [
     path: '/projects/viginere-cypher'
   },
   {
-    id: 'dice-animations',
-    label: 'Dice Animations App',
-    description: 'Developed Unity app with interactive dice animations and simulations for given percent probability',
-    year: 'February 2024',
-    type: 'project',
-    path: '/projects/dice-animations'
-  },
-  {
     id: 'APIs',
     label: 'APIs',
     description: 'Learned how to design, build and optimize RESTful APIs using Django, including understanding API architecture principles, implementing data backbones for web applications, exploring emerging API technologies, and creating comprehensive API documentation and testing protocols to ensure robust performance.',
     year: 'April 2024',
     type: 'certificate',
     image: '/certificates/apis-1.png'
+  },
+  {
+    id: 'dice-animations',
+    label: 'Dice Animations App',
+    description: 'Developed Unity app with interactive dice animations and simulations for given percent probability',
+    year: 'February 2024',
+    type: 'project',
+    path: '/projects/dice-animations'
   },
   {
     id: 'django-web',

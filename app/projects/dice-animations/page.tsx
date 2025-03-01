@@ -4,7 +4,9 @@ import { Code, Storage, Gamepad,  WebAsset } from '@mui/icons-material';
 export default function ProbabilityApp() {
   return (
     <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '24px', bgcolor: '#383838', color: 'white', minHeight: '100vh' }}>
-
+      <Typography variant="h3" gutterBottom>
+          Dice Animations App
+        </Typography>
       {/* Overview Section */}
       <Box sx={{ my: 4 }}>
         <Typography variant="h5" gutterBottom>

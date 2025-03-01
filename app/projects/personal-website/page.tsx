@@ -28,8 +28,8 @@ export default function PortfolioWebsite() {
         <Typography variant="body1">
           This portfolio website represents a sophisticated rebuild from the ground up, leveraging the power of Next.js, 
           TypeScript, and Material-UI to create a feature-rich platform that goes beyond traditional portfolio implementations. 
-          What sets this project apart is the integration of a custom AI assistant built with RAG (Retrieval Augmented Generation) 
-          and Ollama, providing visitors with an interactive way to explore my work and experience.
+          The project focuses on creating an elegant, responsive UI with advanced TypeScript patterns while laying the groundwork 
+          for future AI-powered enhancements.
         </Typography>
       </Box>
 
@@ -41,7 +41,7 @@ export default function PortfolioWebsite() {
           Core Features
         </Typography>
         <Typography variant="body1" paragraph>
-          This portfolio website combines advanced frontend technologies with AI capabilities to create a unique user experience.
+          This portfolio website combines advanced frontend technologies to create a unique user experience.
         </Typography>
 
         <Box sx={{ mt: 2 }}>
@@ -52,17 +52,6 @@ export default function PortfolioWebsite() {
             The site showcases sophisticated Material-UI implementations including custom theme development, responsive navigation 
             with dynamic routing, a filtered portfolio project showcase, and an interactive terminal-like command interface 
             that allows visitors to navigate the site in a unique way.
-          </Typography>
-        </Box>
-
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h6">
-            AI Assistant Integration:
-          </Typography>
-          <Typography variant="body1" paragraph>
-            A standout feature is the custom AI assistant built using RAG and Ollama. Visitors can interact with this 
-            assistant to learn more about my projects, skills, and experiences through natural language conversations, 
-            with the AI retrieving information from a comprehensive knowledge base of portfolio content.
           </Typography>
         </Box>
 
@@ -87,7 +76,7 @@ export default function PortfolioWebsite() {
         </Typography>
 
         <Grid container spacing={3} sx={{ mt: 2 }}>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4}>
             <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
               <Code sx={{ mr: 1 }} />
               <Typography variant="h6">Frontend</Typography>
@@ -101,45 +90,31 @@ export default function PortfolioWebsite() {
             </Typography>
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-              <Psychology sx={{ mr: 1 }} />
-              <Typography variant="h6">AI Integration</Typography>
-            </Box>
-            <Typography variant="body2">
-              • RAG architecture<br />
-              • Ollama for local model hosting<br />
-              • Vector embeddings for content<br />
-              • Custom prompt engineering<br />
-              • Real-time response streaming
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4}>
             <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
               <Terminal sx={{ mr: 1 }} />
               <Typography variant="h6">Interactive Elements</Typography>
             </Box>
             <Typography variant="body2">
               • Terminal-like command interface<br />
-              • Material-UI chat component<br />
               • Filtered project showcase<br />
               • Blog with markdown support<br />
-              • Real-time state management
+              • Real-time state management<br />
+              • Custom animation components
             </Typography>
           </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4}>
             <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
               <Storage sx={{ mr: 1 }} />
               <Typography variant="h6">Data Management</Typography>
             </Box>
             <Typography variant="body2">
-              • Vector database for AI retrieval<br />
               • TypeScript type-safe data handling<br />
-              • Structured knowledge base<br />
-              • Chat state persistence<br />
-              • Context-aware information retrieval
+              • Structured content organization<br />
+              • State persistence with local storage<br />
+              • Optimized asset loading<br />
+              • Dynamic content rendering
             </Typography>
           </Grid>
         </Grid>
@@ -171,13 +146,12 @@ export default function PortfolioWebsite() {
 
           <Grid item xs={12} md={6}>
             <Typography variant="h6" gutterBottom>
-              RAG System Implementation
+              Material-UI Implementation
             </Typography>
             <Typography variant="body1" paragraph>
-              The AI assistant is built on a custom RAG system that includes a comprehensive knowledge base through
-              structured personal information and portfolio text embeddings. The system features sophisticated
-              retrieval mechanisms for context management, carefully crafted prompt templates, and a streamlined
-              response generation pipeline.
+              The UI leverages Material-UI's theming capabilities with custom palette configurations, responsive 
+              breakpoints, and typography overrides. Component composition follows best practices with styled components, 
+              sx prop patterns, and theme-aware styling to maintain consistency across the application.
             </Typography>
           </Grid>
         </Grid>
@@ -193,10 +167,11 @@ export default function PortfolioWebsite() {
               Challenges
             </Typography>
             <Typography variant="body1">
-              Integrating the AI assistant with type safety throughout the application presented significant challenges, 
-              particularly in handling asynchronous AI responses while maintaining a smooth user experience. Creating a 
-              comprehensive knowledge base for the RAG system required careful organization of portfolio content and 
-              optimization of vector embeddings for accurate retrieval.
+              Creating a type-safe architecture throughout the application presented significant challenges,
+              particularly in handling complex state management while maintaining a smooth user experience.
+              Designing a responsive UI that works across all devices while keeping the unique aesthetic
+              of the portfolio required careful planning and implementation of custom breakpoints and
+              conditional rendering strategies.
             </Typography>
           </Grid>
 
@@ -207,8 +182,8 @@ export default function PortfolioWebsite() {
             <Typography variant="body1">
               This project provided deep experience with Material-UI capabilities including advanced theming and component creation. 
               The TypeScript implementation enhanced understanding of type-safe event handling, generic component patterns, and 
-              complex type inference. The AI integration delivered practical experience with RAG architecture, local model deployment, 
-              prompt engineering, and vector database management.
+              complex type inference. Working with Next.js delivered practical experience with server components, client components, 
+              and optimized rendering strategies.
             </Typography>
           </Grid>
 
@@ -217,7 +192,9 @@ export default function PortfolioWebsite() {
               What&apos;s Next
             </Typography>
             <Typography variant="body1">
-              Future plans include enhancing the AI assistant with multi-modal capabilities to understand and generate visual content, 
+              The most exciting future plan is integrating an AI assistant built with RAG (Retrieval Augmented Generation) 
+              and Ollama. This custom agent will be able to reference information about me and my work, allowing visitors 
+              to have natural language conversations about my projects, skills, and experience. Additional plans include 
               implementing more advanced TypeScript patterns for even greater type safety, and creating interactive visualizations 
               of the connections between different projects and skills in the portfolio.
             </Typography>

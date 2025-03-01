@@ -8,7 +8,7 @@ export default function ResumePage() {
   const [loading, setLoading] = useState<boolean>(true);
   
   // Path to your resume PDF
-  const resumePath = "/documents/resume.pdf";
+  const resumePath = "/myResume.pdf";
   
   // Simulate loading for the preview
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function ResumePage() {
           alignItems: 'center'
         }}
       >
-        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mb: 2, color: 'white' }}>
           <Typography variant="h5">
             Resume Preview
           </Typography>
@@ -49,7 +49,7 @@ export default function ResumePage() {
             startIcon={<Download />}
             href={resumePath}
             target="_blank"
-            download="YourName_Resume.pdf"
+            download="myResume.pdf"
             sx={{
               bgcolor: '#9fc5e8',
               color: '#333',
@@ -81,13 +81,13 @@ export default function ResumePage() {
             <CircularProgress sx={{ color: '#9fc5e8' }} />
           ) : (
             <Box 
-              component="img"
-              src="/documents/resume-preview.jpg"
-              alt="Resume preview"
+              component="iframe"
+              src="/myResume.pdf"
+              title="Resume PDF"
               sx={{ 
-                maxWidth: '100%',
-                maxHeight: '100%',
-                objectFit: 'contain',
+                width: '100%',
+                height: '100%',
+                border: 'none',
                 boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
               }}
             />

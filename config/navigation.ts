@@ -21,7 +21,7 @@ export const siteStructure: NavItem = {
     },
     {
       id: '/projects',
-      label: 'Projects',
+      label: 'Experience',
       isFolder: true,
       children: [
         {
@@ -52,13 +52,8 @@ export const siteStructure: NavItem = {
       ],
     },
     {
-      id: '/timeline',
-      label: 'Timeline',
-      isFolder: false,
-    },
-    {
-      id: '/book-reviews',
-      label: 'Book-Reviews',
+      id: '/resume',
+      label: 'Resume',
       isFolder: false,
     },
   ],
@@ -66,11 +61,10 @@ export const siteStructure: NavItem = {
 
 export const validPaths: PathMap = {
   'about': ['about'],
-  'projects': ['projects'],
+  'projects': ['experience'],
   'projects/vira-poc': ['projects', 'vira-poc'],
   'projects/scu-schedule-helper': ['projects', 'scu-schedule-helper'],
   'projects/viginere-cypher': ['projects', 'viginere-cypher'],
   'projects/dice-animations': ['projects', 'dice-animations'],
-  'book-reviews': ['book-reviews'],
-  'timeline': ['timeline']
+  'resume': ['resume']
 };
