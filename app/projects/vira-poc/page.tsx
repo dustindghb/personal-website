@@ -2,14 +2,15 @@
 
 import { useState } from 'react';
 import { Box, Typography, Divider, Grid, Link, Tabs, Tab, Button, Paper, IconButton, Modal } from '@mui/material';
-import { Code, Storage, Devices, OpenInNew, PictureAsPdf, Download, Close, ArrowBack, ArrowForward } from '@mui/icons-material';
+import { Code, Storage, Devices, Download, Close, ArrowBack, ArrowForward, Image, GitHub } from '@mui/icons-material';
 
-// PDF documentation files type
+// Documentation files type
 type DocumentFile = {
   title: string;
   description: string;
   filename: string;
   previewImages: string[]; // Array of preview image paths
+  fileType: 'pdf' | 'image'; // Type of document
 };
 
 export default function Vira() {
@@ -44,44 +45,17 @@ export default function Vira() {
     setCurrentPreviewIndex((prev) => (prev > 0 ? prev - 1 : prev));
   };
 
-  // Documentation files - you'll need to replace these with your actual PDF files and preview images
+  // Documentation files - simplified to just one requirements image
   const documentationFiles: DocumentFile[] = [
     { 
-      title: "Product Requirements Document", 
-      description: "12-page document detailing system requirements, user specifications, and development timeline", 
-      filename: "vira_requirements_document.pdf",
+      title: "User Requirements Document", 
+      description: "Comprehensive documentation of user stories, system specifications, and functional requirements for the Vira platform", 
+      filename: "vira_requirements.png",
       previewImages: [
-        "/documents/previews/vira_requirements_1.jpg",
-        "/documents/previews/vira_requirements_2.jpg",
-        "/documents/previews/vira_requirements_3.jpg",
-      ]
-    },
-    { 
-      title: "System Architecture", 
-      description: "Class diagrams, database schema, API specifications, and integration diagrams", 
-      filename: "vira_architecture.pdf",
-      previewImages: [
-        "/documents/previews/vira_architecture_1.jpg",
-        "/documents/previews/vira_architecture_2.jpg",
-      ]
-    },
-    { 
-      title: "User Research", 
-      description: "Summaries from user interviews and tests, including feature prioritization feedback", 
-      filename: "vira_user_research.pdf",
-      previewImages: [
-        "/documents/previews/vira_user_research_1.jpg",
-        "/documents/previews/vira_user_research_2.jpg",
-      ]
-    },
-    { 
-      title: "AI Implementation Guide", 
-      description: "Career-specific agent design, prompt engineering strategies, and data vector storage", 
-      filename: "vira_ai_implementation.pdf",
-      previewImages: [
-        "/documents/previews/vira_ai_implementation_1.jpg",
-        "/documents/previews/vira_ai_implementation_2.jpg",
-      ]
+        "/viraPOC-docs/ViraRequirementsPreview1.png",
+        "/viraPOC-docs/ViraRequirementsPreview2.png",
+      ],
+      fileType: 'image'
     }
   ];
 
@@ -91,15 +65,17 @@ export default function Vira() {
         <Typography variant="h3" gutterBottom>
           Vira - Reviving Apprenticeship
         </Typography>
-        <Link 
-          href="https://devpost.com/software/vira-vi4umh" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          sx={{ color: '#9fc5e8', display: 'flex', alignItems: 'center' }}
-        >
-          <Typography variant="body2" sx={{ mr: 0.5 }}>View on DevPost</Typography>
-          <OpenInNew fontSize="small" />
-        </Link>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <Link 
+            href="https://github.com/dustindghb/H4H2025" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
+          >
+            <GitHub fontSize="small" sx={{ mr: 0.5 }} />
+            <Typography variant="body2">GitHub</Typography>
+          </Link>
+        </Box>
       </Box>
 
       <Tabs 
@@ -297,15 +273,15 @@ export default function Vira() {
         </>
       )}
 
-      {/* Documentation Tab */}
+      {/* Documentation Tab - Simplified with just one image document */}
       {tabValue === 1 && (
         <Box sx={{ my: 4 }}>
           <Typography variant="h5" gutterBottom>
             Project Documentation
           </Typography>
           <Typography variant="body1" paragraph>
-            Below you&apos;ll find comprehensive documentation created throughout the development process of Vira.
-            Click on any preview to see more images from the document or download the full PDF.
+            Below you&apos;ll find the user requirements documentation created during the development process of Vira.
+            Click on the preview to view the full image or download it.
           </Typography>
 
           <Grid container spacing={3} sx={{ mt: 2 }}>
@@ -367,7 +343,7 @@ export default function Vira() {
                       }}
                     >
                       <Typography variant="body1">
-                        Click to preview ({doc.previewImages.length} pages)
+                        Click to view full image
                       </Typography>
                     </Box>
                   </Box>
@@ -375,7 +351,7 @@ export default function Vira() {
                   {/* Document Info */}
                   <Box sx={{ p: 3, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <PictureAsPdf sx={{ mr: 2, color: '#ff5252' }} />
+                      <Image sx={{ mr: 2, color: '#64b5f6' }} />
                       <Typography variant="h6">{doc.title}</Typography>
                     </Box>
                     <Typography variant="body2" paragraph sx={{ mb: 3, flexGrow: 1 }}>
@@ -396,7 +372,7 @@ export default function Vira() {
                         }
                       }}
                     >
-                      Download PDF
+                      Download Image
                     </Button>
                   </Box>
                 </Paper>
@@ -408,26 +384,21 @@ export default function Vira() {
             <Typography variant="h6" gutterBottom>
               About the Documentation
             </Typography>
-            <Typography variant="body1" paragraph>
-              These documents represent the complete development lifecycle for Vira. The Product Requirements Document
-              outlines our initial vision and specifications, the System Architecture showcases our technical design,
-              the User Research documents our iterative user-centered design process, and the AI Implementation Guide
-              provides details on how we built our career-specific agents.
-            </Typography>
             <Typography variant="body1">
-              Together, these documents demonstrate our comprehensive approach to developing Vira that balances 
-              technical considerations with user needs. The documentation helped our team stay aligned throughout 
-              the development process and serves as a valuable reference for future enhancements and feature additions.
+              This user requirements document represents the initial vision for Vira. It outlines our key user stories, 
+              system specifications, and functional requirements that guided our development process. This document was 
+              essential for keeping our team aligned throughout development and serves as a reference for our continued 
+              work on the platform.
             </Typography>
           </Box>
         </Box>
       )}
 
-      {/* PDF Preview Modal */}
+      {/* Document Preview Modal */}
       <Modal
         open={openModal}
         onClose={handleClosePreview}
-        aria-labelledby="pdf-preview-modal"
+        aria-labelledby="document-preview-modal"
       >
         <Box sx={{ 
           position: 'absolute',
@@ -446,7 +417,10 @@ export default function Vira() {
         }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
             <Typography variant="h6" component="h2">
-              {currentDoc?.title} - Preview {currentPreviewIndex + 1}/{currentDoc?.previewImages.length}
+              {currentDoc?.title}
+              {currentDoc && currentDoc.previewImages.length > 1 && 
+                ` - Preview ${currentPreviewIndex + 1}/${currentDoc.previewImages.length}`
+              }
             </Typography>
             <IconButton onClick={handleClosePreview} sx={{ color: 'white' }}>
               <Close />
@@ -467,7 +441,7 @@ export default function Vira() {
               <Box 
                 component="img"
                 src={currentDoc.previewImages[currentPreviewIndex]}
-                alt={`Preview page ${currentPreviewIndex + 1}`}
+                alt={`Preview of ${currentDoc?.title}`}
                 sx={{ 
                   maxWidth: '100%',
                   maxHeight: '100%',
@@ -476,36 +450,40 @@ export default function Vira() {
               />
             )}
             
-            {/* Navigation arrows */}
-            <IconButton 
-              onClick={handlePrevPreview}
-              disabled={currentPreviewIndex === 0}
-              sx={{ 
-                position: 'absolute', 
-                left: 10, 
-                color: 'white',
-                bgcolor: 'rgba(0,0,0,0.3)',
-                '&:hover': { bgcolor: 'rgba(0,0,0,0.5)' },
-                '&.Mui-disabled': { color: 'rgba(255,255,255,0.3)' }
-              }}
-            >
-              <ArrowBack />
-            </IconButton>
-            
-            <IconButton 
-              onClick={handleNextPreview}
-              disabled={!currentDoc || currentPreviewIndex === currentDoc.previewImages.length - 1}
-              sx={{ 
-                position: 'absolute', 
-                right: 10, 
-                color: 'white',
-                bgcolor: 'rgba(0,0,0,0.3)',
-                '&:hover': { bgcolor: 'rgba(0,0,0,0.5)' },
-                '&.Mui-disabled': { color: 'rgba(255,255,255,0.3)' }
-              }}
-            >
-              <ArrowForward />
-            </IconButton>
+            {/* Only show navigation arrows if there are multiple preview images */}
+            {currentDoc && currentDoc.previewImages.length > 1 && (
+              <>
+                <IconButton 
+                  onClick={handlePrevPreview}
+                  disabled={currentPreviewIndex === 0}
+                  sx={{ 
+                    position: 'absolute', 
+                    left: 10, 
+                    color: 'white',
+                    bgcolor: 'rgba(0,0,0,0.3)',
+                    '&:hover': { bgcolor: 'rgba(0,0,0,0.5)' },
+                    '&.Mui-disabled': { color: 'rgba(255,255,255,0.3)' }
+                  }}
+                >
+                  <ArrowBack />
+                </IconButton>
+                
+                <IconButton 
+                  onClick={handleNextPreview}
+                  disabled={!currentDoc || currentPreviewIndex === currentDoc.previewImages.length - 1}
+                  sx={{ 
+                    position: 'absolute', 
+                    right: 10, 
+                    color: 'white',
+                    bgcolor: 'rgba(0,0,0,0.3)',
+                    '&:hover': { bgcolor: 'rgba(0,0,0,0.5)' },
+                    '&.Mui-disabled': { color: 'rgba(255,255,255,0.3)' }
+                  }}
+                >
+                  <ArrowForward />
+                </IconButton>
+              </>
+            )}
           </Box>
           
           <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
@@ -522,7 +500,7 @@ export default function Vira() {
                 }
               }}
             >
-              Download Full PDF
+              Download {currentDoc?.fileType === 'pdf' ? 'Full PDF' : 'Image'}
             </Button>
           </Box>
         </Box>

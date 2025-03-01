@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { Box, Typography, Divider, Grid, Link, Tabs, Tab, Button, Paper, IconButton, Modal } from '@mui/material';
-import { Code, Storage, Extension, OpenInNew, School, PictureAsPdf, Download, Close, ArrowBack, ArrowForward } from '@mui/icons-material';
+import { Code, Storage, Extension, OpenInNew, School, PictureAsPdf, Download, Close, ArrowBack, ArrowForward, Image} from '@mui/icons-material';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 // PDF documentation files type
 type DocumentFile = {
@@ -10,6 +11,7 @@ type DocumentFile = {
   description: string;
   filename: string;
   previewImages: string[]; // Array of preview image paths
+  fileType: 'pdf' | 'image'; // Type of document
 };
 
 export default function SCUScheduleHelper() {
@@ -44,63 +46,74 @@ export default function SCUScheduleHelper() {
     setCurrentPreviewIndex((prev) => (prev > 0 ? prev - 1 : prev));
   };
 
-  // Documentation files - you'll need to replace these with your actual PDF files and preview images
+// Documentation files with proper icons and file types
   const documentationFiles: DocumentFile[] = [
     { 
-      title: "Implementation Plan", 
-      description: "10-page implementation plan detailing system requirements, user specifications, and development timeline", 
-      filename: "scu_implementation_plan.pdf",
+      title: "User & System Requirements", 
+      description: "Comprehensive documentation of user stories, system specifications, and functional requirements developed during our software development class", 
+      filename: "/ssh-docs/RequirementsDocument.pdf",
       previewImages: [
-        "/documents/previews/implementation_plan_1.jpg",
-        "/documents/previews/implementation_plan_2.jpg",
-        "/documents/previews/implementation_plan_3.jpg",
-      ]
+        "/ssh-docs/RequirementsPreview1.png",
+        "/ssh-docs/RequirementsPreview2.png",
+        "/ssh-docs/RequirementsPreview3.png",
+      ],
+      fileType: 'pdf'
     },
     { 
-      title: "UML Diagrams", 
-      description: "Class diagrams, database schema, activity diagrams, and sequence diagrams", 
-      filename: "scu_uml_diagrams.pdf",
+      title: "Class & Activity Diagrams", 
+      description: "UML class diagrams showing system components and their relationships, alongside activity diagrams illustrating key workflows", 
+      filename: "/ssh-docs/ClassDiagram.png",
       previewImages: [
-        "/documents/previews/uml_diagrams_1.jpg",
-        "/documents/previews/uml_diagrams_2.jpg",
-      ]
+        "/ssh-docs/ClassDiagram.png", // Using the actual PNG as its own preview
+      ],
+      fileType: 'image'
     },
     { 
-      title: "User Research", 
-      description: "Summaries from seven user interviews and tests, including feature prioritization feedback", 
-      filename: "scu_user_research.pdf",
+      title: "Architecture Diagram", 
+      description: "High-level system architecture diagram showing the relationship between frontend, backend, and data pipeline components", 
+      filename: "/ssh-docs/ArchitectureDiagram.png",
       previewImages: [
-        "/documents/previews/user_research_1.jpg",
-        "/documents/previews/user_research_2.jpg",
-        "/documents/previews/user_research_3.jpg",
-      ]
+        "/ssh-docs/ArchitectureDiagram.png", // Using the actual PNG as its own preview
+      ],
+      fileType: 'image'
     },
     { 
-      title: "Technical Documentation", 
-      description: "API specifications, data pipeline architecture, and extension security model", 
-      filename: "scu_technical_documentation.pdf",
+      title: "File Organization & Project Structure", 
+      description: "Detailed documentation of our codebase organization, file structure, and component hierarchy", 
+      filename: "/ssh-docs/FileStructure.png",
       previewImages: [
-        "/documents/previews/technical_doc_1.jpg",
-        "/documents/previews/technical_doc_2.jpg",
-      ]
+        "/ssh-docs/FileOrganizationDiagram.jpg", // Using the actual PNG as its own preview
+      ],
+      fileType: 'image'
     }
   ];
 
   return (
     <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '24px', bgcolor: '#383838', color: 'white', minHeight: '100vh' }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="h3" gutterBottom>
+        <Typography variant="h3" gutterBottom sx={{ mb: 0 }}>
           SCU Schedule Helper
         </Typography>
-        <Link 
-          href="https://chromewebstore.google.com/detail/scu-schedule-helper/feinilelhamnodbmhjhacnajbbhapdhj?hl=en" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
-        >
-          <Typography variant="body2" sx={{ mr: 0.5 }}>View on Chrome Web Store</Typography>
-          <OpenInNew fontSize="small" />
-        </Link>
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+          <Link 
+            href="https://github.com/mattyHerzig/SCU-Schedule-Helper" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
+          >
+            <GitHubIcon fontSize="small" sx={{ mr: 0.5 }} />
+            <Typography variant="body2">GitHub</Typography>
+          </Link>
+          <Link 
+            href="https://chromewebstore.google.com/detail/scu-schedule-helper/feinilelhamnodbmhjhacnajbbhapdhj?hl=en" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
+          >
+            <Typography variant="body2" sx={{ mr: 0.5 }}>View on Chrome Web Store</Typography>
+            <OpenInNew fontSize="small" />
+          </Link>
+        </Box>
       </Box>
 
       <Tabs 
@@ -424,15 +437,19 @@ export default function SCUScheduleHelper() {
         </>
       )}
 
-      {/* Documentation Tab - Updated with carousel preview */}
+      {/* Documentation Tab - Updated with correct icons and preview handling */}
       {tabValue === 1 && (
         <Box sx={{ my: 4 }}>
           <Typography variant="h5" gutterBottom>
             Project Documentation
           </Typography>
           <Typography variant="body1" paragraph>
-            Below you&apos;ll find comprehensive documentation created throughout the development process of the SCU Schedule Helper.
-            Click on any preview to see more images from the document or download the full PDF.
+            Below you&apos;ll find comprehensive documentation created during our software development class for the SCU Schedule Helper project.
+            The documentation includes class diagrams, activity diagrams, architecture diagrams, file organization diagrams, and PDFs of user/system requirements.
+            These artifacts were essential for our development process and demonstrate the software engineering principles applied to this project.
+          </Typography>
+          <Typography variant="body1" paragraph>
+            You can also access our API documentation at <Link href="https://api.scu-schedule-helper.me/" target="_blank" rel="noopener noreferrer" sx={{ color: '#90caf9' }}>api.scu-schedule-helper.me</Link>.
           </Typography>
 
           <Grid container spacing={3} sx={{ mt: 2 }}>
@@ -494,24 +511,31 @@ export default function SCUScheduleHelper() {
                       }}
                     >
                       <Typography variant="body1">
-                        Click to preview ({doc.previewImages.length} pages)
+                        Click to preview
                       </Typography>
                     </Box>
                   </Box>
                   
                   {/* Document Info */}
                   <Box sx={{ p: 3, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <PictureAsPdf sx={{ mr: 2, color: '#ff5252' }} />
-                      <Typography variant="h6">{doc.title}</Typography>
-                    </Box>
+                    <Box 
+                      component="img" 
+                      src={doc.previewImages[0]}
+                      alt={`Preview of ${doc.title}`}
+                      sx={{ 
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'top'
+                      }}
+                    />
                     <Typography variant="body2" paragraph sx={{ mb: 3, flexGrow: 1 }}>
                       {doc.description}
                     </Typography>
                     <Button
                       variant="outlined"
                       startIcon={<Download />}
-                      href={`/documents/${doc.filename}`}
+                      href={doc.filename}
                       target="_blank"
                       sx={{
                         alignSelf: 'flex-start',
@@ -523,7 +547,7 @@ export default function SCUScheduleHelper() {
                         }
                       }}
                     >
-                      Download PDF
+                      Download {doc.fileType === 'pdf' ? 'PDF' : 'Image'}
                     </Button>
                   </Box>
                 </Paper>
@@ -536,25 +560,24 @@ export default function SCUScheduleHelper() {
               About the Documentation
             </Typography>
             <Typography variant="body1" paragraph>
-              These documents represent the complete software development lifecycle for the SCU Schedule Helper. 
-              The implementation plan outlines our initial vision and requirements, the UML diagrams showcase our 
-              system architecture, the user research documents our iterative user-centered design process, and the 
-              technical documentation provides detailed specifications for developers.
+              These documents were created as part of our software development class at Santa Clara University. 
+              They represent the complete software development lifecycle for the SCU Schedule Helper, from initial 
+              requirements gathering through implementation and testing. The diagrams follow standard UML conventions 
+              and were developed to help visualize the system's structure and behavior.
             </Typography>
-            <Typography variant="body1">
-              Together, these documents demonstrate a comprehensive approach to software development that balances 
-              technical considerations with user needs. The documentation helped our team stay aligned throughout 
-              the development process and serves as a valuable reference for future maintenance and feature additions.
+            <Typography variant="body1" paragraph>
+              Our API documentation at <Link href="https://api.scu-schedule-helper.me/" target="_blank" rel="noopener noreferrer" sx={{ color: '#90caf9' }}>api.scu-schedule-helper.me</Link> provides 
+              additional technical details for developers looking to integrate with our system.
             </Typography>
           </Box>
         </Box>
       )}
 
-      {/* PDF Preview Modal */}
+      {/* Preview Modal - Enhanced for both PDF and Image types */}
       <Modal
         open={openModal}
         onClose={handleClosePreview}
-        aria-labelledby="pdf-preview-modal"
+        aria-labelledby="document-preview-modal"
       >
         <Box sx={{ 
           position: 'absolute',
@@ -603,43 +626,47 @@ export default function SCUScheduleHelper() {
               />
             )}
             
-            {/* Navigation arrows */}
-            <IconButton 
-              onClick={handlePrevPreview}
-              disabled={currentPreviewIndex === 0}
-              sx={{ 
-                position: 'absolute', 
-                left: 10, 
-                color: 'white',
-                bgcolor: 'rgba(0,0,0,0.3)',
-                '&:hover': { bgcolor: 'rgba(0,0,0,0.5)' },
-                '&.Mui-disabled': { color: 'rgba(255,255,255,0.3)' }
-              }}
-            >
-              <ArrowBack />
-            </IconButton>
-            
-            <IconButton 
-              onClick={handleNextPreview}
-              disabled={!currentDoc || currentPreviewIndex === currentDoc.previewImages.length - 1}
-              sx={{ 
-                position: 'absolute', 
-                right: 10, 
-                color: 'white',
-                bgcolor: 'rgba(0,0,0,0.3)',
-                '&:hover': { bgcolor: 'rgba(0,0,0,0.5)' },
-                '&.Mui-disabled': { color: 'rgba(255,255,255,0.3)' }
-              }}
-            >
-              <ArrowForward />
-            </IconButton>
+            {/* Only show navigation arrows if there are multiple preview images */}
+            {currentDoc && currentDoc.previewImages.length > 1 && (
+              <>
+                <IconButton 
+                  onClick={handlePrevPreview}
+                  disabled={currentPreviewIndex === 0}
+                  sx={{ 
+                    position: 'absolute', 
+                    left: 10, 
+                    color: 'white',
+                    bgcolor: 'rgba(0,0,0,0.3)',
+                    '&:hover': { bgcolor: 'rgba(0,0,0,0.5)' },
+                    '&.Mui-disabled': { color: 'rgba(255,255,255,0.3)' }
+                  }}
+                >
+                  <ArrowBack />
+                </IconButton>
+                
+                <IconButton 
+                  onClick={handleNextPreview}
+                  disabled={!currentDoc || currentPreviewIndex === currentDoc.previewImages.length - 1}
+                  sx={{ 
+                    position: 'absolute', 
+                    right: 10, 
+                    color: 'white',
+                    bgcolor: 'rgba(0,0,0,0.3)',
+                    '&:hover': { bgcolor: 'rgba(0,0,0,0.5)' },
+                    '&.Mui-disabled': { color: 'rgba(255,255,255,0.3)' }
+                  }}
+                >
+                  <ArrowForward />
+                </IconButton>
+              </>
+            )}
           </Box>
           
           <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
             <Button
               variant="contained"
               startIcon={<Download />}
-              href={currentDoc ? `/documents/${currentDoc.filename}` : '#'}
+              href={currentDoc ? currentDoc.filename : '#'}
               target="_blank"
               sx={{
                 bgcolor: 'white',
@@ -649,7 +676,7 @@ export default function SCUScheduleHelper() {
                 }
               }}
             >
-              Download Full PDF
+              Download {currentDoc?.fileType === 'pdf' ? 'Full PDF' : 'Image'}
             </Button>
           </Box>
         </Box>

@@ -1,5 +1,5 @@
 import { Box, Typography, Divider, Grid, Link } from '@mui/material';
-import { Code, Storage, OpenInNew, LockOutlined } from '@mui/icons-material';
+import { Code, Storage, OpenInNew, LockOutlined, GitHub} from '@mui/icons-material';
 
 export default function Vigenere() {
   return (
@@ -8,15 +8,26 @@ export default function Vigenere() {
         <Typography variant="h3" gutterBottom>
           Vigenere Cypher Webevent
         </Typography>
-        <Link 
-          href="https://tt-webevent.web.app/home" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          sx={{ color: '#9fc5e8', display: 'flex', alignItems: 'center' }}
-        >
-          <Typography variant="body2" sx={{ mr: 0.5 }}>View Project</Typography>
-          <OpenInNew fontSize="small" />
-        </Link>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <Link 
+            href="https://github.com/dustindghb/thetatau-webevent" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
+          >
+            <Typography variant="body2" sx={{ mr: 0.5 }}>GitHub</Typography>
+            <GitHub fontSize="small" />
+          </Link>
+          <Link 
+            href="https://tt-webevent.web.app/home" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
+          >
+            <Typography variant="body2" sx={{ mr: 0.5 }}>View Website</Typography>
+            <OpenInNew fontSize="small" />
+          </Link>
+        </Box>
       </Box>
 
       {/* Inspiration Section */}

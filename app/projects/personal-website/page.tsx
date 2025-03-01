@@ -1,22 +1,21 @@
 import { Box, Typography, Divider, Grid, Link } from '@mui/material';
-import { Code, Storage, OpenInNew, Terminal} from '@mui/icons-material';
+import { Code, Storage, Terminal, GitHub } from '@mui/icons-material';
 
 export default function PortfolioWebsite() {
   return (
     <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '24px', bgcolor: '#383838', color: 'white', minHeight: '100vh' }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Typography variant="h3" gutterBottom>
-          This Website! - Advanced Portfolio
+          This Website!
         </Typography>
-        {/* You can add a GitHub or live site link here */}
         <Link 
-          href="#" 
+          href="https://github.com/dustindghb/personal-website" 
           target="_blank" 
           rel="noopener noreferrer" 
-          sx={{ color: '#9fc5e8', display: 'flex', alignItems: 'center' }}
+          sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
         >
-          <Typography variant="body2" sx={{ mr: 0.5 }}>View on GitHub</Typography>
-          <OpenInNew fontSize="small" />
+          <GitHub fontSize="small" sx={{ mr: 0.5 }} />
+          <Typography variant="body2">View on GitHub</Typography>
         </Link>
       </Box>
 

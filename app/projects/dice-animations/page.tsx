@@ -1,12 +1,24 @@
-import { Box, Typography, Divider, Grid,} from '@mui/material';
-import { Code, Storage, Gamepad,  WebAsset } from '@mui/icons-material';
+import { Box, Typography, Divider, Grid, Link} from '@mui/material';
+import { Code, Storage, Gamepad, WebAsset, GitHub} from '@mui/icons-material';
 
 export default function ProbabilityApp() {
   return (
     <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '24px', bgcolor: '#383838', color: 'white', minHeight: '100vh' }}>
-      <Typography variant="h3" gutterBottom>
+      
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+        <Typography variant="h3" gutterBottom sx={{ mb: 0 }}>
           Dice Animations App
         </Typography>
+        <Link 
+          href="https://github.com/redeclaw/h4h" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
+        >
+          <GitHub fontSize="small" sx={{ mr: 0.5 }} />
+          <Typography variant="body2">GitHub</Typography>
+        </Link>
+      </Box>
       {/* Overview Section */}
       <Box sx={{ my: 4 }}>
         <Typography variant="h5" gutterBottom>
