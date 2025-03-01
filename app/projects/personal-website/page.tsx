@@ -1,5 +1,5 @@
 import { Box, Typography, Divider, Grid, Link } from '@mui/material';
-import { Code, Storage, WebAsset, OpenInNew, Terminal, Psychology } from '@mui/icons-material';
+import { Code, Storage, OpenInNew, Terminal, Psychology } from '@mui/icons-material';
 
 export default function PortfolioWebsite() {
   return (

@@ -1,5 +1,5 @@
-import { Box, Typography, Divider, Grid, Link } from '@mui/material';
-import { Code, Storage, Gamepad, OpenInNew, YouTube, WebAsset } from '@mui/icons-material';
+import { Box, Typography, Divider, Grid,} from '@mui/material';
+import { Code, Storage, Gamepad,  WebAsset } from '@mui/icons-material';
 
 export default function ProbabilityApp() {
   return (

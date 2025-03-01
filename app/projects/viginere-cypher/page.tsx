@@ -1,5 +1,5 @@
 import { Box, Typography, Divider, Grid, Link } from '@mui/material';
-import { Code, Storage, Devices, OpenInNew, LockOutlined } from '@mui/icons-material';
+import { Code, Storage, OpenInNew, LockOutlined } from '@mui/icons-material';
 
 export default function Vigenere() {
   return (
@@ -8,7 +8,6 @@ export default function Vigenere() {
         <Typography variant="h3" gutterBottom>
           Vigenere Cypher Webevent
         </Typography>
-        {/* You can add a link to your project here if available */}
         <Link 
           href="https://tt-webevent.web.app/home" 
           target="_blank" 
