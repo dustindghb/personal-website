@@ -5,8 +5,8 @@ import CircleAnimation from '../../components/CircleAnimation';
 
 export default function About() {
   const technologies = [
-    { name: 'Ollama', logo: '/tech-logos/Ollama.png' },
-    { name: 'OpenAI', logo: '/tech-logos/OpenAI.svg' },
+    { name: 'Ollama', logo: '/tech-logos/ollama.png' },
+    { name: 'OpenAI', logo: '/tech-logos/openai.svg' },
     { name: 'Spring Boot', logo: '/tech-logos/spring.png' },
     { name: 'React.js', logo: '/tech-logos/react.png' },
     { name: 'Git', logo: '/tech-logos/git.png' },
