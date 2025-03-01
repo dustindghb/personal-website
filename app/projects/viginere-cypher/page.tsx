@@ -1,12 +1,29 @@
-import { Box, Typography, Divider, Grid, Link } from '@mui/material';
-import { Code, Storage, OpenInNew, LockOutlined, GitHub} from '@mui/icons-material';
+'use client';
+import { Box, Typography, Divider, Grid, Link, Button } from '@mui/material';
+import { Code, Storage, OpenInNew, LockOutlined, GitHub } from '@mui/icons-material';
+import { useState } from 'react';
 
 export default function Vigenere() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const cipherImages = [
+    "/viginerePreview.png",
+    "/viginerePreview2.png" 
+  ];
+
+  const handleImageClick = (imagePath: string) => {
+    setSelectedImage(imagePath);
+  };
+
+  const handleCloseImage = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '24px', bgcolor: '#383838', color: 'white', minHeight: '100vh' }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="h3" gutterBottom>
-          Vigenere Cypher Webevent
+        <Typography variant="h3" gutterBottom sx={{ mb: 0 }}>
+          Vigenere Cipher Webevent
         </Typography>
         <Box sx={{ display: 'flex', gap: 2 }}>
           <Link 
@@ -19,7 +36,7 @@ export default function Vigenere() {
             <GitHub fontSize="small" />
           </Link>
           <Link 
-            href="https://tt-webevent.web.app/home" 
+            href="https://tt-webevent.web.app/flores" 
             target="_blank" 
             rel="noopener noreferrer" 
             sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
@@ -30,47 +47,79 @@ export default function Vigenere() {
         </Box>
       </Box>
 
+      {/* Image Gallery Section */}
+      <Box sx={{ my: 4 }}>
+        <Typography variant="h5" gutterBottom>
+          Vigenere Cipher Preview
+        </Typography>
+        <Grid container spacing={2}>
+          {cipherImages.map((image, index) => (
+            <Grid item xs={12} md={6} key={index}>
+              <Box
+                sx={{
+                  borderRadius: 2,
+                  overflow: 'hidden',
+                  height: 300,
+                  position: 'relative',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    '& .image-overlay': {
+                      opacity: 1
+                    }
+                  }
+                }}
+                onClick={() => handleImageClick(image)}
+              >
+                <Box
+                  component="img"
+                  src={image}
+                  alt={`Vigenere Cipher Visualization ${index + 1}`}
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+                <Box
+                  className="image-overlay"
+                  sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: 'rgba(0,0,0,0.5)',
+                    opacity: 0,
+                    transition: 'opacity 0.2s',
+                    color: 'white',
+                  }}
+                >
+                  <Typography variant="body1">
+                    Click to enlarge
+                  </Typography>
+                </Box>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+
+      <Divider sx={{ bgcolor: 'rgba(255,255,255,0.12)' }} />
+
       {/* Inspiration Section */}
       <Box sx={{ my: 4 }}>
         <Typography variant="h5" gutterBottom>
           Overview
         </Typography>
         <Typography variant="body1">
-          Vigenere Cypher Webevent is a coded webapp featuring productivity resources and an interactive puzzle competition.
+          Vigenere Cipher Webevent is a coded webapp featuring productivity resources and an interactive puzzle competition.
           Built with React and NextJs, this project increased fraternity engagement by 15% through its innovative approach to
           cryptography challenges. The platform implements a comprehensive Google authentication system, data retrieval, and
           publishing mechanisms powered by Firebase.
         </Typography>
-      </Box>
-
-      <Divider sx={{ bgcolor: 'rgba(255,255,255,0.12)' }} />
-
-      {/* What it Does Section */}
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          What It Does
-        </Typography>
-        <Typography variant="body1" paragraph>
-          This Vigenere Cypher Webevent was a toy website where I could share thing I had learned from productivity resources and a Vigenere Cypher I had made.
-        </Typography>
-
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h6">
-            Interactive Puzzle Competition:
-          </Typography>
-          <Typography variant="body1" paragraph>
-            I made a Vigenere Cypher that would progressively get harder as you solved each puzzle. The puzzles were based on productivity resources I had learned.
-          </Typography>
-        </Box>
-
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h6">
-            Productivity Resources:
-          </Typography>
-          <Typography variant="body1" paragraph>
-            I shared productivity resources that I had learned from literature such as Deep Work by Cal Newport, Atomic Habits by James Clear, and Feel Good productivity by Ali Abdaaal
-          </Typography>
-        </Box>
       </Box>
 
       <Divider sx={{ bgcolor: 'rgba(255,255,255,0.12)' }} />
@@ -145,7 +194,7 @@ export default function Vigenere() {
               Challenges
             </Typography>
             <Typography variant="body1">
-              A lot of time and patience was spent in the creative process of creating a viginere cypher. Researching productivity resources and how to implement them in a user friendly way was another challenge.
+              A lot of time and patience was spent in the creative process of creating a Vigenere cipher. Researching productivity resources and how to implement them in a user friendly way was another challenge.
             </Typography>
           </Grid>
 
@@ -154,12 +203,65 @@ export default function Vigenere() {
               Accomplishments
             </Typography>
             <Typography variant="body1">
-              It was interesting learning what viginere cyphers were, making my own, and then materializing it into a website. I learned how to route pages with next.js, how to make
-              forms route to a database in firebase, how to implement authentication with firebase, and how to host on firebase.
+              It was interesting learning what Vigenere ciphers were, making my own, and then materializing it into a website. I learned how to route pages with Next.js, how to make
+              forms route to a database in Firebase, how to implement authentication with Firebase, and how to host on Firebase.
             </Typography>
           </Grid>
         </Grid>
       </Box>
+
+      {/* Full-size image modal */}
+      {selectedImage && (
+        <Box
+          sx={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.9)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+            padding: 3
+          }}
+          onClick={handleCloseImage}
+        >
+          <Box
+            sx={{
+              position: 'relative',
+              maxWidth: '90%',
+              maxHeight: '90%',
+            }}
+          >
+            <Box
+              component="img"
+              src={selectedImage}
+              alt="Enlarged Vigenere Cipher View"
+              sx={{
+                maxWidth: '100%',
+                maxHeight: '90vh',
+                objectFit: 'contain',
+                borderRadius: 2
+              }}
+            />
+            <Typography 
+              variant="body2" 
+              sx={{ 
+                position: 'absolute', 
+                bottom: -30, 
+                left: 0, 
+                right: 0, 
+                textAlign: 'center',
+                color: 'white' 
+              }}
+            >
+              Click anywhere to close
+            </Typography>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 }

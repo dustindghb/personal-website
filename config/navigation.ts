@@ -25,13 +25,13 @@ export const siteStructure: NavItem = {
       isFolder: true,
       children: [
         {
-          id: '/projects/vira-poc',
-          label: 'Vira-POC',
+          id: '/projects/scu-schedule-helper',
+          label: 'SCU-Schedule-Helper',
           isFolder: false,
         },
         {
-          id: '/projects/scu-schedule-helper',
-          label: 'SCU-Schedule-Helper',
+          id: '/projects/vira-poc',
+          label: 'Vira-POC',
           isFolder: false,
         },
         {

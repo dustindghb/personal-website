@@ -5,6 +5,8 @@ import CircleAnimation from '../../components/CircleAnimation';
 
 export default function About() {
   const technologies = [
+    { name: 'Ollama', logo: '/tech-logos/Ollama.png' },
+    { name: 'OpenAI', logo: '/tech-logos/OpenAI.svg' },
     { name: 'Spring Boot', logo: '/tech-logos/spring.png' },
     { name: 'React.js', logo: '/tech-logos/react.png' },
     { name: 'Git', logo: '/tech-logos/git.png' },
@@ -29,20 +31,14 @@ export default function About() {
         {/* Text content on the left */}
         <Grid item xs={12} md={7}>
           <Typography variant="h6" gutterBottom>
-            Hi, my name is Dustin and I&apos;m a third-year student at Santa Clara University pursuing a B.S. in computer science with an emphasis in software engineering, expecting to graduate in Mar 2026.
+            Hi, my name is Dustin and I&apos;m a third-year student at Santa Clara University pursuing a B.S. in computer science with an emphasis in software engineering and a
+            minor in Management Information Systems, expecting to graduate in Mar 2026.
           </Typography>
 
           <Typography variant="h6" sx={{ mt: 3 }} gutterBottom>
             My passion for problem-solving, innovation, and creating is what led me to pursue technology and software engineering. 
             With experience in developing innovative software projects, working with diverse teams, and successfully delivering solutions,
             I am excited to apply these skills.
-          </Typography>
-          
-          <Typography variant="h6" sx={{ mt: 3 }} gutterBottom>
-            I have experience in the front-end building websites and chrome extensions with Next.js,
-            using component libraries like Material UI and Shad.CN. I have experience in the backend as well, working technologies 
-            like Springboot, Redis, and AWS services, and OpenAI API. Dedicated to continuously learning, I excel in dynamic and 
-            collaborative software engineering environments.
           </Typography>
         </Grid>
         
@@ -97,7 +93,7 @@ export default function About() {
       </Grid>
 
       {/* Technologies Section */}
-      <Box sx={{ mt: 6, mb: 4 }}>
+      <Box sx={{ mt: 4, mb: 4 }}>
         <Typography variant="h4" component="h2" gutterBottom>
           Technologies I&apos;m Familiar With
         </Typography>

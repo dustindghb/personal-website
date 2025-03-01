@@ -518,17 +518,9 @@ export default function SCUScheduleHelper() {
                   
                   {/* Document Info */}
                   <Box sx={{ p: 3, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                    <Box 
-                      component="img" 
-                      src={doc.previewImages[0]}
-                      alt={`Preview of ${doc.title}`}
-                      sx={{ 
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        objectPosition: 'top'
-                      }}
-                    />
+                    <Typography variant="h6" sx={{ mb: 1 }}>
+                      {doc.title}
+                    </Typography>
                     <Typography variant="body2" paragraph sx={{ mb: 3, flexGrow: 1 }}>
                       {doc.description}
                     </Typography>

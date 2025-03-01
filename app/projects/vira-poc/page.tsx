@@ -4,12 +4,11 @@ import { useState } from 'react';
 import { Box, Typography, Divider, Grid, Link, Tabs, Tab, Button, Paper, IconButton, Modal } from '@mui/material';
 import { Code, Storage, Devices, Download, Close, ArrowBack, ArrowForward, Image, GitHub } from '@mui/icons-material';
 
-// Documentation files type
 type DocumentFile = {
   title: string;
   description: string;
   filename: string;
-  previewImages: string[]; // Array of preview image paths
+  previewImages: string[]; 
   fileType: 'pdf' | 'image'; // Type of document
 };
 
@@ -383,18 +382,6 @@ export default function Vira() {
               </Grid>
             ))}
           </Grid>
-
-          <Box sx={{ mt: 4, p: 3, bgcolor: 'rgba(0,0,0,0.2)', borderRadius: 2 }}>
-            <Typography variant="h6" gutterBottom>
-              About the Documentation
-            </Typography>
-            <Typography variant="body1">
-              This user requirements document represents the initial vision for Vira. It outlines our key user stories, 
-              system specifications, and functional requirements that guided our development process. This document was 
-              essential for keeping our team aligned throughout development and serves as a reference for our continued 
-              work on the platform.
-            </Typography>
-          </Box>
         </Box>
       )}
 
