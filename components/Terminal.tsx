@@ -161,7 +161,7 @@ export default function Terminal() {
             value={command}
             onChange={(e) => setCommand(e.target.value)}
             onKeyDown={handleCommand}
-            placeholder="Enter a command"
+            placeholder='Enter a command in the "terminal" to navigate the website'
             variant="standard"
             fullWidth
             sx={{

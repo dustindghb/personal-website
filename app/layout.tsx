@@ -20,16 +20,16 @@ export default function RootLayout({
           display: 'flex',
           minHeight: '100vh',
           color: 'white',
-          paddingBottom: '150px', // Add 500px padding to the bottom of the main container
+          paddingBottom: '150px', 
         }}>
           <Sidebar />
           <Box sx={{ 
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
-            marginLeft: '250px', // Add margin to account for fixed sidebar width
-            position: 'relative', // Ensure content is positioned properly
-            zIndex: 900, // Lower than sidebar border but enough to be visible
+            marginLeft: '250px', 
+            position: 'relative', 
+            zIndex: 900, 
           }}>
             <Box sx={{ 
               flex: 1,
