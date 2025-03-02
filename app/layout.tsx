@@ -2,6 +2,7 @@
 import { Box } from '@mui/material';
 import { Inter } from 'next/font/google';
 import dynamic from 'next/dynamic';
+import { Analytics } from '@vercel/analytics/react'; // Note: using /react not /next
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -41,6 +42,7 @@ export default function RootLayout({
           </Box>
           <Terminal />
         </Box>
+        <Analytics /> {/* Add this line */}
       </body>
     </html>
   );
