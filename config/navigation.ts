@@ -20,32 +20,32 @@ export const siteStructure: NavItem = {
       isFolder: false,
     },
     {
-      id: '/projects',
+      id: '/experience',
       label: 'Experience',
       isFolder: true,
       children: [
         {
-          id: '/projects/scu-schedule-helper',
+          id: '/experience/scu-schedule-helper',
           label: 'SCU-Schedule-Helper',
           isFolder: false,
         },
         {
-          id: '/projects/vira-poc',
+          id: '/experience/vira-poc',
           label: 'Vira-POC',
           isFolder: false,
         },
         {
-          id: '/projects/viginere-cypher',
+          id: '/experience/viginere-cypher',
           label: 'Viginere-Cypher',
           isFolder: false,
         },
         {
-          id: '/projects/dice-animations',
+          id: '/experience/dice-animations',
           label: 'Dice-Animations',
           isFolder: false,
         },
         {
-          id: '/projects/personal-website',
+          id: '/experience/personal-website',
           label: 'Personal-Website',
           isFolder: false,
         },
@@ -61,10 +61,10 @@ export const siteStructure: NavItem = {
 
 export const validPaths: PathMap = {
   'about': ['about'],
-  'projects': ['experience'],
-  'projects/vira-poc': ['projects', 'vira-poc'],
-  'projects/scu-schedule-helper': ['projects', 'scu-schedule-helper'],
-  'projects/viginere-cypher': ['projects', 'viginere-cypher'],
-  'projects/dice-animations': ['projects', 'dice-animations'],
+  'experience': ['experience'],
+  'experience/vira-poc': ['experience', 'vira-poc'],
+  'experience/scu-schedule-helper': ['experience', 'scu-schedule-helper'],
+  'experience/viginere-cypher': ['experience', 'viginere-cypher'],
+  'experience/dice-animations': ['experience', 'dice-animations'],
   'resume': ['resume']
 };
