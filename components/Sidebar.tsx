@@ -106,7 +106,7 @@ export default function Sidebar() {
               to go back:
               cd .. <br />
               to navigate to a page: <br></br>
-              cd projects/scu-schedule-helper <br />
+              cd experience/scu-schedule-helper <br />
               cd about
             </>
           }
