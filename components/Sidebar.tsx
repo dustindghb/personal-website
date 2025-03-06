@@ -81,7 +81,7 @@ export default function Sidebar() {
   return (
     <Box sx={{ 
       width: '250px', 
-      borderRight: '3px solid rgba(255,255,255,0.5)', // Restored border
+      borderRight: '3px solid rgba(255,255,255,0.5)',
       bgcolor: '#222222',
       display: 'flex',
       flexDirection: 'column',
@@ -90,7 +90,7 @@ export default function Sidebar() {
       top: 0,
       left: 0,
       bottom: 0,
-      zIndex: 950, // Adjusted to be higher than content but lower than terminal
+      zIndex: 950,
     }}>
       <List component="nav" dense sx={{ flex: 1 }}>
         <FileTreeItem 

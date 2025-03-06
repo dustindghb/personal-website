@@ -215,7 +215,7 @@ export default function Terminal() {
           </Typography>
           
           <IconButton 
-            href="https://github.com/dustinduong" 
+            href="https://github.com/dustindghb" 
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Profile"
