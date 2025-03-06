@@ -4,21 +4,59 @@ import Image from 'next/image';
 import CircleAnimation from '../../components/CircleAnimation';
 
 export default function About() {
-  const technologies = [
-    { name: 'Ollama', logo: '/tech-logos/ollama.png' },
-    { name: 'OpenAI', logo: '/tech-logos/openai.svg' },
-    { name: 'Spring Boot', logo: '/tech-logos/spring.png' },
-    { name: 'React.js', logo: '/tech-logos/react.png' },
-    { name: 'Git', logo: '/tech-logos/git.png' },
-    { name: 'MySQL Workbench', logo: '/tech-logos/mysql.svg' },
-    { name: 'Postman', logo: '/tech-logos/postman.svg' },
-    { name: 'Google Cloud', logo: '/tech-logos/gcloud.png' },
-    { name: 'AWS', logo: '/tech-logos/aws.png' },
-    { name: 'Firebase', logo: '/tech-logos/firebase.svg' },
-    { name: 'Next.js', logo: '/tech-logos/nextjs.png' },
-    { name: 'Node.js', logo: '/tech-logos/nodejs.svg' },
-    { name: 'Figma', logo: '/tech-logos/figma.png' },
-    { name: 'Docker', logo: '/tech-logos/docker.svg' },
+  // Clustered technologies by theme
+  const technologyClusters = [
+    {
+      category: "AI & Machine Learning",
+      items: [
+        { name: 'Ollama', logo: '/tech-logos/ollama.png' },
+        { name: 'OpenAI', logo: '/tech-logos/openai.svg' },
+        { name: 'ChromaDB', logo: '/tech-logos/chromadb.png' },
+        { name: 'Hugging Face', logo: '/tech-logos/huggingface.svg' },
+        { name: 'LangChain', logo: '/tech-logos/langchain.png' },
+      ]
+    },
+    {
+      category: "Web Development",
+      items: [
+        { name: 'React.js', logo: '/tech-logos/react.png' },
+        { name: 'Next.js', logo: '/tech-logos/nextjs.png' },
+        { name: 'Node.js', logo: '/tech-logos/nodejs.svg' },
+        { name: 'Material UI', logo: '/tech-logos/materialui.svg' },
+      ]
+    },
+    {
+      category: "Backend & APIs",
+      items: [
+        { name: 'Spring Boot', logo: '/tech-logos/spring.png' },
+        { name: 'Postman', logo: '/tech-logos/postman.svg' },
+        { name: 'AWS Lambda', logo: '/tech-logos/awslambda.png' },
+        { name: 'AWS API Gateway', logo: '/tech-logos/aws-api-gateway.svg' },
+      ]
+    },
+    {
+      category: "Cloud & Infrastructure",
+      items: [
+        { name: 'Google Cloud', logo: '/tech-logos/gcloud.png' },
+        { name: 'AWS', logo: '/tech-logos/aws.png' },
+        { name: 'Firebase', logo: '/tech-logos/firebase.svg' },
+        { name: 'Docker', logo: '/tech-logos/docker.svg' },
+      ]
+    },
+    {
+      category: "Developer Tools",
+      items: [
+        { name: 'Git', logo: '/tech-logos/git.png' },
+        { name: 'Figma', logo: '/tech-logos/figma.png' },
+      ]
+    },
+    {
+      category: "Databases",
+      items: [
+        { name: 'MySQL Workbench', logo: '/tech-logos/mysql.svg' },
+        { name: 'DynamoDB', logo: '/tech-logos/aws-dynamodb.svg' },
+      ]
+    },
   ];
 
   return (
@@ -92,51 +130,78 @@ export default function About() {
         </Grid>
       </Grid>
 
-      {/* Technologies Section */}
-      <Box sx={{ mt: 4, mb: 4 }}>
+      {/* Technologies Section - Grouped by category */}
+      <Box sx={{ mt: 6, mb: 4 }}>
         <Typography variant="h4" component="h2" gutterBottom>
           Technologies I&apos;m Familiar With
         </Typography>
-        
-        <Grid container spacing={3} sx={{ mt: 2 }}>
-          {technologies.map((tech) => (
-            <Grid item xs={6} sm={4} md={3} lg={2} key={tech.name}>
+
+        {/* Clusters layout */}
+        <Grid container spacing={4} sx={{ mt: 2 }}>
+          {technologyClusters.map((cluster) => (
+            <Grid item xs={12} sm={6} lg={4} key={cluster.category}>
               <Paper 
                 elevation={3} 
                 sx={{ 
-                  p: 2, 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: 120,
-                  bgcolor: '#cccccc', // Light gray background
-                  color: '#333333',    // Dark text for better contrast
-                  transition: 'transform 0.2s, box-shadow 0.2s',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                    boxShadow: '0 10px 20px rgba(0,0,0,0.2)',
-                  }
+                  p: 3, 
+                  mb: 2,
+                  bgcolor: '#333333', // Dark background for category box
+                  color: '#ffffff',   // White text for category heading
+                  borderRadius: 2,
                 }}
               >
-                <Box sx={{ 
-                  width: 60, 
-                  height: 60, 
-                  position: 'relative',
-                  mb: 1
+                <Typography variant="h6" component="h3" gutterBottom sx={{ 
+                  borderBottom: '2px solid #ffffff',
+                  paddingBottom: 1,
+                  color: '#ffffff', // White text
+                  fontWeight: 'bold'
                 }}>
-                  <Image
-                    src={tech.logo}
-                    alt={`${tech.name} logo`}
-                    fill
-                    style={{
-                      objectFit: 'contain'
-                    }}
-                  />
-                </Box>
-                <Typography variant="body2" align="center">
-                  {tech.name}
+                  {cluster.category}
                 </Typography>
+                
+                <Grid container spacing={2} sx={{ mt: 1 }}>
+                  {cluster.items.map((tech) => (
+                    <Grid item xs={6} key={tech.name}>
+                      <Paper 
+                        elevation={2} 
+                        sx={{ 
+                          p: 2, 
+                          display: 'flex', 
+                          flexDirection: 'column', 
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          height: 120,
+                          bgcolor: '#cccccc', // Original light gray background
+                          color: '#333333',    // Original dark text
+                          transition: 'transform 0.2s, box-shadow 0.2s',
+                          '&:hover': {
+                            transform: 'translateY(-5px)',
+                            boxShadow: '0 10px 20px rgba(0,0,0,0.2)',
+                          }
+                        }}
+                      >
+                        <Box sx={{ 
+                          width: 50, 
+                          height: 50, 
+                          position: 'relative',
+                          mb: 1
+                        }}>
+                          <Image
+                            src={tech.logo}
+                            alt={`${tech.name} logo`}
+                            fill
+                            style={{
+                              objectFit: 'contain'
+                            }}
+                          />
+                        </Box>
+                        <Typography variant="body2" align="center">
+                          {tech.name}
+                        </Typography>
+                      </Paper>
+                    </Grid>
+                  ))}
+                </Grid>
               </Paper>
             </Grid>
           ))}
