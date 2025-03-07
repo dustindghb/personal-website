@@ -2,7 +2,7 @@
 import { Box } from '@mui/material';
 import { Inter } from 'next/font/google';
 import dynamic from 'next/dynamic';
-import { Analytics } from '@vercel/analytics/react'; // Note: using /react not /next
+import { Providers } from './providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,32 +17,33 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} style={{ margin: 0, backgroundColor: '#444444' }}>
-        <Box sx={{ 
-          display: 'flex',
-          minHeight: '100vh',
-          color: 'white',
-          paddingBottom: '150px', 
-        }}>
-          <Sidebar />
+        <Providers>
           <Box sx={{ 
-            flex: 1,
             display: 'flex',
-            flexDirection: 'column',
-            marginLeft: '250px', 
-            position: 'relative', 
-            zIndex: 900, 
+            minHeight: '100vh',
+            color: 'white',
+            paddingBottom: '150px', 
           }}>
+            <Sidebar />
             <Box sx={{ 
               flex: 1,
-              p: 4,
-              pb: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              marginLeft: '250px', 
+              position: 'relative', 
+              zIndex: 900, 
             }}>
-              {children}
+              <Box sx={{ 
+                flex: 1,
+                p: 4,
+                pb: 8,
+              }}>
+                {children}
+              </Box>
             </Box>
+            <Terminal />
           </Box>
-          <Terminal />
-        </Box>
-        <Analytics /> {/* Add this line */}
+        </Providers>
       </body>
     </html>
   );
