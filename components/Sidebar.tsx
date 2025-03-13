@@ -1,21 +1,54 @@
+// Sidebar.tsx
 'use client';
-import { useState, useEffect } from 'react';
-import { Box, List, ListItem, ListItemText, ListItemButton } from '@mui/material';
+import React, { useState, useEffect, useCallback, memo } from 'react';
+import { Box, List, ListItem, ListItemText, ListItemButton, Typography } from '@mui/material';
 import { useRouter, usePathname } from 'next/navigation';
 import { NavItem, siteStructure } from '@/config/navigation';
+import { useSafeAppTheme } from '../app/providers';
 
-const FileTreeItem = ({ 
-  item, 
-  level = 0,
-  onSelect 
-}: { 
-  item: NavItem; 
+// Type guard to check if an item has children
+function hasChildren(item: NavItem): item is NavItem & { children: NavItem[] } {
+  return Array.isArray(item.children) && item.children.length > 0;
+}
+
+// Interface for FileTreeItem component props
+interface FileTreeItemProps {
+  item: NavItem;
   level?: number;
   onSelect: (path: string) => void;
-}) => {
-  const pathname = usePathname();
-  const isSelected = pathname === item.id;
+  isActive: boolean;
+}
 
+// FileTreeItem component using memo for performance
+const FileTreeItem = memo(function FileTreeItem({ 
+  item, 
+  level = 0,
+  onSelect,
+  isActive
+}: FileTreeItemProps) {
+  const { theme } = useSafeAppTheme();
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Event handlers
+  const handleClick = useCallback(() => {
+    onSelect(item.id);
+  }, [onSelect, item.id]);
+  
+  const handleMouseEnter = useCallback(() => {
+    setIsHovered(true);
+  }, []);
+  
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+  }, []);
+  
+  // Compute background color
+  const backgroundColor = isActive 
+    ? theme.custom.sidebar.itemSelected 
+    : isHovered 
+      ? theme.custom.sidebar.itemHover 
+      : 'transparent';
+  
   return (
     <>
       <ListItem 
@@ -26,16 +59,19 @@ const FileTreeItem = ({
         }}
       >
         <ListItemButton
-          onClick={() => onSelect(item.id)}
-          selected={isSelected}
+          onClick={handleClick}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          selected={isActive}
           sx={{
             pl: 2,
-            color: 'white',
+            color: theme.custom.sidebar.text,
+            backgroundColor,
             '&:hover': {
-              backgroundColor: 'rgba(255, 255, 255, 0.08)',
+              backgroundColor: theme.custom.sidebar.itemHover,
             },
             '&.Mui-selected': {
-              backgroundColor: 'rgba(255, 255, 255, 0.12)',
+              backgroundColor: theme.custom.sidebar.itemSelected,
             },
           }}
         >
@@ -50,39 +86,99 @@ const FileTreeItem = ({
           />
         </ListItemButton>
       </ListItem>
-      {item.children?.map((child) => (
+      
+      {/* Render children if they exist */}
+      {hasChildren(item) && item.children.map((child) => (
         <FileTreeItem 
           key={child.id} 
           item={child} 
           level={level + 1}
           onSelect={onSelect}
+          isActive={false} // Will be overridden by SidebarContent
         />
       ))}
     </>
   );
-};
+});
 
+// Separate component for sidebar content to handle the active path logic
+function SidebarContent() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const { theme } = useSafeAppTheme();
+  
+  // Define handleSelect callback
+  const handleSelect = useCallback((path: string) => {
+    router.push(path);
+  }, [router]);
+  
+  // Recursively render FileTreeItem with correct active state
+  const renderFileTree = (item: NavItem, level = 0): React.ReactElement => {
+    const isActive = pathname === item.id;
+    
+    return (
+      <FileTreeItem 
+        key={item.id}
+        item={item} 
+        level={level}
+        onSelect={handleSelect}
+        isActive={isActive}
+      />
+    );
+  };
+  
+  return (
+    <>
+      <List component="nav" dense sx={{ flex: 1 }}>
+        {renderFileTree(siteStructure)}
+      </List>
+      
+      <Box sx={{ p: 2, borderTop: `3px solid ${theme.custom.sidebar.borderColor}` }}>
+        <ListItemText 
+          primary="Example Commands:"
+          secondary={
+            <>
+              <Typography component="span" variant="body2" color="text.secondary" sx={{ 
+                display: 'block', 
+                color: theme.custom.sidebar.text, 
+                opacity: 0.7,
+                fontFamily: 'monospace',
+                fontSize: '0.85rem'
+              }}>
+                to go back:
+                <Box component="span" sx={{ display: 'block', ml: 1 }}>cd ..</Box>
+                
+                to navigate to a page:
+                <Box component="span" sx={{ display: 'block', ml: 1 }}>cd experience/scu-schedule-helper</Box>
+                <Box component="span" sx={{ display: 'block', ml: 1 }}>cd about</Box>
+              </Typography>
+            </>
+          }
+        />
+      </Box>
+    </>
+  );
+}
+
+// Main Sidebar component
 export default function Sidebar() {
   const [mounted, setMounted] = useState(false);
-  const router = useRouter();
+  const { theme } = useSafeAppTheme();
 
+  // Handle mounting
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
-
-  const handleSelect = (path: string) => {
-    router.push(path);
-  };
+  // Simple visibility based on mounted state
+  const visibility = mounted ? 'visible' : 'hidden';
 
   return (
     <Box sx={{ 
       width: '250px', 
-      borderRight: '3px solid rgba(255,255,255,0.5)',
-      bgcolor: '#222222',
+      visibility,
+      borderRight: `3px solid ${theme.custom.sidebar.borderColor}`,
+      bgcolor: theme.custom.sidebar.background,
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
@@ -92,29 +188,7 @@ export default function Sidebar() {
       bottom: 0,
       zIndex: 950,
     }}>
-      <List component="nav" dense sx={{ flex: 1 }}>
-        <FileTreeItem 
-          item={siteStructure} 
-          onSelect={handleSelect}
-        />
-      </List>
-      <Box sx={{ p: 2, borderTop: '3px solid rgba(255,255,255,0.5)' }}>
-        <ListItemText 
-          primary="Example Commands:"
-          secondary={
-            <>
-              to go back:
-              cd .. <br />
-              to navigate to a page: <br></br>
-              cd experience/scu-schedule-helper <br />
-              cd about
-            </>
-          }
-          secondaryTypographyProps={{
-            sx: { color: 'rgba(255,255,255,0.7)' }
-          }}
-        />
-      </Box>
+      <SidebarContent />
     </Box>
   );
 }
