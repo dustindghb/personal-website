@@ -1,8 +1,5 @@
-// theme.ts
 import { createTheme, ThemeOptions, Theme } from '@mui/material/styles';
-// Removed unused PaletteOptions import
 
-// Define custom theme extensions using TypeScript declaration merging
 declare module '@mui/material/styles' {
   interface Theme {
     custom: {
@@ -61,17 +58,14 @@ declare module '@mui/material/styles' {
   }
 }
 
-// Create a discriminated union for theme types
 export type ThemeMode = 'dark' | 'light' | 'terminal';
 
-// Define the base theme preferences without customizations
 interface BaseThemePreferences {
   fontSize: 'small' | 'medium' | 'large';
   fontFamily: 'default' | 'monospace' | 'sans-serif';
   animations: boolean;
 }
 
-// Define specific customizations for each theme mode
 interface TerminalThemeCustomizations {
   terminalPrompt: string;
   terminalColor: string;
@@ -81,7 +75,6 @@ interface StandardThemeCustomizations {
   accentColor: string;
 }
 
-// Create specific theme preference types for each mode
 export interface TerminalThemePreferences extends BaseThemePreferences {
   mode: 'terminal';
   customizations: TerminalThemeCustomizations;
@@ -97,17 +90,14 @@ export interface DarkThemePreferences extends BaseThemePreferences {
   customizations: StandardThemeCustomizations;
 }
 
-// Union type for all theme preferences
 export type ThemePreferences = TerminalThemePreferences | LightThemePreferences | DarkThemePreferences;
 
-// Type guard to check if theme is terminal theme
 export function isTerminalTheme(
   prefs: ThemePreferences
 ): prefs is TerminalThemePreferences {
   return prefs.mode === 'terminal';
 }
 
-// Type guards for other theme types
 export function isLightTheme(
   prefs: ThemePreferences
 ): prefs is LightThemePreferences {
@@ -120,7 +110,6 @@ export function isDarkTheme(
   return prefs.mode === 'dark';
 }
 
-// Create a readonly Record for the default terminal colors
 const terminalColors = {
   green: '#00ff00',
   cyan: '#00ffff',
@@ -130,15 +119,12 @@ const terminalColors = {
   red: '#ff0000',
 } as const;
 
-// Create a type from the keys of the colors object
 export type TerminalColorName = keyof typeof terminalColors;
 
-// Function to get terminal color safely with type checking
 export function getTerminalColor(name: TerminalColorName): string {
   return terminalColors[name];
 }
 
-// Default theme preferences with type safety
 export const defaultThemePreferences: DarkThemePreferences = {
   mode: 'dark',
   fontSize: 'medium',
@@ -149,9 +135,7 @@ export const defaultThemePreferences: DarkThemePreferences = {
   }
 };
 
-// Create theme function with typing
 export function createAppTheme(preferences: ThemePreferences): Theme {
-  // Base theme options common to all modes
   const baseOptions: ThemeOptions = {
     typography: {
       fontFamily: preferences.fontFamily === 'monospace' 
@@ -176,12 +160,10 @@ export function createAppTheme(preferences: ThemePreferences): Theme {
     },
   };
   
-  // Dark theme options (current site style)
   const darkThemeOptions: ThemeOptions = {
     palette: {
       mode: 'dark',
       primary: {
-        // Safe access to customizations using type guards
         main: isTerminalTheme(preferences) 
           ? preferences.customizations.terminalColor
           : isDarkTheme(preferences) || isLightTheme(preferences)
@@ -231,12 +213,10 @@ export function createAppTheme(preferences: ThemePreferences): Theme {
     },
   };
   
-  // Light theme options
   const lightThemeOptions: ThemeOptions = {
     palette: {
       mode: 'light',
       primary: {
-        // Safe access to customizations using type guards
         main: isTerminalTheme(preferences) 
           ? preferences.customizations.terminalColor
           : isDarkTheme(preferences) || isLightTheme(preferences)
@@ -286,37 +266,34 @@ export function createAppTheme(preferences: ThemePreferences): Theme {
     },
   };
   
-  // Terminal specific theme
   const terminalThemeOptions: ThemeOptions = {
     palette: {
       mode: 'dark',
       primary: {
-        // For terminal theme, we can safely access terminalColor
         main: isTerminalTheme(preferences) 
           ? preferences.customizations.terminalColor
-          : '#00ff00', // Default terminal green
+          : '#00ff00',
         light: '#33ff33',
         dark: '#00cc00',
       },
       secondary: {
-        main: '#00ffff', // Cyan
+        main: '#00ffff', 
         light: '#33ffff',
         dark: '#00cccc',
       },
       background: {
-        default: '#000000', // Black
-        paper: '#111111', // Very dark gray
+        default: '#000000', 
+        paper: '#111111', 
       },
       text: {
-        primary: '#00ff00', // Terminal green
-        secondary: '#aaaaaa', // Light gray
+        primary: '#00ff00', 
+        secondary: '#aaaaaa', 
       },
     },
     custom: {
       terminal: {
         background: '#000000',
         text: '#00ff00',
-        // Safe access to terminalPrompt using type guard
         prompt: isTerminalTheme(preferences) 
           ? preferences.customizations.terminalPrompt 
           : '#00ff00',
@@ -342,21 +319,18 @@ export function createAppTheme(preferences: ThemePreferences): Theme {
     },
   };
   
-  // Select theme based on preferences
   const themeOptions = preferences.mode === 'light' 
     ? lightThemeOptions 
     : preferences.mode === 'terminal' 
       ? terminalThemeOptions 
       : darkThemeOptions;
-  
-  // Create and return the theme with merged options
+
   return createTheme({
     ...baseOptions,
     ...themeOptions,
   });
 }
 
-// Reusable type-safe hook signature for theme context
 export type ThemeContextType = {
   preferences: ThemePreferences;
   setPreferences: (newPrefs: ThemePreferences) => void;
