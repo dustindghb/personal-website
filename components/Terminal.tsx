@@ -1,342 +1,192 @@
 'use client';
-// Terminal.tsx
-import { useState, useEffect, useCallback, useRef, KeyboardEvent } from 'react';
+import { useState, KeyboardEvent, useEffect } from 'react';
 import { TextField, Box, Button, IconButton, Typography } from '@mui/material';
 import { useRouter, usePathname } from 'next/navigation';
 import { validPaths } from '@/config/navigation';
 import { GitHub, LinkedIn, Code } from '@mui/icons-material';
 import WaveAnimation from './WaveAnimation';
-import { useSafeAppTheme } from '../app/providers';
 
-// Create a discriminated union for command types
-type BaseCommand = {
-  timestamp: number;
-  raw: string;
+// Define generic state management for history tracking
+type HistoryState<T> = {
+  items: T[];
+  currentIndex: number;
 };
 
-type NavigationCommand = BaseCommand & {
-  type: 'navigation';
-  destination: string;
-  success: boolean;
-};
+// Union type for terminal command types
+type TerminalCommand = 
+  | { type: 'navigation'; path: string }
+  | { type: 'system'; action: 'clear' | 'history' | 'back' };
 
-type UtilityCommand = BaseCommand & {
-  type: 'utility';
-  action: 'clear' | 'history' | 'help';
-};
-
-type InvalidCommand = BaseCommand & {
-  type: 'invalid';
-  error: string;
-};
-
-// Union type for all command types
-type Command = NavigationCommand | UtilityCommand | InvalidCommand;
-
-// Type guard functions for command types
-function isNavigationCommand(cmd: Command): cmd is NavigationCommand {
-  return cmd.type === 'navigation';
-}
-
-function isUtilityCommand(cmd: Command): cmd is UtilityCommand {
-  return cmd.type === 'utility';
-}
-
-function isInvalidCommand(cmd: Command): cmd is InvalidCommand {
-  return cmd.type === 'invalid';
-}
-
-// Add parseCommand outside the component to avoid recreating it on each render
-// Parse command with proper typing
-const parseCommand = (cmdStr: string, pathname: string): Command => {
-  const trimmedCmd = cmdStr.trim();
-  const timestamp = Date.now();
-  const baseCmd: BaseCommand = { timestamp, raw: trimmedCmd };
-  
-  // Navigation commands
-  if (trimmedCmd === 'cd ..') {
-    const segments = pathname.split('/').filter(Boolean);
-    if (segments.length > 0) {
-      const newPath = segments.slice(0, -1).join('/');
-      const destination = newPath ? `/${newPath}` : '/';
-      return { 
-        ...baseCmd, 
-        type: 'navigation', 
-        destination, 
-        success: true 
-      };
-    }
-    // Already at root
-    return { 
-      ...baseCmd, 
-      type: 'navigation', 
-      destination: '/', 
-      success: true 
-    };
-  } 
-  else if (trimmedCmd.startsWith('cd ')) {
-    const targetPath = trimmedCmd.slice(3).replace(/^\/+|\/+$/g, '').toLowerCase();
-    if (validPaths[targetPath]) {
-      return { 
-        ...baseCmd, 
-        type: 'navigation', 
-        destination: `/${targetPath}`, 
-        success: true 
-      };
-    }
-    // Invalid path
-    return { 
-      ...baseCmd, 
-      type: 'navigation', 
-      destination: `/${targetPath}`, 
-      success: false 
-    };
-  } 
-  
-  // Utility commands
-  else if (trimmedCmd === 'clear' || trimmedCmd === 'cls') {
-    return { 
-      ...baseCmd, 
-      type: 'utility', 
-      action: 'clear' 
-    };
-  } 
-  else if (trimmedCmd === 'history') {
-    return { 
-      ...baseCmd, 
-      type: 'utility', 
-      action: 'history' 
-    };
-  }
-  else if (trimmedCmd === 'help') {
-    return { 
-      ...baseCmd, 
-      type: 'utility', 
-      action: 'help' 
-    };
-  }
-  
-  // Invalid command
-  return { 
-    ...baseCmd, 
-    type: 'invalid', 
-    error: 'Command not found' 
-  };
-};
-
-// Command history manager class
-class CommandHistory {
-  private items: Command[] = [];
-  private capacity: number;
-  
-  constructor(capacity: number = 50) {
-    this.capacity = capacity;
-  }
-  
-  add(command: Command): void {
-    this.items.unshift(command);
-    if (this.items.length > this.capacity) {
-      this.items.pop();
-    }
-  }
-  
-  get(index: number): Command | undefined {
-    return this.items[index];
-  }
-  
-  getAll(): ReadonlyArray<Command> {
-    return [...this.items];
-  }
-  
-  clear(): void {
-    this.items = [];
-  }
-  
-  get size(): number {
-    return this.items.length;
-  }
-  
-  // Filter commands by type using type predicates
-  getNavigationCommands(): NavigationCommand[] {
-    return this.items.filter(isNavigationCommand);
-  }
-  
-  getUtilityCommands(): UtilityCommand[] {
-    return this.items.filter(isUtilityCommand);
-  }
-  
-  getInvalidCommands(): InvalidCommand[] {
-    return this.items.filter(isInvalidCommand);
-  }
-}
-
-// Terminal component props interface
+// Interface for component props with optional configurations
 interface TerminalProps {
-  sidebarWidth?: string;
-  maxHistorySize?: number;
-  // Keeping showCommands but not using it - an alternative would be to remove it
-  // from the interface if it's not needed anywhere in the application
-  showCommands?: boolean;
+  initialCommand?: string;
+  maxHistoryItems?: number;
+  showFooter?: boolean;
+  terminalHeight?: number;
+  customStyles?: Partial<{
+    terminal: React.CSSProperties;
+    input: React.CSSProperties;
+    buttons: React.CSSProperties;
+  }>;
 }
+
+// Utility type for path segments
+type PathSegment = {
+  name: string;
+  fullPath: string;
+  isActive: boolean;
+};
 
 export default function Terminal({
-  sidebarWidth = '250px',
-  maxHistorySize = 50,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  showCommands = false
+  initialCommand = '',
+  maxHistoryItems = 50,
+  showFooter = true,
+  terminalHeight = 60,
+  customStyles = {}
 }: TerminalProps) {
-  // Component state with proper typing
-  const [mounted, setMounted] = useState<boolean>(false);
-  const [command, setCommand] = useState<string>('');
-  const [history] = useState<CommandHistory>(() => new CommandHistory(maxHistorySize));
-  const [historyIndex, setHistoryIndex] = useState<number>(-1);
+  const [mounted, setMounted] = useState(false);
+  const [command, setCommand] = useState<string>(initialCommand);
   
-  // Refs
-  const inputRef = useRef<HTMLInputElement>(null);
+  // Using the generic history state type
+  const [history, setHistory] = useState<HistoryState<string>>({
+    items: [],
+    currentIndex: -1
+  });
   
-  // Hooks
   const router = useRouter();
   const pathname = usePathname();
-  const { theme } = useSafeAppTheme();
-  
-  // Pre-define all handlers regardless of mounted state
-  const handlePathClick = useCallback((index: number): void => {
-    if (index === 0) {
-      router.push('/');
-    } else {
-      const segments = pathname === '/' 
-        ? ['Home'] 
-        : ['Home', ...pathname.split('/').filter(Boolean)];
-      const newPath = '/' + segments.slice(1, index + 1).join('/');
-      router.push(newPath);
-    }
-  }, [router, pathname]);
 
-  // Pre-define command executor
-  const executeCommand = useCallback((cmd: Command): void => {
-    // Type narrowing with type guards
-    if (isNavigationCommand(cmd) && cmd.success) {
-      router.push(cmd.destination);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null; 
+  }
+
+  // Create path segments with the utility type
+  const createPathSegments = (path: string): PathSegment[] => {
+    if (path === '/') return [{ name: 'Home', fullPath: '/', isActive: true }];
+    
+    const segments = path.split('/').filter(Boolean);
+    return [
+      { name: 'Home', fullPath: '/', isActive: false },
+      ...segments.map((segment, index) => {
+        const fullPath = '/' + segments.slice(0, index + 1).join('/');
+        return {
+          name: segment,
+          fullPath,
+          isActive: index === segments.length - 1
+        };
+      })
+    ];
+  };
+
+  const pathSegments = createPathSegments(pathname || '/');
+
+  // Type guard to check if a path exists in valid paths
+  const isValidPath = (path: string): boolean => {
+    return Object.keys(validPaths).includes(path);
+  };
+
+  const handlePathClick = (path: string) => {
+    router.push(path);
+  };
+
+  // Process different command types
+  const processCommand = (cmd: string): TerminalCommand | null => {
+    if (!cmd.trim()) return null;
+    
+    if (cmd === 'cd ..') {
+      return { type: 'system', action: 'back' };
+    } else if (cmd === 'clear') {
+      return { type: 'system', action: 'clear' };
+    } else if (cmd === 'history') {
+      return { type: 'system', action: 'history' };
+    } else if (cmd.startsWith('cd ')) {
+      const targetPath = cmd.slice(3).replace(/^\/+|\/+$/g, '').toLowerCase();
+      return { type: 'navigation', path: targetPath };
     }
-    else if (isUtilityCommand(cmd)) {
-      if (cmd.action === 'clear') {
-        history.clear();
+    
+    return null;
+  };
+
+  const executeCommand = (terminalCommand: TerminalCommand | null) => {
+    if (!terminalCommand) return;
+    
+    if (terminalCommand.type === 'system') {
+      switch (terminalCommand.action) {
+        case 'clear':
+          setHistory({ items: [], currentIndex: -1 });
+          break;
+        case 'history':
+          console.log('Command history:', history.items);
+          break;
+        case 'back':
+          const segments = pathname.split('/').filter(Boolean);
+          if (segments.length > 0) {
+            const newPath = segments.slice(0, -1).join('/');
+            router.push(newPath ? `/${newPath}` : '/');
+          }
+          break;
+      }
+    } else if (terminalCommand.type === 'navigation') {
+      if (isValidPath(terminalCommand.path)) {
+        router.push(`/${terminalCommand.path}`);
       }
     }
-  }, [router, history]);
+  };
 
-  // Handle keyboard events
-  const handleCommand = useCallback((e: KeyboardEvent<HTMLDivElement>): void => {
+  const handleCommand = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' && command) {
-      // Parse command
-      const cmd = parseCommand(command, pathname);
+      // Save command to history with limit
+      const updatedItems = [...history.items, command].slice(-maxHistoryItems);
+      setHistory({ items: updatedItems, currentIndex: -1 });
       
-      // Add to history
-      history.add(cmd);
-      setHistoryIndex(-1);
+      // Process and execute command
+      const terminalCommand = processCommand(command);
+      executeCommand(terminalCommand);
       
-      // Execute command
-      executeCommand(cmd);
-      
-      // Clear input
       setCommand('');
-    } 
-    else if (e.key === 'ArrowUp') {
+    } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      // Navigate up through command history
-      if (history.size > 0 && historyIndex < history.size - 1) {
-        const newIndex = historyIndex + 1;
-        setHistoryIndex(newIndex);
-        const historicalCmd = history.get(newIndex);
-        if (historicalCmd) {
-          setCommand(historicalCmd.raw);
-        }
+      if (history.items.length > 0 && history.currentIndex < history.items.length - 1) {
+        const newIndex = history.currentIndex + 1;
+        setHistory({ ...history, currentIndex: newIndex });
+        setCommand(history.items[history.items.length - 1 - newIndex]);
       }
-    } 
-    else if (e.key === 'ArrowDown') {
+    } else if (e.key === 'ArrowDown') {
       e.preventDefault();
-      // Navigate down through command history
-      if (historyIndex > 0) {
-        const newIndex = historyIndex - 1;
-        setHistoryIndex(newIndex);
-        const historicalCmd = history.get(newIndex);
-        if (historicalCmd) {
-          setCommand(historicalCmd.raw);
-        }
-      } else if (historyIndex === 0) {
-        // Clear command when reaching the end of history
-        setHistoryIndex(-1);
+      if (history.currentIndex > 0) {
+        const newIndex = history.currentIndex - 1;
+        setHistory({ ...history, currentIndex: newIndex });
+        setCommand(history.items[history.items.length - 1 - newIndex]);
+      } else if (history.currentIndex === 0) {
+        setHistory({ ...history, currentIndex: -1 });
         setCommand('');
       }
     }
-  }, [command, history, historyIndex, pathname, executeCommand]);
-  
-  // Handle component mount
-  useEffect(() => {
-    setMounted(true);
-    
-    // Focus input on mount
-    if (inputRef.current) {
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 100);
-    }
-    
-    // Handle keyboard shortcuts globally
-    const handleGlobalKeydown = (e: KeyboardEvent) => {
-      // Alt+T to focus terminal
-      if (e.altKey && e.key === 't') {
-        e.preventDefault();
-        inputRef.current?.focus();
-      }
-    };
-    
-    // Add global event listener with proper type
-    document.addEventListener('keydown', handleGlobalKeydown as unknown as EventListener);
-    
-    // Cleanup
-    return () => {
-      document.removeEventListener('keydown', handleGlobalKeydown as unknown as EventListener);
-    };
-  }, []);
+  };
 
-  // Always return a component, but conditionally render full content
-  if (!mounted) {
-    return (
-      <Box sx={{
-        position: 'fixed',
-        bottom: 0,
-        left: sidebarWidth,
-        right: 0,
-        height: '60px',
-        zIndex: 900,
-      }} />
-    );
-  }
-  
-  // Get path segments with proper typing when mounted
-  const pathSegments: string[] = pathname === '/' 
-    ? ['Home'] 
-    : ['Home', ...pathname.split('/').filter(Boolean)];
-  
   return (
     <Box sx={{
       position: 'fixed',
       bottom: 0,
-      left: sidebarWidth,
+      left: '250px',
       right: 0,
       zIndex: 900,
+      ...(customStyles.terminal || {})
     }}>
       <WaveAnimation />
       <Box sx={{ 
         p: 2,
-        bgcolor: theme.custom.terminal.background,
-        height: '60px',
+        bgcolor: '#222222',
+        height: `${terminalHeight}px`,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         boxShadow: '0px -4px 12px rgba(0,0,0,0.4)',
-        borderTop: `3px solid ${theme.custom.terminal.borderColor}`,
+        borderTop: '3px solid rgba(255,255,255,0.5)',
         position: 'relative',
       }}>
         <Box sx={{ 
@@ -356,10 +206,10 @@ export default function Terminal({
             {pathSegments.map((segment, index) => (
               <Box key={index} sx={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
                 <Button
-                  onClick={() => handlePathClick(index)}
+                  onClick={() => handlePathClick(segment.fullPath)}
                   sx={{
-                    color: theme.custom.terminal.text,
-                    bgcolor: theme.custom.terminal.commandBg,
+                    color: 'white',
+                    bgcolor: segment.isActive ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 255, 255, 0.08)',
                     borderRadius: 1,
                     px: 1,
                     py: 0.5,
@@ -370,14 +220,15 @@ export default function Terminal({
                     whiteSpace: 'nowrap',
                     '&:hover': {
                       bgcolor: 'rgba(255, 255, 255, 0.15)',
-                    }
+                    },
+                    ...(customStyles.buttons || {})
                   }}
                 >
-                  {segment}
+                  {segment.name}
                 </Button>
                 {index < pathSegments.length - 1 && (
                   <Box sx={{ 
-                    color: theme.custom.terminal.text,
+                    color: 'white',
                     mx: 1,
                     fontSize: '0.9rem',
                     fontFamily: 'monospace',
@@ -388,7 +239,7 @@ export default function Terminal({
             ))}
           </Box>
           <Box sx={{ 
-            color: theme.custom.terminal.prompt,
+            color: 'white',
             fontFamily: 'monospace',
             fontSize: '0.9rem',
             flexShrink: 0
@@ -399,12 +250,11 @@ export default function Terminal({
             onKeyDown={handleCommand}
             placeholder='Enter a command in the "terminal" to navigate the website'
             variant="standard"
-            inputRef={inputRef}
             fullWidth
             sx={{
               flex: 1,
               '& .MuiInput-root': {
-                color: theme.custom.terminal.text,
+                color: 'white',
                 '&:before, &:after': {
                   borderBottomColor: 'transparent'
                 }
@@ -413,7 +263,8 @@ export default function Terminal({
                 pl: 1,
                 fontFamily: 'monospace',
                 fontSize: '0.9rem'
-              }
+              },
+              ...(customStyles.input || {})
             }}
             InputProps={{
               disableUnderline: true
@@ -421,78 +272,74 @@ export default function Terminal({
           />
         </Box>
         
-        {/* Footer in bottom right corner */}
-        <Box
-          sx={{
-            position: 'absolute',
-            right: 16,
-            top: '50%',
-            transform: 'translateY(-10%)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 1,
-            color: 'rgba(255,255,255,0.5)',
-            zIndex: 1000,
-          }}
-        >
-          <Typography 
-            variant="caption" 
-            sx={{ 
-              fontFamily: 'monospace',
-              fontSize: '0.75rem',
-              display: { xs: 'none', sm: 'flex' },
+        {/* Footer in bottom right corner - conditionally shown */}
+        {showFooter && (
+          <Box
+            sx={{
+              position: 'absolute',
+              right: 16,
+              top: '50%',
+              transform: 'translateY(-10%)',
+              display: 'flex',
               alignItems: 'center',
-              gap: 0.5,
-              mr: 1,
-              whiteSpace: 'nowrap',
-              color: theme.custom.terminal.text,
-              opacity: 0.5
+              gap: 1,
+              color: 'rgba(255,255,255,0.5)',
+              zIndex: 1000,
             }}
           >
-            <Code fontSize="inherit" />
-            Designed by Dustin Duong
-          </Typography>
-          
-          <IconButton 
-            href="https://github.com/dustindghb" 
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub Profile"
-            size="small"
-            sx={{ 
-              color: theme.custom.terminal.text,
-              opacity: 0.5,
-              padding: '4px',
-              '&:hover': { 
-                color: theme.custom.terminal.text,
-                opacity: 1,
-                backgroundColor: theme.custom.terminal.commandBg
-              }
-            }}
-          >
-            <GitHub fontSize="small" />
-          </IconButton>
-          
-          <IconButton 
-            href="https://www.linkedin.com/in/dustin-duong-ab505b2a5/" 
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn Profile"
-            size="small"
-            sx={{ 
-              color: theme.custom.terminal.text,
-              opacity: 0.5,
-              padding: '4px',
-              '&:hover': { 
-                color: theme.custom.terminal.text,
-                opacity: 1,
-                backgroundColor: theme.custom.terminal.commandBg 
-              }
-            }}
-          >
-            <LinkedIn fontSize="small" />
-          </IconButton>
-        </Box>
+            <Typography 
+              variant="caption" 
+              sx={{ 
+                fontFamily: 'monospace',
+                fontSize: '0.75rem',
+                display: { xs: 'none', sm: 'flex' },
+                alignItems: 'center',
+                gap: 0.5,
+                mr: 1,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <Code fontSize="inherit" />
+              Designed by Dustin Duong
+            </Typography>
+            
+            <IconButton 
+              href="https://github.com/dustindghb" 
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              size="small"
+              sx={{ 
+                color: 'rgba(255,255,255,0.5)',
+                padding: '4px',
+                '&:hover': { 
+                  color: 'white',
+                  backgroundColor: 'rgba(255,255,255,0.08)' 
+                }
+              }}
+            >
+              <GitHub fontSize="small" />
+            </IconButton>
+            
+            <IconButton 
+              href="https://www.linkedin.com/in/dustin-duong-ab505b2a5/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+              size="small"
+              sx={{ 
+                color: 'rgba(255,255,255,0.5)',
+                padding: '4px',
+                '&:hover': { 
+                  color: 'white',
+                  backgroundColor: 'rgba(255,255,255,0.08)' 
+                }
+              }}
+            >
+              <LinkedIn fontSize="small" />
+            </IconButton>
+          </Box>
+        )}
       </Box>
     </Box>
   );

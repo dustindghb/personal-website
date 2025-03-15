@@ -59,14 +59,13 @@ export default function Home() {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      height: 'calc(100vh - 200px)', // accounting for terminal height
+      height: 'calc(100vh - 200px)',
       textAlign: 'center',
       padding: 2,
       maxWidth: '800px',
       margin: '0 auto',
       zIndex: 1
     }}>
-      {/* Background image */}
       <Box sx={{
         position: 'fixed',
         top: 0,
@@ -81,12 +80,12 @@ export default function Home() {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.6)', // Dark overlay for better text visibility
+          backgroundColor: 'rgba(0, 0, 0, 0.6)',
           zIndex: 1
         }
       }}>
         <Image
-          src="/background.jpg" // Replace with your actual image path
+          src="/background.jpg" 
           alt="Background"
           fill
           style={{ 

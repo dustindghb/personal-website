@@ -7,10 +7,8 @@ import dynamic from 'next/dynamic';
 import { Providers } from './providers';
 import { useSafeAppTheme } from './providers';
 
-// Use TypeScript to define the font
 const inter = Inter({ subsets: ['latin'] });
 
-// Use dynamic imports with proper typing
 const Sidebar = dynamic<Record<string, never>>(
   () => import('@/components/Sidebar').then(mod => mod.default), 
   { ssr: false }
@@ -21,25 +19,21 @@ const Terminal = dynamic<Record<string, never>>(
   { ssr: false }
 );
 
-// Define layout props interface
 interface RootLayoutProps {
   children: ReactNode;
 }
 
-// Use React.FC with generic type for props
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   const [mounted, setMounted] = useState(false);
   const { theme } = useSafeAppTheme();
   
-  // Use responsive layout with proper typing
+
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  
-  // Handle client-side rendering safely
+
   useEffect(() => {
     setMounted(true);
   }, []);
   
-  // SSR - Return a simplified version for SSR
   if (!mounted) {
     return (
       <html lang="en">
@@ -63,9 +57,8 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
             display: 'flex',
             minHeight: '100vh',
             color: theme.custom.content.primary,
-            paddingBottom: '150px', // Space for terminal
+            paddingBottom: '150px', 
           }}>
-            {/* Sidebar - Hidden on mobile */}
             {!isMobile && <Sidebar />}
             
             {/* Main content area */}
@@ -73,7 +66,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
               flex: 1,
               display: 'flex',
               flexDirection: 'column',
-              marginLeft: isMobile ? 0 : '250px', // Adjust based on screen size
+              marginLeft: isMobile ? 0 : '250px', 
               position: 'relative', 
               zIndex: 900, 
             }}>
