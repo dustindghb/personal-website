@@ -91,7 +91,7 @@ export default function About() {
             height: 300,
             position: 'relative',
           }}>
-            {/* Animation wrapper - bigger than the image container */}
+            {/* Animation wrapper */}
             <Box sx={{ 
               position: 'absolute', 
               width: '140%', 
@@ -145,15 +145,15 @@ export default function About() {
                 sx={{ 
                   p: 3, 
                   mb: 2,
-                  bgcolor: '#333333', // Dark background for category box
-                  color: '#ffffff',   // White text for category heading
+                  bgcolor: '#333333', 
+                  color: '#ffffff',  
                   borderRadius: 2,
                 }}
               >
                 <Typography variant="h6" component="h3" gutterBottom sx={{ 
                   borderBottom: '2px solid #ffffff',
                   paddingBottom: 1,
-                  color: '#ffffff', // White text
+                  color: '#ffffff', 
                   fontWeight: 'bold'
                 }}>
                   {cluster.category}
@@ -171,8 +171,8 @@ export default function About() {
                           alignItems: 'center',
                           justifyContent: 'center',
                           height: 120,
-                          bgcolor: '#cccccc', // Original light gray background
-                          color: '#333333',    // Original dark text
+                          bgcolor: '#cccccc', 
+                          color: '#333333',    
                           transition: 'transform 0.2s, box-shadow 0.2s',
                           '&:hover': {
                             transform: 'translateY(-5px)',
