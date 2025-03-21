@@ -30,7 +30,7 @@ interface TerminalProps {
   }>;
 }
 
-// Utility type for path segments
+//Utility type for path segments
 type PathSegment = {
   name: string;
   fullPath: string;

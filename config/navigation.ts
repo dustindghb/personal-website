@@ -1,6 +1,4 @@
-// Advanced TypeScript navigation configuration
-
-// Define a generic type for tree-like structures
+// Generic type for tree-like structures
 export type Tree<T> = T & {
   children?: Tree<T>[];
 };

@@ -1,4 +1,3 @@
-// Breadcrumbs.tsx
 'use client';
 import { useMemo, memo, FC } from 'react';
 import { Breadcrumbs as MUIBreadcrumbs, Link, Typography, Box } from '@mui/material';

@@ -1,4 +1,3 @@
-// Sidebar.tsx
 'use client';
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import { Box, List, ListItem, ListItemText, ListItemButton, Typography } from '@mui/material';
@@ -42,7 +41,6 @@ const FileTreeItem = memo(function FileTreeItem({
     setIsHovered(false);
   }, []);
   
-  // Compute background color
   const backgroundColor = isActive 
     ? theme.custom.sidebar.itemSelected 
     : isHovered 
