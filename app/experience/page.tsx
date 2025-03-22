@@ -143,8 +143,6 @@ export default function Projects(): React.ReactElement {
   };
   
   const handleOpenImage = (imageSrc: string) => {
-    // Functionality for handling image opening can be implemented later
-    // For now we'll keep the function but not use the state
     console.log('Image clicked:', imageSrc);
   };
   
@@ -249,7 +247,7 @@ export default function Projects(): React.ReactElement {
                     />
                   </Box>
                   
-                  {/* Only show images for certificates */}
+                  {/* Certificates */}
                   {entry.type === 'certificate' && entry.image && (
                     <Box sx={{ 
                       position: 'relative', 
