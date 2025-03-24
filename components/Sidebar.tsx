@@ -5,12 +5,10 @@ import { useRouter, usePathname } from 'next/navigation';
 import { NavItem, siteStructure } from '@/config/navigation';
 import { useSafeAppTheme } from '../app/providers';
 
-// Type guard to check if an item has children
 function hasChildren(item: NavItem): item is NavItem & { children: NavItem[] } {
   return Array.isArray(item.children) && item.children.length > 0;
 }
 
-// Interface for FileTreeItem component props
 interface FileTreeItemProps {
   item: NavItem;
   level?: number;
@@ -18,7 +16,6 @@ interface FileTreeItemProps {
   isActive: boolean;
 }
 
-// FileTreeItem component using memo for performance
 const FileTreeItem = memo(function FileTreeItem({ 
   item, 
   level = 0,
@@ -85,32 +82,28 @@ const FileTreeItem = memo(function FileTreeItem({
         </ListItemButton>
       </ListItem>
       
-      {/* Render children if they exist */}
       {hasChildren(item) && item.children.map((child) => (
         <FileTreeItem 
           key={child.id} 
           item={child} 
           level={level + 1}
           onSelect={onSelect}
-          isActive={false} // Will be overridden by SidebarContent
+          isActive={false} 
         />
       ))}
     </>
   );
 });
 
-// Separate component for sidebar content to handle the active path logic
 function SidebarContent() {
   const pathname = usePathname();
   const router = useRouter();
   const { theme } = useSafeAppTheme();
   
-  // Define handleSelect callback
   const handleSelect = useCallback((path: string) => {
     router.push(path);
   }, [router]);
   
-  // Recursively render FileTreeItem with correct active state
   const renderFileTree = (item: NavItem, level = 0): React.ReactElement => {
     const isActive = pathname === item.id;
     
@@ -158,17 +151,14 @@ function SidebarContent() {
   );
 }
 
-// Main Sidebar component
 export default function Sidebar() {
   const [mounted, setMounted] = useState(false);
   const { theme } = useSafeAppTheme();
 
-  // Handle mounting
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Simple visibility based on mounted state
   const visibility = mounted ? 'visible' : 'hidden';
 
   return (
