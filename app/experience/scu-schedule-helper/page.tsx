@@ -5,13 +5,12 @@ import { Box, Typography, Divider, Grid, Link, Tabs, Tab, Paper, IconButton, Mod
 import { Code, Storage, Extension, OpenInNew, School, Close, ArrowBack, ArrowForward} from '@mui/icons-material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
-// PDF documentation files type
 type DocumentFile = {
   title: string;
   description: string;
   filename: string;
-  previewImages: string[]; // Array of preview image paths
-  fileType: 'pdf' | 'image'; // Type of document
+  previewImages: string[]; 
+  fileType: 'pdf' | 'image'; 
 };
 
 export default function SCUScheduleHelper() {
@@ -46,7 +45,6 @@ export default function SCUScheduleHelper() {
     setCurrentPreviewIndex((prev) => (prev > 0 ? prev - 1 : prev));
   };
 
-// Documentation files with proper icons and file types
   const documentationFiles: DocumentFile[] = [
     { 
       title: "User & System Requirements", 
@@ -64,7 +62,7 @@ export default function SCUScheduleHelper() {
       description: "UML class diagrams showing system components and their relationships, alongside activity diagrams illustrating key workflows", 
       filename: "/ssh-docs/ClassDiagram.png",
       previewImages: [
-        "/ssh-docs/ClassDiagram.png", // Using the actual PNG as its own preview
+        "/ssh-docs/ClassDiagram.png", 
       ],
       fileType: 'image'
     },
@@ -73,7 +71,7 @@ export default function SCUScheduleHelper() {
       description: "High-level system architecture diagram showing the relationship between frontend, backend, and data pipeline components", 
       filename: "/ssh-docs/ArchitectureDiagram.png",
       previewImages: [
-        "/ssh-docs/ArchitectureDiagram.png", // Using the actual PNG as its own preview
+        "/ssh-docs/ArchitectureDiagram.png", 
       ],
       fileType: 'image'
     },
@@ -82,7 +80,7 @@ export default function SCUScheduleHelper() {
       description: "Detailed documentation of our codebase organization, file structure, and component hierarchy", 
       filename: "/ssh-docs/FileStructure.png",
       previewImages: [
-        "/ssh-docs/FileOrganizationDiagram.jpg", // Using the actual PNG as its own preview
+        "/ssh-docs/FileOrganizationDiagram.jpg", 
       ],
       fileType: 'image'
     }
@@ -524,7 +522,6 @@ export default function SCUScheduleHelper() {
                     <Typography variant="body2" paragraph sx={{ mb: 3, flexGrow: 1 }}>
                       {doc.description}
                     </Typography>
-                    {/* Download button removed */}
                   </Box>
                 </Paper>
               </Grid>

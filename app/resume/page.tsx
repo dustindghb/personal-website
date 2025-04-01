@@ -7,10 +7,8 @@ import { Download } from '@mui/icons-material';
 export default function ResumePage() {
   const [loading, setLoading] = useState<boolean>(true);
   
-  // Path to your resume PDF
   const resumePath = "/myResume.pdf";
   
-  // Simulate loading for the preview
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
