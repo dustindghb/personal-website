@@ -27,7 +27,6 @@ const TypedText = ({ text, delay = 30, onComplete = () => {} }: TypedTextProps) 
     }
   }, [currentIndex, delay, text, onComplete]);
 
-  // Blinking cursor effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
