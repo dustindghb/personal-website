@@ -84,14 +84,15 @@ export function useSafeAppTheme() {
       };
     }
     return context;
-  } catch (
-    error
-  ) {
-    return { 
-      theme: ssrTheme, 
-      preferences: defaultThemePreferences,
-      setPreferences: () => {}
-    };
+  } 
+    catch (error) {
+        console.error("Failed to access theme context:", error);
+        return { 
+          theme: ssrTheme, 
+          preferences: defaultThemePreferences,
+          setPreferences: () => {}
+        };
+    
   }
 }
 
