@@ -7,17 +7,14 @@ import {
   Grid,
   Chip,
   Link,
-  Paper,
   IconButton,
   Modal,
   Container,
   Divider
 } from '@mui/material';
 import { 
-  GitHub, 
   OpenInNew, 
   Psychology,
-  Api,
   Storage,
   Close,
   CalendarToday,
@@ -32,9 +29,7 @@ export default function FederalReserveAgent(): React.ReactElement {
     'n8n', 'AWS Comprehend', 'Federal Reserve APIs', 'RAG', 'CRUD Operations', 'Sentiment Analysis'
   ];
 
-  const handleImageClick = (imagePath: string) => {
-    setSelectedImage(imagePath);
-  };
+
 
   const handleCloseImage = () => {
     setSelectedImage(null);
@@ -171,7 +166,7 @@ export default function FederalReserveAgent(): React.ReactElement {
                   borderRadius: 1,
                   mr: 2
                 }}>
-                  <Api sx={{ color: '#9ca3af', fontSize: 20 }} />
+                  <Storage sx={{ color: '#9ca3af', fontSize: 20 }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
                   API Integration
@@ -249,7 +244,7 @@ export default function FederalReserveAgent(): React.ReactElement {
           <Grid item xs={12} md={6}>
             <Box sx={{ mb: 4 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Api sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Storage sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
                 <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
                   API Architecture
                 </Typography>

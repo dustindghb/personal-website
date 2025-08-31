@@ -7,7 +7,6 @@ import {
   Grid,
   Chip,
   Link,
-  Paper,
   IconButton,
   Modal,
   Container,
@@ -32,9 +31,7 @@ export default function DiceAnimations(): React.ReactElement {
     'Unity', 'C#', 'Game Development', '3D Graphics', 'Animation', 'Mobile App'
   ];
 
-  const handleImageClick = (imagePath: string) => {
-    setSelectedImage(imagePath);
-  };
+
 
   const handleCloseImage = () => {
     setSelectedImage(null);
@@ -187,7 +184,7 @@ export default function DiceAnimations(): React.ReactElement {
                 </Typography>
               </Box>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Implemented realistic physics simulations using Unity's built-in physics engine, creating authentic 
+                Implemented realistic physics simulations using Unity&apos;s built-in physics engine, creating authentic 
                 dice-rolling behavior with proper collision detection, gravity, and momentum.
               </Typography>
             </Box>
@@ -287,7 +284,7 @@ export default function DiceAnimations(): React.ReactElement {
                 </Typography>
               </Box>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Implemented custom physics interactions using Unity's Rigidbody system, including collision detection, 
+                Implemented custom physics interactions using Unity&apos;s Rigidbody system, including collision detection, 
                 force application, and realistic bouncing behavior for authentic dice-rolling mechanics.
               </Typography>
             </Box>

@@ -7,7 +7,6 @@ import {
   Grid,
   Chip,
   Link,
-  Paper,
   IconButton,
   Modal,
   Tabs,
@@ -19,10 +18,8 @@ import {
   GitHub, 
   OpenInNew, 
   Extension, 
-  School, 
   Storage,
   Psychology,
-  Api,
   Close,
   CalendarToday,
   Code,
@@ -261,7 +258,7 @@ export default function SCUScheduleHelper() {
                 </Typography>
               </Box>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Seamless integration with SCU's Workday system, providing course and professor query capabilities directly within the registration interface.
+                Seamless integration with SCU&apos;s Workday system, providing course and professor query capabilities directly within the registration interface.
               </Typography>
             </Box>
           </Grid>

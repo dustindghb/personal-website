@@ -7,7 +7,6 @@ import {
   Grid,
   Chip,
   Link,
-  Paper,
   IconButton,
   Modal,
   Container,
@@ -21,8 +20,8 @@ import {
   Storage,
   Close,
   CalendarToday,
-  Design,
-  TrendingUp
+  TrendingUp,
+  Palette
 } from '@mui/icons-material';
 
 export default function PersonalWebsite(): React.ReactElement {
@@ -32,9 +31,7 @@ export default function PersonalWebsite(): React.ReactElement {
     'Next.js', 'React', 'TypeScript', 'Material UI', 'Vercel', 'Responsive Design'
   ];
 
-  const handleImageClick = (imagePath: string) => {
-    setSelectedImage(imagePath);
-  };
+
 
   const handleCloseImage = () => {
     setSelectedImage(null);
@@ -180,7 +177,7 @@ export default function PersonalWebsite(): React.ReactElement {
                   borderRadius: 1,
                   mr: 2
                 }}>
-                  <Design sx={{ color: '#9ca3af', fontSize: 20 }} />
+                  <Palette sx={{ color: '#9ca3af', fontSize: 20 }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
                   Modern Design
@@ -281,7 +278,7 @@ export default function PersonalWebsite(): React.ReactElement {
           <Grid item xs={12} md={6}>
             <Box sx={{ mb: 4 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Design sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Palette sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
                 <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
                   TypeScript Integration
                 </Typography>

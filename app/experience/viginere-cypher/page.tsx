@@ -7,7 +7,6 @@ import {
   Grid,
   Chip,
   Link,
-  Paper,
   IconButton,
   Modal,
   Container,
@@ -32,9 +31,7 @@ export default function VigenereCipher(): React.ReactElement {
     'Firebase', 'React', 'JavaScript', 'HTML/CSS', 'Cryptography', 'Web Security'
   ];
 
-  const handleImageClick = (imagePath: string) => {
-    setSelectedImage(imagePath);
-  };
+
 
   const handleCloseImage = () => {
     setSelectedImage(null);
