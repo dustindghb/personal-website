@@ -1,205 +1,452 @@
-import { Box, Typography, Divider, Grid, Link } from '@mui/material';
-import { Code, Storage, Terminal, GitHub } from '@mui/icons-material';
+'use client';
 
-export default function PortfolioWebsite() {
+import React, { useState } from 'react';
+import { 
+  Box, 
+  Typography, 
+  Grid,
+  Chip,
+  Link,
+  Paper,
+  IconButton,
+  Modal,
+  Container,
+  Divider
+} from '@mui/material';
+import { 
+  GitHub, 
+  OpenInNew, 
+  Language,
+  Code,
+  Storage,
+  Close,
+  CalendarToday,
+  Design,
+  TrendingUp
+} from '@mui/icons-material';
+
+export default function PersonalWebsite(): React.ReactElement {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const technologies = [
+    'Next.js', 'React', 'TypeScript', 'Material UI', 'Vercel', 'Responsive Design'
+  ];
+
+  const handleImageClick = (imagePath: string) => {
+    setSelectedImage(imagePath);
+  };
+
+  const handleCloseImage = () => {
+    setSelectedImage(null);
+  };
+
   return (
-    <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '24px', bgcolor: '#383838', color: 'white', minHeight: '100vh' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="h3" gutterBottom>
-          This Website!
+    <Container maxWidth="lg" sx={{ py: 8 }}>
+      {/* Hero Section */}
+      <Box sx={{ mb: 10 }}>
+        <Typography variant="h2" sx={{ 
+          fontWeight: 300, 
+          color: 'white',
+          mb: 2,
+          letterSpacing: '-0.02em'
+        }}>
+          Personal Website
         </Typography>
-        <Link 
-          href="https://github.com/dustindghb/personal-website" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
-        >
-          <GitHub fontSize="small" sx={{ mr: 0.5 }} />
-          <Typography variant="body2">View on GitHub</Typography>
-        </Link>
-      </Box>
-
-      {/* Overview Section */}
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Overview
-        </Typography>
-        <Typography variant="body1">
-          This portfolio website represents a sophisticated rebuild from the ground up, leveraging the power of Next.js, 
-          TypeScript, and Material-UI to create a feature-rich platform that goes beyond traditional portfolio implementations. 
-          The project focuses on creating an elegant, responsive UI with advanced TypeScript patterns while laying the groundwork 
-          for future AI-powered enhancements.
-        </Typography>
-      </Box>
-
-      <Divider sx={{ bgcolor: 'rgba(255,255,255,0.12)' }} />
-
-      {/* What it Does Section */}
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Core Features
-        </Typography>
-        <Typography variant="body1" paragraph>
-          This portfolio website combines advanced frontend technologies to create a unique user experience.
-        </Typography>
-
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h6">
-            Advanced UI Implementation:
-          </Typography>
-          <Typography variant="body1" paragraph>
-            The site showcases sophisticated Material-UI implementations including custom theme development, responsive navigation 
-            with dynamic routing, a filtered portfolio project showcase, and an interactive terminal-like command interface 
-            that allows visitors to navigate the site in a unique way.
+        
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mb: 4 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <CalendarToday sx={{ fontSize: 16, color: '#6b7280' }} />
+            <Typography variant="body2" sx={{ color: '#6b7280', fontWeight: 400 }}>
+              January 2025 - Present
+            </Typography>
+          </Box>
+          <Box sx={{ 
+            width: 1, 
+            height: 1, 
+            bgcolor: '#6b7280', 
+            borderRadius: '50%' 
+          }} />
+          <Typography variant="body2" sx={{ color: '#6b7280', fontWeight: 400 }}>
+            Portfolio Website
           </Typography>
         </Box>
 
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h6">
-            TypeScript-Powered Architecture:
-          </Typography>
-          <Typography variant="body1" paragraph>
-            The entire codebase is built with sophisticated TypeScript constructs, including generic types for reusable 
-            components, union types for state management, interface declarations for component props, type guards for 
-            runtime assertions, and utility types for component configuration.
-          </Typography>
+        <Typography variant="h6" sx={{ 
+          color: '#9ca3af', 
+          lineHeight: 1.7, 
+          mb: 6,
+          maxWidth: '700px',
+          fontWeight: 400
+        }}>
+          Designed and developed a modern, responsive personal portfolio website showcasing my professional experience, 
+          projects, and technical skills. The website features a clean, minimalist design with smooth animations, 
+          interactive elements, and optimized performance for an exceptional user experience.
+        </Typography>
+
+        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 6 }}>
+          {technologies.map((tech) => (
+            <Chip
+              key={tech}
+              label={tech}
+              size="small"
+              sx={{
+                bgcolor: 'transparent',
+                color: '#9ca3af',
+                border: '1px solid #374151',
+                fontWeight: 400,
+                fontSize: '0.75rem',
+                '&:hover': { 
+                  border: '1px solid #6b7280',
+                  color: '#d1d5db'
+                }
+              }}
+            />
+          ))}
+        </Box>
+
+        <Box sx={{ display: 'flex', gap: 3 }}>
+          <Link 
+            href="https://github.com/dustindghb/personal-website" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            sx={{ 
+              display: 'inline-flex', 
+              alignItems: 'center',
+              gap: 1,
+              px: 4,
+              py: 2,
+              bgcolor: 'white',
+              color: 'black',
+              textDecoration: 'none',
+              fontWeight: 500,
+              fontSize: '0.875rem',
+              transition: 'all 0.2s',
+              '&:hover': { 
+                bgcolor: '#f3f4f6'
+              }
+            }}
+          >
+            <GitHub sx={{ fontSize: 16 }} />
+            View on GitHub
+          </Link>
+          <Link 
+            href="https://personal-website-dustin-duong.vercel.app/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            sx={{ 
+              display: 'inline-flex', 
+              alignItems: 'center',
+              gap: 1,
+              px: 4,
+              py: 2,
+              bgcolor: 'transparent',
+              color: '#9ca3af',
+              textDecoration: 'none',
+              fontWeight: 500,
+              fontSize: '0.875rem',
+              border: '1px solid #374151',
+              transition: 'all 0.2s',
+              '&:hover': { 
+                border: '1px solid #6b7280',
+                color: '#d1d5db'
+              }
+            }}
+          >
+            <OpenInNew sx={{ fontSize: 16 }} />
+            Live Website
+          </Link>
         </Box>
       </Box>
 
-      <Divider sx={{ bgcolor: 'rgba(255,255,255,0.12)' }} />
+      <Divider sx={{ borderColor: '#374151', mb: 10 }} />
 
-      {/* How We Built It Section */}
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          How It Was Built
+      {/* Key Features */}
+      <Box sx={{ mb: 10 }}>
+        <Typography variant="h3" sx={{ 
+          fontWeight: 300, 
+          color: 'white',
+          mb: 6,
+          letterSpacing: '-0.02em'
+        }}>
+          Key Features
         </Typography>
-
-        <Grid container spacing={3} sx={{ mt: 2 }}>
-          <Grid item xs={12} sm={6} md={4}>
-            <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-              <Code sx={{ mr: 1 }} />
-              <Typography variant="h6">Frontend</Typography>
-            </Box>
-            <Typography variant="body2">
-              • Next.js framework<br />
-              • TypeScript implementation<br />
-              • Material-UI component library<br />
-              • Custom theme development<br />
-              • Responsive design patterns
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={4}>
-            <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-              <Terminal sx={{ mr: 1 }} />
-              <Typography variant="h6">Interactive Elements</Typography>
-            </Box>
-            <Typography variant="body2">
-              • Terminal-like command interface<br />
-              • Filtered project showcase<br />
-              • Blog with markdown support<br />
-              • Real-time state management<br />
-              • Custom animation components
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={4}>
-            <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-              <Storage sx={{ mr: 1 }} />
-              <Typography variant="h6">Data Management</Typography>
-            </Box>
-            <Typography variant="body2">
-              • TypeScript type-safe data handling<br />
-              • Structured content organization<br />
-              • State persistence with local storage<br />
-              • Optimized asset loading<br />
-              • Dynamic content rendering
-            </Typography>
-          </Grid>
-        </Grid>
-      </Box>
-
-      <Divider sx={{ bgcolor: 'rgba(255,255,255,0.12)' }} />
-
-      {/* Technical Implementation Details */}
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Technical Implementation
-        </Typography>
-        <Typography variant="body1" paragraph>
-          The development of this portfolio website involved several advanced technical implementations:
-        </Typography>
-
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" gutterBottom>
-              TypeScript Architecture
-            </Typography>
-            <Typography variant="body1" paragraph>
-              The codebase employs sophisticated TypeScript patterns including generic components for reusability,
-              union types for comprehensive state management, and utility types for configuration management.
-              Type guards ensure runtime type safety, while interface declarations create clearly defined component
-              contracts.
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" gutterBottom>
-              Material-UI Implementation
-            </Typography>
-            <Typography variant="body1" paragraph>
-              The UI leverages Material-UI&apos;s theming capabilities with custom palette configurations, responsive 
-              breakpoints, and typography overrides. Component composition follows best practices with styled components, 
-              sx prop patterns, and theme-aware styling to maintain consistency across the application.
-            </Typography>
-          </Grid>
-        </Grid>
-      </Box>
-
-      <Divider sx={{ bgcolor: 'rgba(255,255,255,0.12)' }} />
-
-      {/* Challenges, Accomplishments, and Next Steps */}
-      <Box sx={{ my: 4 }}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
-            <Typography variant="h5" gutterBottom>
-              Challenges
-            </Typography>
-            <Typography variant="body1">
-              Creating a type-safe architecture throughout the application presented significant challenges,
-              particularly in handling complex state management while maintaining a smooth user experience.
-              Designing a responsive UI that works across all devices while keeping the unique aesthetic
-              of the portfolio required careful planning and implementation of custom breakpoints and
-              conditional rendering strategies.
-            </Typography>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                <Box sx={{ 
+                  p: 1, 
+                  bgcolor: '#1f2937', 
+                  borderRadius: 1,
+                  mr: 2
+                }}>
+                  <Design sx={{ color: '#9ca3af', fontSize: 20 }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Modern Design
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Clean, minimalist design with a focus on typography and spacing, featuring smooth animations 
+                and interactive elements that enhance user engagement without overwhelming the content.
+              </Typography>
+            </Box>
           </Grid>
-
           <Grid item xs={12} md={4}>
-            <Typography variant="h5" gutterBottom>
-              Learning Outcomes
-            </Typography>
-            <Typography variant="body1">
-              This project provided deep experience with Material-UI capabilities including advanced theming and component creation. 
-              The TypeScript implementation enhanced understanding of type-safe event handling, generic component patterns, and 
-              complex type inference. Working with Next.js delivered practical experience with server components, client components, 
-              and optimized rendering strategies.
-            </Typography>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                <Box sx={{ 
+                  p: 1, 
+                  bgcolor: '#1f2937', 
+                  borderRadius: 1,
+                  mr: 2
+                }}>
+                  <Language sx={{ color: '#9ca3af', fontSize: 20 }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Responsive Layout
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Fully responsive design that adapts seamlessly to all screen sizes and devices, ensuring 
+                optimal viewing experience on desktop, tablet, and mobile platforms.
+              </Typography>
+            </Box>
           </Grid>
-
           <Grid item xs={12} md={4}>
-            <Typography variant="h5" gutterBottom>
-              What&apos;s Next
-            </Typography>
-            <Typography variant="body1">
-              The most exciting future plan is integrating an AI assistant built with RAG (Retrieval Augmented Generation) 
-              and Ollama. This custom agent will be able to reference information about me and my work, allowing visitors 
-              to have natural language conversations about my projects, skills, and experience. Additional plans include 
-              implementing more advanced TypeScript patterns for even greater type safety, and creating interactive visualizations 
-              of the connections between different projects and skills in the portfolio.
-            </Typography>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                <Box sx={{ 
+                  p: 1, 
+                  bgcolor: '#1f2937', 
+                  borderRadius: 1,
+                  mr: 2
+                }}>
+                  <TrendingUp sx={{ color: '#9ca3af', fontSize: 20 }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Performance Optimized
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Optimized for speed and performance with efficient code structure, lazy loading, and 
+                modern web technologies to ensure fast loading times and smooth user interactions.
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       </Box>
-    </Box>
+
+      <Divider sx={{ borderColor: '#374151', mb: 10 }} />
+
+      {/* Technical Implementation */}
+      <Box sx={{ mb: 10 }}>
+        <Typography variant="h3" sx={{ 
+          fontWeight: 300, 
+          color: 'white',
+          mb: 6,
+          letterSpacing: '-0.02em'
+        }}>
+          Technical Implementation
+        </Typography>
+        <Grid container spacing={6}>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <Code sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Next.js Framework
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Built with Next.js 15 for optimal performance, SEO, and developer experience. Implemented 
+                server-side rendering and static generation for improved loading speeds and search engine visibility.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <Storage sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Material UI Components
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Utilized Material UI for consistent, accessible, and customizable components. Implemented 
+                custom theming and component overrides to achieve the desired minimalist aesthetic.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <Design sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  TypeScript Integration
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Implemented TypeScript for enhanced code quality, type safety, and developer productivity. 
+                Created comprehensive type definitions for all components and data structures.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <Language sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Responsive Design System
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Developed a comprehensive responsive design system using CSS Grid and Flexbox, ensuring 
+                consistent layouts and optimal user experience across all device sizes and orientations.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Divider sx={{ borderColor: '#374151', mb: 10 }} />
+
+      {/* Challenges & Solutions */}
+      <Box sx={{ mb: 10 }}>
+        <Typography variant="h3" sx={{ 
+          fontWeight: 300, 
+          color: 'white',
+          mb: 6,
+          letterSpacing: '-0.02em'
+        }}>
+          Challenges & Solutions
+        </Typography>
+        <Grid container spacing={6}>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Typography variant="h6" sx={{ color: '#9ca3af', fontWeight: 500, mb: 2 }}>
+                Challenge: Design Consistency
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, mb: 3, fontWeight: 400 }}>
+                Maintaining consistent design language and visual hierarchy across multiple pages while 
+                ensuring the minimalist aesthetic remains clean and professional.
+              </Typography>
+              <Typography variant="h6" sx={{ color: '#d1d5db', fontWeight: 500, mb: 2 }}>
+                Solution: Design System
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Created a comprehensive design system with standardized typography, spacing, colors, and 
+                component patterns to ensure consistency across all pages and components.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Typography variant="h6" sx={{ color: '#9ca3af', fontWeight: 500, mb: 2 }}>
+                Challenge: Performance Optimization
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, mb: 3, fontWeight: 400 }}>
+                Balancing rich interactive features with fast loading times and smooth performance, 
+                especially on mobile devices with limited resources.
+              </Typography>
+              <Typography variant="h6" sx={{ color: '#d1d5db', fontWeight: 500, mb: 2 }}>
+                Solution: Optimized Architecture
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Implemented code splitting, lazy loading, and optimized asset delivery to minimize 
+                bundle size and improve loading performance across all devices and network conditions.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Divider sx={{ borderColor: '#374151', mb: 10 }} />
+
+      {/* Technologies Used */}
+      <Box sx={{ mb: 8 }}>
+        <Typography variant="h3" sx={{ 
+          fontWeight: 300, 
+          color: 'white',
+          mb: 6,
+          letterSpacing: '-0.02em'
+        }}>
+          Technologies Used
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="h6" sx={{ color: 'white', fontWeight: 400, mb: 2 }}>
+                Frontend Framework
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 400 }}>
+                Next.js 15, React 18, TypeScript
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="h6" sx={{ color: 'white', fontWeight: 400, mb: 2 }}>
+                UI & Styling
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 400 }}>
+                Material UI, CSS Grid, Flexbox
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="h6" sx={{ color: 'white', fontWeight: 400, mb: 2 }}>
+                Deployment & Hosting
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 400 }}>
+                Vercel, Git, CI/CD Pipeline
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
+      {/* Image Modal */}
+      <Modal
+        open={!!selectedImage}
+        onClose={handleCloseImage}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          p: 2
+        }}
+      >
+        <Box sx={{ position: 'relative', maxWidth: '90vw', maxHeight: '90vh' }}>
+          <IconButton
+            onClick={handleCloseImage}
+            sx={{
+              position: 'absolute',
+              top: -40,
+              right: 0,
+              color: 'white',
+              bgcolor: 'rgba(0, 0, 0, 0.5)',
+              '&:hover': { bgcolor: 'rgba(0, 0, 0, 0.7)' }
+            }}
+          >
+            <Close />
+          </IconButton>
+          {selectedImage && (
+            <Box
+              component="img"
+              src={selectedImage}
+              alt="Project Preview"
+              sx={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+                borderRadius: 2
+              }}
+            />
+          )}
+        </Box>
+      </Modal>
+    </Container>
   );
 }

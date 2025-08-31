@@ -72,8 +72,8 @@ export const siteStructure: FolderNavItem = {
           isFolder: false,
         },
         {
-          id: '/experience/vira-poc',
-          label: 'Vira-POC',
+          id: '/experience/federal-reserve-agent',
+          label: 'Federal-Reserve-Agent',
           isFolder: false,
         },
         {
@@ -105,7 +105,7 @@ export const siteStructure: FolderNavItem = {
 export const validPaths: PathMap = {
   'about': ['about'],
   'experience': ['experience'],
-  'experience/vira-poc': ['experience', 'vira-poc'],
+  'experience/federal-reserve-agent': ['experience', 'federal-reserve-agent'],
   'experience/scu-schedule-helper': ['experience', 'scu-schedule-helper'],
   'experience/viginere-cypher': ['experience', 'viginere-cypher'],
   'experience/dice-animations': ['experience', 'dice-animations'],

@@ -25,7 +25,7 @@ interface TimelineEntry {
   label: string;
   description: string;
   year: string;
-  type: 'project' | 'certificate';
+  type: 'project' | 'certificate' | 'experience';
   path?: string; // Optional for projects only
   image?: string; // Optional for certificates only
   externalLink?: string;
@@ -33,12 +33,41 @@ interface TimelineEntry {
 
 const timelineEntries: TimelineEntry[] = [
   {
-    id: 'scu-schedule-helper',
-    label: 'SCU Schedule Helper',
-    description: 'Designed and developed a Chrome extension for SCU Workday course registration, featuring a course and professor query bar, embedded information within Workday, customizable preferences, a friend network, and an AI academic advisor. Helping 300+ active users.',
-    year: 'September 2024 - Present',
+    id: 'stage4-solutions',
+    label: 'Stage 4 Solutions - SDE Intern',
+    description: 'Built Chrome extension increasing sales lead generation by 300% to 10+ leads/min. Implemented HubSpot automation workflows to optimize business processes and improved lead conversion rates. Developed agent with knowledge of financial markets from company 10-K and 10-Q SEC filings.',
+    year: 'June 2025 - Present',
+    type: 'experience'
+  },
+  {
+    id: 'rec-exchange',
+    label: 'REC Exchange - SDE Intern',
+    description: 'Conducted market research on RECs, wrote documentation, and researched potential customers. Contributed a landing page with authorization and persistent authentication.',
+    year: 'April 2024 - June 2024',
+    type: 'experience'
+  },
+  {
+    id: 'government-newsletter',
+    label: 'Government Document Newsletter',
+    description: 'Developed personalized newsletter workflow that sends personalized reports from federal register publications. Automated CRUD workflows with n8n using Docker and Postgres. Labeled data with Ollama models and mapped documents to users interests with semantic similarity.',
+    year: 'June 2025 - Present',
+    type: 'project'
+  },
+  {
+    id: 'federal-reserve-agent',
+    label: 'Federal Reserve Agent',
+    description: 'Developed a RAG agent knowledgeable on new regulations and proposal with n8n. Performed CRUD operations with Federal Reserve\'s APIs. Implemented sentiment analysis with AWS Comprehend on legislation comments.',
+    year: 'May 2025',
     type: 'project',
-    path: '/projects/scu-schedule-helper'
+    path: '/experience/federal-reserve-agent'
+  },
+  {
+    id: 'scu-schedule-helper',
+    label: 'SCU Schedule Helper - Chrome Extension',
+    description: 'Increased users by 60% with automated marketing mailing list. Managed team organization and feature development with Jira. Spearheaded frontend/backend development of Chrome extension, helping 400+ users register for courses. Engineered Workday injection scripts, Next.js popup interface, friend network, and AI advisor functionality.',
+    year: 'August 2024 - Present',
+    type: 'project',
+    externalLink: 'https://chromewebstore.google.com/detail/scu-schedule-helper/feinilelhamnodbmhjhacnajbbhapdhj?hl=en'
   },
   {
     id: 'personal-website',
@@ -48,14 +77,7 @@ const timelineEntries: TimelineEntry[] = [
     type: 'project',
     path: '/projects/personal-website'
   },
-  {
-    id: 'vira-poc',
-    label: 'Vira - Apprenticeship Platform (POC)',
-    description: 'Developed proof of concept platform where apprentices can seek guidance from agents trained from data given from professionals, depending on career interests',
-    year: 'February 2025',
-    type: 'project',
-    path: '/projects/vira-poc'
-  },
+
   {
     id: 'viginere-cypher',
     label: 'Viginere Cypher Webevent',
@@ -131,14 +153,14 @@ const timelineEntries: TimelineEntry[] = [
 ];
 
 export default function Projects(): React.ReactElement {
-  const [filter, setFilter] = useState<'all' | 'project' | 'certificate'>('all');
+  const [filter, setFilter] = useState<'all' | 'experience' | 'project' | 'certificate'>('all');
   
   const filteredEntries = timelineEntries.filter(entry => {
     if (filter === 'all') return true;
     return entry.type === filter;
   });
 
-  const handleFilterChange = (event: React.SyntheticEvent, newValue: 'all' | 'project' | 'certificate') => {
+  const handleFilterChange = (event: React.SyntheticEvent, newValue: 'all' | 'experience' | 'project' | 'certificate') => {
     setFilter(newValue);
   };
   
@@ -171,6 +193,7 @@ export default function Projects(): React.ReactElement {
             centered
           >
             <Tab label="All" value="all" />
+            <Tab label="Experience" value="experience" />
             <Tab label="Projects" value="project" />
             <Tab label="Certificates" value="certificate" />
           </Tabs>
@@ -237,10 +260,10 @@ export default function Projects(): React.ReactElement {
                     </Typography>
                     <Chip 
                       size="small" 
-                      label={entry.type === 'certificate' ? 'Certificate' : 'Project'} 
+                      label={entry.type === 'certificate' ? 'Certificate' : entry.type === 'experience' ? 'Experience' : 'Project'} 
                       sx={{ 
                         height: 24, 
-                        bgcolor: entry.type === 'certificate' ? '#555' : '#444',
+                        bgcolor: entry.type === 'certificate' ? '#555' : entry.type === 'experience' ? '#666' : '#444',
                         color: 'white',
                         borderColor: 'transparent'
                       }}

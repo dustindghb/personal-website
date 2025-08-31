@@ -47,7 +47,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState<number>(0);
   const sections: string[] = [
     "Welcome to my website!",
-    "I'm Dustin, a computer science student interested in embedded LLMs, web development, and building cool things.",
+    "I'm Dustin, a Computer Science and Management Information Systems student at Santa Clara University with experience in software development, automation, and building innovative solutions.",
     "Here you can find a portfolio of my work and more."
   ];
 

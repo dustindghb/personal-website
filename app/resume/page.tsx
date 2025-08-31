@@ -1,30 +1,30 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Box, Typography, Button, Paper, CircularProgress } from '@mui/material';
-import { Download } from '@mui/icons-material';
+import { Box, Typography, Button, Paper } from '@mui/material';
+import { Download, OpenInNew } from '@mui/icons-material';
 
 export default function ResumePage() {
-  const [loading, setLoading] = useState<boolean>(true);
-  
-  const resumePath = "/myResume.pdf";
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-    
-    return () => clearTimeout(timer);
-  }, []);
+  const resumePath = "/resume.pdf";
+
+  const handleOpenInNewTab = () => {
+    window.open(resumePath, '_blank');
+  };
 
   return (
-    <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '24px', bgcolor: '#383838', color: 'white', minHeight: '100vh' }}>
+    <Box sx={{ 
+      maxWidth: '1000px', 
+      margin: '0 auto', 
+      padding: '24px', 
+      bgcolor: '#383838', 
+      color: 'white', 
+      minHeight: '100vh' 
+    }}>
       <Typography variant="h3" gutterBottom>
         My Resume
       </Typography>
       
       <Typography variant="body1" paragraph sx={{ mb: 4 }}>
-        Here you can preview and download my resume. Feel free to reach out if you have any questions about my experience or qualifications.
+        Here you can view and download my resume. Feel free to reach out if you have any questions about my experience or qualifications.
       </Typography>
       
       <Paper 
@@ -38,58 +38,64 @@ export default function ResumePage() {
           alignItems: 'center'
         }}
       >
-        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mb: 2, color: 'white' }}>
+        <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', mb: 3, color: 'white' }}>
           <Typography variant="h5">
             Resume Preview
           </Typography>
-          <Button
-            variant="contained"
-            startIcon={<Download />}
-            href={resumePath}
-            target="_blank"
-            download="myResume.pdf"
-            sx={{
-              bgcolor: '#9fc5e8',
-              color: '#333',
-              '&:hover': {
-                bgcolor: '#7fb0d7',
-              }
-            }}
-          >
-            Download PDF
-          </Button>
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Button
+              variant="contained"
+              startIcon={<Download />}
+              href={resumePath}
+              download="Dustin_Duong_Resume.pdf"
+              sx={{
+                bgcolor: '#9fc5e8',
+                color: '#333',
+                '&:hover': {
+                  bgcolor: '#7fb0d7',
+                }
+              }}
+            >
+              Download PDF
+            </Button>
+            <Button
+              variant="outlined"
+              startIcon={<OpenInNew />}
+              onClick={handleOpenInNewTab}
+              sx={{
+                borderColor: '#9fc5e8',
+                color: '#9fc5e8',
+                '&:hover': {
+                  borderColor: '#7fb0d7',
+                  color: '#7fb0d7',
+                }
+              }}
+            >
+              Open in New Tab
+            </Button>
+          </Box>
         </Box>
         
-        {/* PDF Preview Container */}
+        {/* PDF Preview */}
         <Box 
           sx={{ 
             width: '100%', 
             height: { xs: '70vh', md: '80vh' }, 
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
             bgcolor: '#333',
             borderRadius: 1,
             overflow: 'hidden',
-            justifyContent: 'center'
+            border: '1px solid #555'
           }}
         >
-          {loading ? (
-            <CircularProgress sx={{ color: '#9fc5e8' }} />
-          ) : (
-            <Box 
-              component="iframe"
-              src="/myResume.pdf"
-              title="Resume PDF"
-              sx={{ 
-                width: '100%',
-                height: '100%',
-                border: 'none',
-                boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
-              }}
-            />
-          )}
+          <iframe
+            src={resumePath}
+            title="Resume PDF"
+            style={{
+              width: '100%',
+              height: '100%',
+              border: 'none'
+            }}
+          />
         </Box>
       </Paper>
     </Box>

@@ -69,14 +69,11 @@ export default function About() {
         {/* Text content on the left */}
         <Grid item xs={12} md={7}>
           <Typography variant="h6" gutterBottom>
-            Hi, my name is Dustin and I&apos;m a third-year student at Santa Clara University pursuing a B.S. in computer science with an emphasis in software engineering and a
-            minor in Management Information Systems, expecting to graduate in Mar 2026.
+            Hi, my name is Dustin and I&apos;m a Computer Science and Management Information Systems student at Santa Clara University pursuing a double major, expecting to graduate in June 2027.
           </Typography>
 
           <Typography variant="h6" sx={{ mt: 3 }} gutterBottom>
-            My passion for problem-solving, innovation, and creating is what led me to pursue technology and software engineering. 
-            With experience in developing innovative software projects, working with diverse teams, and successfully delivering solutions,
-            I am excited to apply these skills.
+            Currently working as an SDE Intern at Stage 4 Solutions, where I&apos;ve implemented HubSpot automation workflows and built Chrome extensions that increased lead generation by 300%. My passion for problem-solving, innovation, and creating impactful solutions drives my work in software engineering and automation.
           </Typography>
         </Grid>
         

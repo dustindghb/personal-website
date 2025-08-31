@@ -16,20 +16,20 @@ import {
 import { 
   GitHub, 
   OpenInNew, 
-  Security,
-  Code,
+  Psychology,
+  Api,
   Storage,
   Close,
   CalendarToday,
-  Lock,
+  Code,
   TrendingUp
 } from '@mui/icons-material';
 
-export default function VigenereCipher(): React.ReactElement {
+export default function FederalReserveAgent(): React.ReactElement {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const technologies = [
-    'Firebase', 'React', 'JavaScript', 'HTML/CSS', 'Cryptography', 'Web Security'
+    'n8n', 'AWS Comprehend', 'Federal Reserve APIs', 'RAG', 'CRUD Operations', 'Sentiment Analysis'
   ];
 
   const handleImageClick = (imagePath: string) => {
@@ -50,14 +50,14 @@ export default function VigenereCipher(): React.ReactElement {
           mb: 2,
           letterSpacing: '-0.02em'
         }}>
-          Vigenère Cipher
+          Federal Reserve Agent
         </Typography>
         
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mb: 4 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <CalendarToday sx={{ fontSize: 16, color: '#6b7280' }} />
             <Typography variant="body2" sx={{ color: '#6b7280', fontWeight: 400 }}>
-              December 2024
+              May 2025
             </Typography>
           </Box>
           <Box sx={{ 
@@ -67,7 +67,7 @@ export default function VigenereCipher(): React.ReactElement {
             borderRadius: '50%' 
           }} />
           <Typography variant="body2" sx={{ color: '#6b7280', fontWeight: 400 }}>
-            Web Application
+            Hackathon Project
           </Typography>
         </Box>
 
@@ -78,9 +78,8 @@ export default function VigenereCipher(): React.ReactElement {
           maxWidth: '700px',
           fontWeight: 400
         }}>
-          Developed a comprehensive web application that demonstrates the Vigenère cipher encryption and decryption process. 
-          The application features an interactive interface for users to encrypt and decrypt messages, with real-time visualization 
-          of the cryptographic process and educational content about the historical significance of this classical cipher.
+          Developed an intelligent RAG (Retrieval-Augmented Generation) agent that provides comprehensive insights into Federal Reserve regulations and proposals. 
+          The system integrates with Federal Reserve APIs to perform real-time data retrieval and implements advanced sentiment analysis to evaluate public feedback on legislation.
         </Typography>
 
         <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 6 }}>
@@ -104,58 +103,30 @@ export default function VigenereCipher(): React.ReactElement {
           ))}
         </Box>
 
-        <Box sx={{ display: 'flex', gap: 3 }}>
-          <Link 
-            href="https://github.com/dustindghb/vigenere-cipher" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            sx={{ 
-              display: 'inline-flex', 
-              alignItems: 'center',
-              gap: 1,
-              px: 4,
-              py: 2,
-              bgcolor: 'white',
-              color: 'black',
-              textDecoration: 'none',
-              fontWeight: 500,
-              fontSize: '0.875rem',
-              transition: 'all 0.2s',
-              '&:hover': { 
-                bgcolor: '#f3f4f6'
-              }
-            }}
-          >
-            <GitHub sx={{ fontSize: 16 }} />
-            View on GitHub
-          </Link>
-          <Link 
-            href="https://vigenere-cipher-dustin-duong.vercel.app/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            sx={{ 
-              display: 'inline-flex', 
-              alignItems: 'center',
-              gap: 1,
-              px: 4,
-              py: 2,
-              bgcolor: 'transparent',
-              color: '#9ca3af',
-              textDecoration: 'none',
-              fontWeight: 500,
-              fontSize: '0.875rem',
-              border: '1px solid #374151',
-              transition: 'all 0.2s',
-              '&:hover': { 
-                border: '1px solid #6b7280',
-                color: '#d1d5db'
-              }
-            }}
-          >
-            <OpenInNew sx={{ fontSize: 16 }} />
-            Live Demo
-          </Link>
-        </Box>
+        <Link 
+          href="https://devpost.com/software/dotgov" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          sx={{ 
+            display: 'inline-flex', 
+            alignItems: 'center',
+            gap: 1,
+            px: 4,
+            py: 2,
+            bgcolor: 'white',
+            color: 'black',
+            textDecoration: 'none',
+            fontWeight: 500,
+            fontSize: '0.875rem',
+            transition: 'all 0.2s',
+            '&:hover': { 
+              bgcolor: '#f3f4f6'
+            }
+          }}
+        >
+          <OpenInNew sx={{ fontSize: 16 }} />
+          View on Devpost
+        </Link>
       </Box>
 
       <Divider sx={{ borderColor: '#374151', mb: 10 }} />
@@ -180,15 +151,14 @@ export default function VigenereCipher(): React.ReactElement {
                   borderRadius: 1,
                   mr: 2
                 }}>
-                  <Security sx={{ color: '#9ca3af', fontSize: 20 }} />
+                  <Psychology sx={{ color: '#9ca3af', fontSize: 20 }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
-                  Interactive Encryption
+                  RAG Agent
                 </Typography>
               </Box>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Real-time encryption and decryption of text using the Vigenère cipher algorithm, with step-by-step visualization 
-                of the cryptographic process for educational purposes.
+                Intelligent agent trained on Federal Reserve regulations and proposals, providing accurate and contextual responses to user queries about financial policies.
               </Typography>
             </Box>
           </Grid>
@@ -201,15 +171,14 @@ export default function VigenereCipher(): React.ReactElement {
                   borderRadius: 1,
                   mr: 2
                 }}>
-                  <Lock sx={{ color: '#9ca3af', fontSize: 20 }} />
+                  <Api sx={{ color: '#9ca3af', fontSize: 20 }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
-                  Key Management
+                  API Integration
                 </Typography>
               </Box>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Secure key generation and management system, allowing users to create custom keys or use auto-generated 
-                keys for encryption and decryption operations.
+                Seamless integration with Federal Reserve APIs for real-time data retrieval and CRUD operations on regulatory documents and proposals.
               </Typography>
             </Box>
           </Grid>
@@ -222,15 +191,14 @@ export default function VigenereCipher(): React.ReactElement {
                   borderRadius: 1,
                   mr: 2
                 }}>
-                  <TrendingUp sx={{ color: '#9ca3af', fontSize: 20 }} />
+                  <Storage sx={{ color: '#9ca3af', fontSize: 20 }} />
                 </Box>
                 <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
-                  Educational Content
+                  Sentiment Analysis
                 </Typography>
               </Box>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Comprehensive educational resources about the Vigenère cipher, including historical context, 
-                mathematical principles, and practical applications in modern cryptography.
+                Advanced sentiment analysis using AWS Comprehend to evaluate public comments and feedback on proposed legislation and regulations.
               </Typography>
             </Box>
           </Grid>
@@ -255,40 +223,12 @@ export default function VigenereCipher(): React.ReactElement {
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                 <Code sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
                 <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
-                  React Frontend
+                  Workflow Automation
                 </Typography>
               </Box>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Built a responsive React application with modern hooks and state management, providing an intuitive 
-                user interface for text input, key management, and real-time encryption/decryption visualization.
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Box sx={{ mb: 4 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Storage sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
-                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
-                  Firebase Backend
-                </Typography>
-              </Box>
-              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Integrated Firebase for user authentication, data persistence, and real-time synchronization of 
-                encrypted messages and user preferences across different sessions.
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Box sx={{ mb: 4 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Security sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
-                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
-                  Cryptographic Algorithm
-                </Typography>
-              </Box>
-              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Implemented the Vigenère cipher algorithm with proper character handling, supporting both uppercase 
-                and lowercase letters, numbers, and special characters while maintaining security standards.
+                Built comprehensive automation workflows using n8n to orchestrate data retrieval, processing, and analysis pipelines. 
+                The system automatically fetches new regulations and proposals, processes them through the RAG model, and updates the knowledge base.
               </Typography>
             </Box>
           </Grid>
@@ -297,12 +237,40 @@ export default function VigenereCipher(): React.ReactElement {
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                 <TrendingUp sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
                 <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
-                  Performance Optimization
+                  Data Processing
                 </Typography>
               </Box>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Optimized the application for performance with efficient algorithms, lazy loading, and responsive 
-                design to ensure smooth user experience across all devices and screen sizes.
+                Implemented robust data processing pipelines that handle various document formats from the Federal Reserve, 
+                including PDFs, XML feeds, and structured data. The system maintains data integrity and provides real-time updates.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <Api sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  API Architecture
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Designed a scalable API architecture that interfaces with multiple Federal Reserve endpoints, 
+                implementing proper error handling, rate limiting, and data validation to ensure reliable data retrieval.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <Psychology sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Sentiment Analysis Pipeline
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Integrated AWS Comprehend for advanced natural language processing, analyzing public comments 
+                on proposed regulations to provide insights into public sentiment and concerns.
               </Typography>
             </Box>
           </Grid>
@@ -325,36 +293,34 @@ export default function VigenereCipher(): React.ReactElement {
           <Grid item xs={12} md={6}>
             <Box sx={{ mb: 4 }}>
               <Typography variant="h6" sx={{ color: '#9ca3af', fontWeight: 500, mb: 2 }}>
-                Challenge: Character Encoding
+                Challenge: Complex Regulatory Language
               </Typography>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, mb: 3, fontWeight: 400 }}>
-                Handling different character sets and ensuring consistent encryption/decryption across various 
-                input types including special characters and Unicode symbols.
+                Federal Reserve documents contain complex legal and financial terminology that traditional NLP models struggle to understand.
               </Typography>
               <Typography variant="h6" sx={{ color: '#d1d5db', fontWeight: 500, mb: 2 }}>
-                Solution: Robust Character Handling
+                Solution: Specialized RAG Model
               </Typography>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Implemented comprehensive character validation and normalization, ensuring the cipher works 
-                correctly with all ASCII characters while maintaining security and performance.
+                Developed a specialized RAG model fine-tuned on financial and regulatory documents, 
+                improving accuracy and contextual understanding of complex policy language.
               </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>
             <Box sx={{ mb: 4 }}>
               <Typography variant="h6" sx={{ color: '#9ca3af', fontWeight: 500, mb: 2 }}>
-                Challenge: Real-time Visualization
+                Challenge: Real-time Data Integration
               </Typography>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, mb: 3, fontWeight: 400 }}>
-                Creating an intuitive and educational visualization of the encryption process that helps users 
-                understand the mathematical principles behind the Vigenère cipher.
+                Federal Reserve APIs have varying response times and data formats, making real-time integration challenging.
               </Typography>
               <Typography variant="h6" sx={{ color: '#d1d5db', fontWeight: 500, mb: 2 }}>
-                Solution: Interactive Step-by-step Display
+                Solution: Robust API Layer
               </Typography>
               <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
-                Developed an interactive visualization system that shows each step of the encryption process, 
-                including character mapping, key application, and result generation in real-time.
+                Built a resilient API integration layer with caching, retry logic, and data normalization 
+                to handle API inconsistencies and ensure reliable data flow.
               </Typography>
             </Box>
           </Grid>
@@ -377,30 +343,30 @@ export default function VigenereCipher(): React.ReactElement {
           <Grid item xs={12} md={4}>
             <Box sx={{ textAlign: 'center' }}>
               <Typography variant="h6" sx={{ color: 'white', fontWeight: 400, mb: 2 }}>
-                Frontend
+                Workflow & Automation
               </Typography>
               <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 400 }}>
-                React, JavaScript, HTML/CSS, Material UI
+                n8n, Docker, REST APIs
               </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} md={4}>
             <Box sx={{ textAlign: 'center' }}>
               <Typography variant="h6" sx={{ color: 'white', fontWeight: 400, mb: 2 }}>
-                Backend & Services
+                AI & NLP
               </Typography>
               <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 400 }}>
-                Firebase, Authentication, Real-time Database
+                AWS Comprehend, RAG, Sentiment Analysis
               </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} md={4}>
             <Box sx={{ textAlign: 'center' }}>
               <Typography variant="h6" sx={{ color: 'white', fontWeight: 400, mb: 2 }}>
-                Security & Deployment
+                Data & APIs
               </Typography>
               <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 400 }}>
-                Vigenère Cipher, Vercel, HTTPS
+                Federal Reserve APIs, CRUD Operations, JSON/XML
               </Typography>
             </Box>
           </Grid>

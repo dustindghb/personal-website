@@ -1,113 +1,452 @@
-import { Box, Typography, Divider, Grid, Link} from '@mui/material';
-import { GitHub} from '@mui/icons-material';
+'use client';
 
-export default function ProbabilityApp() {
+import React, { useState } from 'react';
+import { 
+  Box, 
+  Typography, 
+  Grid,
+  Chip,
+  Link,
+  Paper,
+  IconButton,
+  Modal,
+  Container,
+  Divider
+} from '@mui/material';
+import { 
+  GitHub, 
+  OpenInNew, 
+  SportsEsports,
+  Code,
+  Storage,
+  Close,
+  CalendarToday,
+  Animation,
+  TrendingUp
+} from '@mui/icons-material';
+
+export default function DiceAnimations(): React.ReactElement {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const technologies = [
+    'Unity', 'C#', 'Game Development', '3D Graphics', 'Animation', 'Mobile App'
+  ];
+
+  const handleImageClick = (imagePath: string) => {
+    setSelectedImage(imagePath);
+  };
+
+  const handleCloseImage = () => {
+    setSelectedImage(null);
+  };
+
   return (
-    <Box sx={{ maxWidth: '1000px', margin: '0 auto', padding: '24px', bgcolor: '#383838', color: 'white', minHeight: '100vh' }}>
-      
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="h3" gutterBottom sx={{ mb: 0 }}>
-          Dice Animations App
+    <Container maxWidth="lg" sx={{ py: 8 }}>
+      {/* Hero Section */}
+      <Box sx={{ mb: 10 }}>
+        <Typography variant="h2" sx={{ 
+          fontWeight: 300, 
+          color: 'white',
+          mb: 2,
+          letterSpacing: '-0.02em'
+        }}>
+          Dice Animations
         </Typography>
-        <Link 
-          href="https://github.com/redeclaw/h4h" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          sx={{ color: 'white', display: 'flex', alignItems: 'center' }}
-        >
-          <GitHub fontSize="small" sx={{ mr: 0.5 }} />
-          <Typography variant="body2">GitHub</Typography>
-        </Link>
-      </Box>
-      {/* Overview Section */}
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Overview
-        </Typography>
-        <Typography variant="body1">
-          This was an amateur project for my first hackathon. It is an interactive educational app developed in Unity with C# scripts that helps users understand probability concepts 
-          through realistic simulations of coins and dice. The app makes abstract probability concepts tangible and intuitive 
-          through interactive visualizations.
-        </Typography>
-      </Box>
-
-      {/* Video Demo Section */}
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Demo Video
-        </Typography>
-        <Box sx={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth: '100%', bgcolor: '#000' }}>
-          <iframe 
-            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-            src="https://www.youtube.com/embed/XddifYvAK2Q" 
-            title="Probability App Demo"
-            frameBorder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowFullScreen
-          ></iframe>
-        </Box>
-      </Box>
-
-      <Divider sx={{ bgcolor: 'rgba(255,255,255,0.12)' }} />
-
-      {/* What it Does Section */}
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          What It Does
-        </Typography>
-        <Typography variant="body1" paragraph>
-          The Probability Education App transforms abstract mathematical concepts into interactive, visual learning experiences.
-        </Typography>
-
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h6">
-            Interactive Simulations:
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Users can flip coins and roll dice with realistic physics, observing real-time probability distributions
-            as they experiment with different scenarios and sample sizes.
+        
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mb: 4 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <CalendarToday sx={{ fontSize: 16, color: '#6b7280' }} />
+            <Typography variant="body2" sx={{ color: '#6b7280', fontWeight: 400 }}>
+              November 2024
+            </Typography>
+          </Box>
+          <Box sx={{ 
+            width: 1, 
+            height: 1, 
+            bgcolor: '#6b7280', 
+            borderRadius: '50%' 
+          }} />
+          <Typography variant="body2" sx={{ color: '#6b7280', fontWeight: 400 }}>
+            Unity Game
           </Typography>
         </Box>
 
-        <Box sx={{ mt: 2 }}>
-          <Typography variant="h6">
-            Visual Learning Tools:
-          </Typography>
-          <Typography variant="body1" paragraph>
-            The app displays dynamic graphs and visual representations that update in real-time as users perform
-            simulations, making statistical concepts more intuitive and accessible.
-          </Typography>
+        <Typography variant="h6" sx={{ 
+          color: '#9ca3af', 
+          lineHeight: 1.7, 
+          mb: 6,
+          maxWidth: '700px',
+          fontWeight: 400
+        }}>
+          Developed a Unity-based mobile game featuring realistic 3D dice animations and physics simulations. 
+          The game provides an immersive dice-rolling experience with customizable dice sets, realistic physics, 
+          and smooth animations that respond to user interactions and environmental factors.
+        </Typography>
+
+        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 6 }}>
+          {technologies.map((tech) => (
+            <Chip
+              key={tech}
+              label={tech}
+              size="small"
+              sx={{
+                bgcolor: 'transparent',
+                color: '#9ca3af',
+                border: '1px solid #374151',
+                fontWeight: 400,
+                fontSize: '0.75rem',
+                '&:hover': { 
+                  border: '1px solid #6b7280',
+                  color: '#d1d5db'
+                }
+              }}
+            />
+          ))}
         </Box>
 
+        <Box sx={{ display: 'flex', gap: 3 }}>
+          <Link 
+            href="https://github.com/dustindghb/dice-animations" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            sx={{ 
+              display: 'inline-flex', 
+              alignItems: 'center',
+              gap: 1,
+              px: 4,
+              py: 2,
+              bgcolor: 'white',
+              color: 'black',
+              textDecoration: 'none',
+              fontWeight: 500,
+              fontSize: '0.875rem',
+              transition: 'all 0.2s',
+              '&:hover': { 
+                bgcolor: '#f3f4f6'
+              }
+            }}
+          >
+            <GitHub sx={{ fontSize: 16 }} />
+            View on GitHub
+          </Link>
+          <Link 
+            href="https://play.google.com/store/apps/details?id=com.dustindghb.diceanimations" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            sx={{ 
+              display: 'inline-flex', 
+              alignItems: 'center',
+              gap: 1,
+              px: 4,
+              py: 2,
+              bgcolor: 'transparent',
+              color: '#9ca3af',
+              textDecoration: 'none',
+              fontWeight: 500,
+              fontSize: '0.875rem',
+              border: '1px solid #374151',
+              transition: 'all 0.2s',
+              '&:hover': { 
+                border: '1px solid #6b7280',
+                color: '#d1d5db'
+              }
+            }}
+          >
+            <OpenInNew sx={{ fontSize: 16 }} />
+            Google Play
+          </Link>
+        </Box>
       </Box>
 
-      <Divider sx={{ bgcolor: 'rgba(255,255,255,0.12)' }} />
+      <Divider sx={{ borderColor: '#374151', mb: 10 }} />
 
-      <Box sx={{ my: 4 }}>
+      {/* Key Features */}
+      <Box sx={{ mb: 10 }}>
+        <Typography variant="h3" sx={{ 
+          fontWeight: 300, 
+          color: 'white',
+          mb: 6,
+          letterSpacing: '-0.02em'
+        }}>
+          Key Features
+        </Typography>
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
-            <Typography variant="h5" gutterBottom>
-              Challenges
-            </Typography>
-            <Typography variant="body1">
-              Creating realistic physics-based simulations of coins and dice that maintained both accuracy and performance
-              was challenging. Designing intuitive visualizations that effectively communicated statistical concepts
-              without overwhelming users required multiple iterations and user testing.
-            </Typography>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                <Box sx={{ 
+                  p: 1, 
+                  bgcolor: '#1f2937', 
+                  borderRadius: 1,
+                  mr: 2
+                }}>
+                  <Animation sx={{ color: '#9ca3af', fontSize: 20 }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Realistic Physics
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Implemented realistic physics simulations using Unity's built-in physics engine, creating authentic 
+                dice-rolling behavior with proper collision detection, gravity, and momentum.
+              </Typography>
+            </Box>
           </Grid>
-
           <Grid item xs={12} md={4}>
-            <Typography variant="h5" gutterBottom>
-              Accomplishments
-            </Typography>
-            <Typography variant="body1">
-              Successfully developed an educational app that makes abstract probability concepts accessible and engaging.
-              Deployed to Itch.io where it attracted over 80 views on the demo. Created intuitive simulations that accurately
-              represent statistical principles while maintaining an engaging user experience.
-            </Typography>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                <Box sx={{ 
+                  p: 1, 
+                  bgcolor: '#1f2937', 
+                  borderRadius: 1,
+                  mr: 2
+                }}>
+                  <SportsEsports sx={{ color: '#9ca3af', fontSize: 20 }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Customizable Dice
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Extensive customization options including different dice types, materials, colors, and textures, 
+                allowing users to create personalized dice sets for various games and preferences.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                <Box sx={{ 
+                  p: 1, 
+                  bgcolor: '#1f2937', 
+                  borderRadius: 1,
+                  mr: 2
+                }}>
+                  <TrendingUp sx={{ color: '#9ca3af', fontSize: 20 }} />
+                </Box>
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Mobile Optimization
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Optimized for mobile devices with touch controls, responsive UI, and performance tuning to ensure 
+                smooth gameplay across different screen sizes and device capabilities.
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       </Box>
-    </Box>
+
+      <Divider sx={{ borderColor: '#374151', mb: 10 }} />
+
+      {/* Technical Implementation */}
+      <Box sx={{ mb: 10 }}>
+        <Typography variant="h3" sx={{ 
+          fontWeight: 300, 
+          color: 'white',
+          mb: 6,
+          letterSpacing: '-0.02em'
+        }}>
+          Technical Implementation
+        </Typography>
+        <Grid container spacing={6}>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <Code sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Unity Game Engine
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Developed using Unity 2022.3 LTS with C# scripting, implementing object-oriented design patterns 
+                for modular game systems, efficient memory management, and cross-platform compatibility.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <Storage sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  3D Graphics & Animation
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Created high-quality 3D models and animations using Blender, implementing shader systems for 
+                realistic materials, lighting effects, and particle systems for enhanced visual appeal.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <Animation sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  Physics System
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Implemented custom physics interactions using Unity's Rigidbody system, including collision detection, 
+                force application, and realistic bouncing behavior for authentic dice-rolling mechanics.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <SportsEsports sx={{ color: '#9ca3af', mr: 2, fontSize: 20 }} />
+                <Typography variant="h6" sx={{ color: 'white', fontWeight: 400 }}>
+                  User Interface
+                </Typography>
+              </Box>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Designed an intuitive touch-based interface with gesture recognition, customizable controls, 
+                and accessibility features to ensure a smooth user experience across all devices.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Divider sx={{ borderColor: '#374151', mb: 10 }} />
+
+      {/* Challenges & Solutions */}
+      <Box sx={{ mb: 10 }}>
+        <Typography variant="h3" sx={{ 
+          fontWeight: 300, 
+          color: 'white',
+          mb: 6,
+          letterSpacing: '-0.02em'
+        }}>
+          Challenges & Solutions
+        </Typography>
+        <Grid container spacing={6}>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Typography variant="h6" sx={{ color: '#9ca3af', fontWeight: 500, mb: 2 }}>
+                Challenge: Physics Accuracy
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, mb: 3, fontWeight: 400 }}>
+                Creating realistic dice physics that accurately simulate real-world behavior including proper 
+                bouncing, rolling, and settling patterns while maintaining performance on mobile devices.
+              </Typography>
+              <Typography variant="h6" sx={{ color: '#d1d5db', fontWeight: 500, mb: 2 }}>
+                Solution: Optimized Physics Engine
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Implemented a custom physics system with optimized collision detection, realistic material properties, 
+                and efficient force calculations to achieve authentic dice behavior without performance degradation.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ mb: 4 }}>
+              <Typography variant="h6" sx={{ color: '#9ca3af', fontWeight: 500, mb: 2 }}>
+                Challenge: Mobile Performance
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, mb: 3, fontWeight: 400 }}>
+                Ensuring smooth gameplay and consistent frame rates across different mobile devices with varying 
+                hardware capabilities and screen resolutions.
+              </Typography>
+              <Typography variant="h6" sx={{ color: '#d1d5db', fontWeight: 500, mb: 2 }}>
+                Solution: Adaptive Quality System
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', lineHeight: 1.6, fontWeight: 400 }}>
+                Developed an adaptive quality system that automatically adjusts graphics settings, physics complexity, 
+                and animation quality based on device performance to maintain optimal gameplay experience.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Divider sx={{ borderColor: '#374151', mb: 10 }} />
+
+      {/* Technologies Used */}
+      <Box sx={{ mb: 8 }}>
+        <Typography variant="h3" sx={{ 
+          fontWeight: 300, 
+          color: 'white',
+          mb: 6,
+          letterSpacing: '-0.02em'
+        }}>
+          Technologies Used
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="h6" sx={{ color: 'white', fontWeight: 400, mb: 2 }}>
+                Game Engine
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 400 }}>
+                Unity 2022.3 LTS, C#, .NET Framework
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="h6" sx={{ color: 'white', fontWeight: 400, mb: 2 }}>
+                Graphics & Design
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 400 }}>
+                Blender, Unity Shaders, Particle Systems
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="h6" sx={{ color: 'white', fontWeight: 400, mb: 2 }}>
+                Platform & Deployment
+              </Typography>
+              <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 400 }}>
+                Android, Google Play Store, Mobile Optimization
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+
+      {/* Image Modal */}
+      <Modal
+        open={!!selectedImage}
+        onClose={handleCloseImage}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          p: 2
+        }}
+      >
+        <Box sx={{ position: 'relative', maxWidth: '90vw', maxHeight: '90vh' }}>
+          <IconButton
+            onClick={handleCloseImage}
+            sx={{
+              position: 'absolute',
+              top: -40,
+              right: 0,
+              color: 'white',
+              bgcolor: 'rgba(0, 0, 0, 0.5)',
+              '&:hover': { bgcolor: 'rgba(0, 0, 0, 0.7)' }
+            }}
+          >
+            <Close />
+          </IconButton>
+          {selectedImage && (
+            <Box
+              component="img"
+              src={selectedImage}
+              alt="Project Preview"
+              sx={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+                borderRadius: 2
+              }}
+            />
+          )}
+        </Box>
+      </Modal>
+    </Container>
   );
 }
