@@ -14,7 +14,6 @@ import {
 } from '@mui/material';
 import { 
   GitHub, 
-  OpenInNew, 
   Security,
   Code,
   Storage,
@@ -125,32 +124,6 @@ export default function VigenereCipher(): React.ReactElement {
           >
             <GitHub sx={{ fontSize: 16 }} />
             View on GitHub
-          </Link>
-          <Link 
-            href="https://vigenere-cipher-dustin-duong.vercel.app/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            sx={{ 
-              display: 'inline-flex', 
-              alignItems: 'center',
-              gap: 1,
-              px: 4,
-              py: 2,
-              bgcolor: 'transparent',
-              color: '#9ca3af',
-              textDecoration: 'none',
-              fontWeight: 500,
-              fontSize: '0.875rem',
-              border: '1px solid #374151',
-              transition: 'all 0.2s',
-              '&:hover': { 
-                border: '1px solid #6b7280',
-                color: '#d1d5db'
-              }
-            }}
-          >
-            <OpenInNew sx={{ fontSize: 16 }} />
-            Live Demo
           </Link>
         </Box>
       </Box>

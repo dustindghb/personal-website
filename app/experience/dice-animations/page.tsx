@@ -14,14 +14,14 @@ import {
 } from '@mui/material';
 import { 
   GitHub, 
-  OpenInNew, 
   SportsEsports,
   Code,
   Storage,
   Close,
   CalendarToday,
   Animation,
-  TrendingUp
+  TrendingUp,
+  YouTube
 } from '@mui/icons-material';
 
 export default function DiceAnimations(): React.ReactElement {
@@ -127,7 +127,7 @@ export default function DiceAnimations(): React.ReactElement {
             View on GitHub
           </Link>
           <Link 
-            href="https://play.google.com/store/apps/details?id=com.dustindghb.diceanimations" 
+            href="https://www.youtube.com/watch?v=XddifYvAK2Q" 
             target="_blank" 
             rel="noopener noreferrer" 
             sx={{ 
@@ -149,8 +149,8 @@ export default function DiceAnimations(): React.ReactElement {
               }
             }}
           >
-            <OpenInNew sx={{ fontSize: 16 }} />
-            Google Play
+            <YouTube sx={{ fontSize: 16 }} />
+            Watch Demo
           </Link>
         </Box>
       </Box>
