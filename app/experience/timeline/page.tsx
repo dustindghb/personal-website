@@ -37,14 +37,8 @@ const timelineEntries: TimelineEntry[] = [
     label: 'Stage 4 Solutions - SDE Intern',
     description: 'Built Chrome extension increasing sales lead generation by 300% to 10+ leads/min. Implemented HubSpot automation workflows to optimize business processes and improved lead conversion rates. Developed agent with knowledge of financial markets from company 10-K and 10-Q SEC filings.',
     year: 'June 2025 - Present',
-    type: 'experience'
-  },
-  {
-    id: 'rec-exchange',
-    label: 'REC Exchange - SDE Intern',
-    description: 'Conducted market research on RECs, wrote documentation, and researched potential customers. Contributed a landing page with authorization and persistent authentication.',
-    year: 'April 2024 - June 2024',
-    type: 'experience'
+    type: 'experience',
+    path: '/work-experience/stage4solutions'
   },
   {
     id: 'government-newsletter',
@@ -59,7 +53,22 @@ const timelineEntries: TimelineEntry[] = [
     description: 'Developed a RAG agent knowledgeable on new regulations and proposal with n8n. Performed CRUD operations with Federal Reserve\'s APIs. Implemented sentiment analysis with AWS Comprehend on legislation comments.',
     year: 'May 2025',
     type: 'project',
-    path: '/experience/federal-reserve-agent'
+    path: '/project-experience/federal-reserve-agent'
+  },
+  {
+    id: 'personal-website',
+    label: 'Personal Website',
+    description: 'Built this personal website by designing the UI in Figma, implementing the frontend with Next.js, styling it with Material UI components for a modern, responsive experience, and hosting on vercel.',
+    year: 'February 2025',
+    type: 'project',
+    path: '/project-experience/personal-website'
+  },
+  {
+    id: 'rec-exchange',
+    label: 'REC Exchange - SDE Intern',
+    description: 'Conducted market research on RECs, wrote documentation, and researched potential customers. Contributed a landing page with authorization and persistent authentication.',
+    year: 'April 2024 - June 2024',
+    type: 'experience'
   },
   {
     id: 'scu-schedule-helper',
@@ -70,21 +79,12 @@ const timelineEntries: TimelineEntry[] = [
     externalLink: 'https://chromewebstore.google.com/detail/scu-schedule-helper/feinilelhamnodbmhjhacnajbbhapdhj?hl=en'
   },
   {
-    id: 'personal-website',
-    label: 'Personal Website',
-    description: 'Built this personal website by designing the UI in Figma, implementing the frontend with Next.js, styling it with Material UI components for a modern, responsive experience, and hosting on vercel.',
-    year: 'February 2025',
-    type: 'project',
-    path: '/projects/personal-website'
-  },
-
-  {
     id: 'viginere-cypher',
     label: 'Viginere Cypher Webevent',
     description: 'Coded interactive Vigenère cipher puzzle webevent with Next.js and MaterialUI hosted on Firebase with form system for answers',
     year: 'August 2024',
     type: 'project',
-    path: '/projects/viginere-cypher'
+    path: '/project-experience/viginere-cypher'
   },
   {
     id: 'APIs',
@@ -100,7 +100,7 @@ const timelineEntries: TimelineEntry[] = [
     description: 'Developed Unity app with interactive dice animations and simulations for given percent probability',
     year: 'February 2024',
     type: 'project',
-    path: '/projects/dice-animations'
+    path: '/project-experience/dice-animations'
   },
   {
     id: 'django-web',
@@ -152,7 +152,7 @@ const timelineEntries: TimelineEntry[] = [
   },
 ];
 
-export default function Projects(): React.ReactElement {
+export default function TimelinePage(): React.ReactElement {
   const [filter, setFilter] = useState<'all' | 'experience' | 'project' | 'certificate'>('all');
   
   const filteredEntries = timelineEntries.filter(entry => {
@@ -175,7 +175,7 @@ export default function Projects(): React.ReactElement {
           My Timeline
         </Typography>
         <Typography variant="body1" paragraph mb={2} align="center" sx={{ color: '#ccc' }}>
-          A chronological journey through my projects and certifications.
+          A chronological journey through my work experience, projects, and certifications.
         </Typography>
         
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', mb: 4 }}>
@@ -223,7 +223,7 @@ export default function Projects(): React.ReactElement {
               <TimelineSeparator>
                 <TimelineConnector sx={{ bgcolor: '#777', height: entry.type === 'certificate' ? '40px' : '20px' }} />
                 <TimelineDot sx={{ 
-                  bgcolor: entry.type === 'certificate' ? '#aaa' : '#999',
+                  bgcolor: entry.type === 'certificate' ? '#aaa' : entry.type === 'experience' ? '#4CAF50' : '#2196F3',
                   boxShadow: 'none'
                 }} />
                 {index < filteredEntries.length - 1 && (
@@ -263,7 +263,7 @@ export default function Projects(): React.ReactElement {
                       label={entry.type === 'certificate' ? 'Certificate' : entry.type === 'experience' ? 'Experience' : 'Project'} 
                       sx={{ 
                         height: 24, 
-                        bgcolor: entry.type === 'certificate' ? '#555' : entry.type === 'experience' ? '#666' : '#444',
+                        bgcolor: entry.type === 'certificate' ? '#555' : entry.type === 'experience' ? '#4CAF50' : '#2196F3',
                         color: 'white',
                         borderColor: 'transparent'
                       }}
@@ -311,8 +311,8 @@ export default function Projects(): React.ReactElement {
                     {entry.description}
                   </Typography>
                   
-                  {/* Add links for projects only */}
-                  {entry.type === 'project' && entry.path && (
+                  {/* Add links for projects and work experience */}
+                  {entry.path && (
                     <Box sx={{ mt: 1 }}>
                       <Link 
                         href={entry.path}
@@ -329,9 +329,35 @@ export default function Projects(): React.ReactElement {
                           color: '#aaa',
                           '&:hover': { color: 'white' }
                         }}>
-                          View Project Details
+                          View Details
                         </Typography>
                       </Link>
+                    </Box>
+                  )}
+
+                  {/* External links */}
+                  {entry.externalLink && (
+                    <Box sx={{ mt: 1 }}>
+                      <a 
+                        href={entry.externalLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          color: '#aaa',
+                          textDecoration: 'none',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          transition: 'color 0.2s',
+                        }}
+                      >
+                        <Typography variant="body2" sx={{ 
+                          textDecoration: 'underline', 
+                          color: '#aaa',
+                          '&:hover': { color: 'white' }
+                        }}>
+                          View External Link
+                        </Typography>
+                      </a>
                     </Box>
                   )}
                 </Box>

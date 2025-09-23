@@ -27,8 +27,11 @@ const FileTreeItem = memo(function FileTreeItem({
   
   // Event handlers
   const handleClick = useCallback(() => {
-    onSelect(item.id);
-  }, [onSelect, item.id]);
+    // Only allow clicking if the item is clickable (default to true for backward compatibility)
+    if (item.clickable !== false) {
+      onSelect(item.id);
+    }
+  }, [onSelect, item.id, item.clickable]);
   
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
@@ -58,15 +61,20 @@ const FileTreeItem = memo(function FileTreeItem({
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           selected={isActive}
+          disabled={item.clickable === false}
           sx={{
             pl: 2,
-            color: theme.custom.sidebar.text,
+            color: item.clickable === false ? theme.custom.sidebar.text + '80' : theme.custom.sidebar.text, // 80 for 50% opacity
             backgroundColor,
+            cursor: item.clickable === false ? 'default' : 'pointer',
             '&:hover': {
-              backgroundColor: theme.custom.sidebar.itemHover,
+              backgroundColor: item.clickable === false ? 'transparent' : theme.custom.sidebar.itemHover,
             },
             '&.Mui-selected': {
               backgroundColor: theme.custom.sidebar.itemSelected,
+            },
+            '&.Mui-disabled': {
+              opacity: 0.6,
             },
           }}
         >
@@ -140,7 +148,7 @@ function SidebarContent() {
                 <Box component="span" sx={{ display: 'block', ml: 1 }}>cd ..</Box>
                 
                 to navigate to a page:
-                <Box component="span" sx={{ display: 'block', ml: 1 }}>cd experience/scu-schedule-helper</Box>
+                <Box component="span" sx={{ display: 'block', ml: 1 }}>cd project-experience/scu-schedule-helper</Box>
                 <Box component="span" sx={{ display: 'block', ml: 1 }}>cd about</Box>
               </Typography>
             </>

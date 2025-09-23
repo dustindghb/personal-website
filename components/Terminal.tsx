@@ -89,9 +89,6 @@ export default function Terminal({
     return Object.keys(validPaths).includes(path);
   };
 
-  const handlePathClick = (path: string) => {
-    router.push(path);
-  };
 
   // Process different command types
   const processCommand = (cmd: string): TerminalCommand | null => {
@@ -205,34 +202,25 @@ export default function Terminal({
           }}>
             {pathSegments.map((segment, index) => (
               <Box key={index} sx={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-                <Button
-                  onClick={() => handlePathClick(segment.fullPath)}
+                <Typography
                   sx={{
                     color: 'white',
-                    bgcolor: segment.isActive ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 255, 255, 0.08)',
-                    borderRadius: 1,
-                    px: 1,
-                    py: 0.5,
-                    minWidth: 'auto',
-                    textTransform: 'none',
                     fontFamily: 'monospace',
                     fontSize: '0.9rem',
                     whiteSpace: 'nowrap',
-                    '&:hover': {
-                      bgcolor: 'rgba(255, 255, 255, 0.15)',
-                    },
-                    ...(customStyles.buttons || {})
+                    opacity: segment.isActive ? 1 : 0.7,
                   }}
                 >
                   {segment.name}
-                </Button>
+                </Typography>
                 {index < pathSegments.length - 1 && (
                   <Box sx={{ 
                     color: 'white',
                     mx: 1,
                     fontSize: '0.9rem',
                     fontFamily: 'monospace',
-                    flexShrink: 0
+                    flexShrink: 0,
+                    opacity: 0.7
                   }}>/</Box>
                 )}
               </Box>

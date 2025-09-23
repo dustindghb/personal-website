@@ -69,11 +69,11 @@ export default function About() {
         {/* Text content on the left */}
         <Grid item xs={12} md={7}>
           <Typography variant="h6" gutterBottom>
-            Hi, my name is Dustin and I&apos;m a Computer Science and Management Information Systems student at Santa Clara University pursuing a double major, expecting to graduate in June 2027.
+            Hi, I&apos;m Dustin and I&apos;m a Computer Science and Management Information Systems double major at Santa Clara University.
           </Typography>
 
           <Typography variant="h6" sx={{ mt: 3 }} gutterBottom>
-            Currently working as an SDE Intern at Stage 4 Solutions, where I&apos;ve implemented HubSpot automation workflows and built Chrome extensions that increased lead generation by 300%. My passion for problem-solving, innovation, and creating impactful solutions drives my work in software engineering and automation.
+            I enjoy working with all layers of the stack, and have both internship and project experience doing so. With my background in tech and business, I identify solutions that people need and building them. Here you can find some of them and the technologies I have experience with.
           </Typography>
         </Grid>
         
@@ -84,8 +84,8 @@ export default function About() {
           alignItems: 'flex-start'
         }}>
           <Box sx={{ 
-            width: 300,
-            height: 300,
+            width: 150,
+            height: 150,
             position: 'relative',
           }}>
             {/* Animation wrapper */}

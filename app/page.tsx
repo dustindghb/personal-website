@@ -1,7 +1,6 @@
 'use client';
 import { Box, Typography } from '@mui/material';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 
 interface TypedTextProps {
   text: string;
@@ -47,7 +46,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState<number>(0);
   const sections: string[] = [
     "Welcome to my website!",
-    "I'm Dustin, a Computer Science and Management Information Systems student at Santa Clara University with experience in software development, automation, and building innovative solutions.",
+    "I'm a CS and MIS double major at Santa Clara University.",
     "Here you can find a portfolio of my work and more."
   ];
 
@@ -65,36 +64,6 @@ export default function Home() {
       margin: '0 auto',
       zIndex: 1
     }}>
-      <Box sx={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 0,
-        '&::after': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.6)',
-          zIndex: 1
-        }
-      }}>
-        <Image
-          src="/background.jpg" 
-          alt="Background"
-          fill
-          style={{ 
-            objectFit: 'cover',
-            opacity: 0.8
-          }}
-          priority
-        />
-      </Box>
-
       {/* Content */}
       <Box sx={{ position: 'relative', zIndex: 2 }}>
         <Typography variant="h2" sx={{ mb: 4, minHeight: '3rem', textShadow: '2px 2px 4px rgba(0,0,0,0.7)' }}>

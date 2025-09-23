@@ -4,6 +4,7 @@ import { ReactNode, FC, useEffect, useState } from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 import { Inter } from 'next/font/google';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { Providers } from './providers';
 import { useSafeAppTheme } from './providers';
 
@@ -57,8 +58,40 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
             display: 'flex',
             minHeight: '100vh',
             color: theme.custom.content.primary,
-            paddingBottom: '150px', 
+            paddingBottom: '150px',
+            position: 'relative'
           }}>
+            {/* Background Image */}
+            <Box sx={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 0,
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                zIndex: 1
+              }
+            }}>
+              <Image
+                src="/background.jpg" 
+                alt="Background"
+                fill
+                style={{ 
+                  objectFit: 'cover',
+                  opacity: 0.8
+                }}
+                priority
+              />
+            </Box>
+
             {!isMobile && <Sidebar />}
             
             {/* Main content area */}

@@ -15,9 +15,11 @@ export default function ResumePage() {
       maxWidth: '1000px', 
       margin: '0 auto', 
       padding: '24px', 
-      bgcolor: '#383838', 
+      bgcolor: 'rgba(56, 56, 56, 0.7)', 
       color: 'white', 
-      minHeight: '100vh' 
+      minHeight: '100vh',
+      borderRadius: 2,
+      backdropFilter: 'blur(10px)'
     }}>
       <Typography variant="h3" gutterBottom>
         My Resume

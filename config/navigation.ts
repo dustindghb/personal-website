@@ -8,6 +8,7 @@ export interface BaseNavItem {
   id: string;
   label: string;
   isFolder: boolean;
+  clickable?: boolean; // Whether the item should be clickable in the sidebar
   metadata?: Record<string, unknown>;
 }
 
@@ -62,33 +63,47 @@ export const siteStructure: FolderNavItem = {
       isFolder: false,
     },
     {
-      id: '/experience',
-      label: 'Experience',
+      id: '/experience/timeline',
+      label: 'Timeline',
+      isFolder: false,
+    },
+    {
+      id: '/work-experience',
+      label: 'Work Experience',
       isFolder: true,
+      clickable: false,
       children: [
         {
-          id: '/experience/scu-schedule-helper',
+          id: '/work-experience/stage4solutions',
+          label: 'Stage4Solutions',
+          isFolder: false,
+        },
+      ],
+    },
+    {
+      id: '/project-experience',
+      label: 'Project Experience',
+      isFolder: true,
+      clickable: false,
+      children: [
+        {
+          id: '/project-experience/regulations-gov-tool',
+          label: 'Regulations.gov Tool',
+          isFolder: false,
+        },
+        {
+          id: '/project-experience/scu-schedule-helper',
           label: 'SCU-Schedule-Helper',
           isFolder: false,
         },
         {
-          id: '/experience/federal-reserve-agent',
-          label: 'Federal-Reserve-Agent',
-          isFolder: false,
-        },
-        {
-          id: '/experience/viginere-cypher',
-          label: 'Viginere-Cypher',
-          isFolder: false,
-        },
-        {
-          id: '/experience/dice-animations',
-          label: 'Dice-Animations',
-          isFolder: false,
-        },
-        {
-          id: '/experience/personal-website',
+          id: '/project-experience/personal-website',
           label: 'Personal-Website',
+          isFolder: false,
+        },
+        {
+          id: '/project-experience/dice-animations',
+          label: 'Dice-Animations',
           isFolder: false,
         },
       ],
@@ -104,12 +119,12 @@ export const siteStructure: FolderNavItem = {
 // Valid paths with typed mapping
 export const validPaths: PathMap = {
   'about': ['about'],
-  'experience': ['experience'],
-  'experience/federal-reserve-agent': ['experience', 'federal-reserve-agent'],
-  'experience/scu-schedule-helper': ['experience', 'scu-schedule-helper'],
-  'experience/viginere-cypher': ['experience', 'viginere-cypher'],
-  'experience/dice-animations': ['experience', 'dice-animations'],
-  'experience/personal-website': ['experience', 'personal-website'],
+  'experience/timeline': ['experience', 'timeline'],
+  'work-experience/stage4solutions': ['work-experience', 'stage4solutions'],
+  'project-experience/regulations-gov-tool': ['project-experience', 'regulations-gov-tool'],
+  'project-experience/scu-schedule-helper': ['project-experience', 'scu-schedule-helper'],
+  'project-experience/personal-website': ['project-experience', 'personal-website'],
+  'project-experience/dice-animations': ['project-experience', 'dice-animations'],
   'resume': ['resume']
 };
 
