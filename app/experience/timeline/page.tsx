@@ -35,31 +35,24 @@ const timelineEntries: TimelineEntry[] = [
   {
     id: 'stage4-solutions',
     label: 'Stage 4 Solutions - SDE Intern',
-    description: 'Built Chrome extension increasing sales lead generation by 300% to 10+ leads/min. Implemented HubSpot automation workflows to optimize business processes and improved lead conversion rates. Developed agent with knowledge of financial markets from company 10-K and 10-Q SEC filings.',
-    year: 'June 2025 - Present',
+    description: 'Built Chrome extension increasing sales lead generation by 300% to 10+ leads/min. Implemented HubSpot automation workflows to optimize business processes and improved lead conversion rates. Developed RAG agent with knowledge base on potential customer company 10-K and 10-Q SEC filings with EDGAR APIs.',
+    year: 'June 2025 - September 2025',
     type: 'experience',
     path: '/work-experience/stage4solutions'
   },
   {
-    id: 'government-newsletter',
-    label: 'Government Document Newsletter',
-    description: 'Developed personalized newsletter workflow that sends personalized reports from federal register publications. Automated CRUD workflows with n8n using Docker and Postgres. Labeled data with Ollama models and mapped documents to users interests with semantic similarity.',
-    year: 'June 2025 - Present',
-    type: 'project'
-  },
-  {
-    id: 'federal-reserve-agent',
-    label: 'Federal Reserve Agent',
-    description: 'Developed a RAG agent knowledgeable on new regulations and proposal with n8n. Performed CRUD operations with Federal Reserve\'s APIs. Implemented sentiment analysis with AWS Comprehend on legislation comments.',
-    year: 'May 2025',
+    id: 'regulations-gov-tool',
+    label: 'Regulations.gov Tool',
+    description: 'Built desktop application matching user profiles with articles from regulations.gov to improve civic participation while protecting user data through local processing. Features AI-powered document analysis, sentiment analysis of comment boards, and interactive visualizations.',
+    year: 'May 2024 - August 2024',
     type: 'project',
-    path: '/project-experience/federal-reserve-agent'
+    path: '/project-experience/regulations-gov-tool'
   },
   {
     id: 'personal-website',
     label: 'Personal Website',
     description: 'Built this personal website by designing the UI in Figma, implementing the frontend with Next.js, styling it with Material UI components for a modern, responsive experience, and hosting on vercel.',
-    year: 'February 2025',
+    year: 'February 2024',
     type: 'project',
     path: '/project-experience/personal-website'
   },
@@ -67,7 +60,7 @@ const timelineEntries: TimelineEntry[] = [
     id: 'rec-exchange',
     label: 'REC Exchange - SDE Intern',
     description: 'Conducted market research on RECs, wrote documentation, and researched potential customers. Contributed a landing page with authorization and persistent authentication.',
-    year: 'April 2024 - June 2024',
+    year: 'April 2023 - June 2023',
     type: 'experience'
   },
   {
@@ -146,7 +139,7 @@ const timelineEntries: TimelineEntry[] = [
     id: 'databases',
     label: 'Databases',
     description: 'Learned comprehensive database fundamentals for back-end development, including database management systems, SQL syntax, data manipulation techniques, and relational database design principles, enabling me to effectively store, search, extract and manipulate data for end-user applications.',
-    year: 'January 2024',
+    year: 'September 2023',
     type: 'certificate',
     image: '/certificates/databases-1.png'
   },
