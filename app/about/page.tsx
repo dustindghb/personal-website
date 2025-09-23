@@ -75,6 +75,10 @@ export default function About() {
           <Typography variant="h6" sx={{ mt: 3 }} gutterBottom>
             I enjoy working with all layers of the stack, and have both internship and project experience doing so. With my background in tech and business, I identify solutions that people need and building them. Here you can find some of them and the technologies I have experience with.
           </Typography>
+
+          <Typography variant="h6" sx={{ mt: 3 }} gutterBottom>
+            In my free time, I enjoy biking, cooking, and playing pickup volleyball.
+          </Typography>
         </Grid>
         
         {/* Circular profile image on the right */}
