@@ -52,6 +52,11 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <title>Dustin Duong - Portfolio</title>
+        <meta name="description" content="Dustin Duong's personal portfolio website showcasing software development projects and professional experience" />
+      </head>
       <body className={inter.className} style={{ margin: 0, backgroundColor: theme.custom.content.background }}>
         <Providers>
           <Box sx={{ 

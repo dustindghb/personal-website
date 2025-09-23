@@ -1,9 +1,10 @@
 'use client';
 import React, { useState, useEffect, useCallback, memo } from 'react';
-import { Box, List, ListItem, ListItemText, ListItemButton, Typography } from '@mui/material';
+import { Box, List, ListItem, ListItemText, ListItemButton, Typography, IconButton } from '@mui/material';
 import { useRouter, usePathname } from 'next/navigation';
 import { NavItem, siteStructure } from '@/config/navigation';
 import { useSafeAppTheme } from '../app/providers';
+import { GitHub, LinkedIn, Code } from '@mui/icons-material';
 
 function hasChildren(item: NavItem): item is NavItem & { children: NavItem[] } {
   return Array.isArray(item.children) && item.children.length > 0;
@@ -133,27 +134,63 @@ function SidebarContent() {
       </List>
       
       <Box sx={{ p: 2, borderTop: `3px solid ${theme.custom.sidebar.borderColor}` }}>
-        <ListItemText 
-          primary="Example Commands:"
-          secondary={
-            <>
-              <Typography component="span" variant="body2" color="text.secondary" sx={{ 
-                display: 'block', 
-                color: theme.custom.sidebar.text, 
-                opacity: 0.7,
-                fontFamily: 'monospace',
-                fontSize: '0.85rem'
-              }}>
-                to go back:
-                <Box component="span" sx={{ display: 'block', ml: 1 }}>cd ..</Box>
-                
-                to navigate to a page:
-                <Box component="span" sx={{ display: 'block', ml: 1 }}>cd project-experience/scu-schedule-helper</Box>
-                <Box component="span" sx={{ display: 'block', ml: 1 }}>cd about</Box>
-              </Typography>
-            </>
-          }
-        />
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+          <Typography 
+            variant="caption" 
+            sx={{ 
+              fontFamily: 'monospace',
+              fontSize: '0.75rem',
+              color: theme.custom.sidebar.text,
+              opacity: 0.7,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 0.5,
+            }}
+          >
+            <Code fontSize="inherit" />
+            Designed by Dustin Duong
+          </Typography>
+        </Box>
+        
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <IconButton 
+            href="https://github.com/dustindghb" 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub Profile"
+            size="small"
+            sx={{ 
+              color: theme.custom.sidebar.text,
+              opacity: 0.7,
+              padding: '4px',
+              '&:hover': { 
+                opacity: 1,
+                backgroundColor: theme.custom.sidebar.itemHover 
+              }
+            }}
+          >
+            <GitHub fontSize="small" />
+          </IconButton>
+          
+          <IconButton 
+            href="https://www.linkedin.com/in/dustin-duong-ab505b2a5/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
+            size="small"
+            sx={{ 
+              color: theme.custom.sidebar.text,
+              opacity: 0.7,
+              padding: '4px',
+              '&:hover': { 
+                opacity: 1,
+                backgroundColor: theme.custom.sidebar.itemHover 
+              }
+            }}
+          >
+            <LinkedIn fontSize="small" />
+          </IconButton>
+        </Box>
       </Box>
     </>
   );

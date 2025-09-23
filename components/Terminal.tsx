@@ -1,9 +1,8 @@
 'use client';
 import { useState, KeyboardEvent, useEffect } from 'react';
-import { TextField, Box, Button, IconButton, Typography } from '@mui/material';
+import { TextField, Box, Typography } from '@mui/material';
 import { useRouter, usePathname } from 'next/navigation';
 import { validPaths } from '@/config/navigation';
-import { GitHub, LinkedIn, Code } from '@mui/icons-material';
 import WaveAnimation from './WaveAnimation';
 
 // Define generic state management for history tracking
@@ -21,7 +20,6 @@ type TerminalCommand =
 interface TerminalProps {
   initialCommand?: string;
   maxHistoryItems?: number;
-  showFooter?: boolean;
   terminalHeight?: number;
   customStyles?: Partial<{
     terminal: React.CSSProperties;
@@ -40,7 +38,6 @@ type PathSegment = {
 export default function Terminal({
   initialCommand = '',
   maxHistoryItems = 50,
-  showFooter = true,
   terminalHeight = 60,
   customStyles = {}
 }: TerminalProps) {
@@ -260,74 +257,6 @@ export default function Terminal({
           />
         </Box>
         
-        {/* Footer in bottom right corner - conditionally shown */}
-        {showFooter && (
-          <Box
-            sx={{
-              position: 'absolute',
-              right: 16,
-              top: '50%',
-              transform: 'translateY(-10%)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 1,
-              color: 'rgba(255,255,255,0.5)',
-              zIndex: 1000,
-            }}
-          >
-            <Typography 
-              variant="caption" 
-              sx={{ 
-                fontFamily: 'monospace',
-                fontSize: '0.75rem',
-                display: { xs: 'none', sm: 'flex' },
-                alignItems: 'center',
-                gap: 0.5,
-                mr: 1,
-                whiteSpace: 'nowrap',
-              }}
-            >
-              <Code fontSize="inherit" />
-              Designed by Dustin Duong
-            </Typography>
-            
-            <IconButton 
-              href="https://github.com/dustindghb" 
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Profile"
-              size="small"
-              sx={{ 
-                color: 'rgba(255,255,255,0.5)',
-                padding: '4px',
-                '&:hover': { 
-                  color: 'white',
-                  backgroundColor: 'rgba(255,255,255,0.08)' 
-                }
-              }}
-            >
-              <GitHub fontSize="small" />
-            </IconButton>
-            
-            <IconButton 
-              href="https://www.linkedin.com/in/dustin-duong-ab505b2a5/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn Profile"
-              size="small"
-              sx={{ 
-                color: 'rgba(255,255,255,0.5)',
-                padding: '4px',
-                '&:hover': { 
-                  color: 'white',
-                  backgroundColor: 'rgba(255,255,255,0.08)' 
-                }
-              }}
-            >
-              <LinkedIn fontSize="small" />
-            </IconButton>
-          </Box>
-        )}
       </Box>
     </Box>
   );

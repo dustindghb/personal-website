@@ -11,9 +11,7 @@ import {
   ListItemText,
   IconButton,
   Dialog,
-  DialogContent,
-  DialogActions,
-  Button
+  DialogContent
 } from '@mui/material';
 import { ChevronLeft, ChevronRight, PlayArrow, Close } from '@mui/icons-material';
 import Image from 'next/image';

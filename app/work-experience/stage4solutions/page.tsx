@@ -12,10 +12,10 @@ export default function Stage4Solutions() {
   ];
 
   const bulletPoints = [
-    "Built Chrome extension increasing sales lead generation by 300% to 10+ leads/min",
-    "Implemented HubSpot automation workflows to optimize business processes and improved lead conversion rates",
-    "Developed RAG agent with knowledge base on potential customer company 10-K and 10-Q SEC filings with EDGAR APIs",
-    "Conducted market research on AI sales tool, wrote documentation, and researched potential customers"
+    "Accomplished 300% increase in sales lead generation as measured by lead volume metrics by building Chrome extension that automated prospect identification and data collection, led to 10+ leads per minute",
+    "Faced challenge of manual business process inefficiencies, took action by implementing HubSpot automation workflows with custom triggers and data synchronization, led to improved lead conversion rates and reduced manual work",
+    "Accomplished comprehensive customer intelligence system as measured by data coverage and accuracy by developing RAG agent with knowledge base on potential customer company 10-K and 10-Q SEC filings using EDGAR APIs",
+    "Faced challenge of understanding AI sales tool market landscape, took action by conducting market research, writing technical documentation, and researching potential customers, led to informed product development decisions"
   ];
 
   return (

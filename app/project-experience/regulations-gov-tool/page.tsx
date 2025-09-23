@@ -20,6 +20,7 @@ Developed using Tauri (Rust + React/TypeScript) with a comprehensive backend inf
   const bulletPoints = [
     "Accomplished 95% accuracy in matching user profiles with relevant regulatory documents as measured by test users by implementing force directed semantic similarity matching",
     "Faced challenge of processing large-scale regulatory data while maintaining user privacy, took action by building local processing pipeline with Tauri and Qdrant vector database with local Ollama model processing, led to 100% data privacy",
+    "Faced challenge of 1000+ document ingestion and API rate limiting constraints, took action by developing N8N workflow with intelligent pagination, exponential backoff retry logic, and rate limit compliance, led to successful ingestion of complete regulatory document corpus",
     "Faced challenge of making public comments readable, took action by creating workflow that fetches comments and analyzes common differing perspectives and overall sentiment, led to improved user understanding of regulatory proposals",
     "Accomplished interactive document exploration as measured by user engagement metrics by building force-directed graph visualization using D3.js with semantic clustering",
     "Faced challenge of protecting user data while enabling AI insights, took action by implementing secure local data processing architecture, led to zero data breaches while maintaining full functionality"

@@ -3,8 +3,15 @@
 import React from 'react';
 import ProjectTemplate from '../../../components/ProjectTemplate';
 
+interface MediaItem {
+  src: string;
+  caption: string;
+  type: 'image' | 'video' | 'youtube';
+  alt?: string;
+}
+
 export default function PersonalWebsite() {
-  const media: any[] = [];
+  const media: MediaItem[] = [];
 
   const overview = `This project was an excellent opportunity to experiment with frontend development and design, allowing me to explore modern web technologies while creating a professional portfolio. I started by creating detailed Figma wireframes to plan the user experience and visual design before diving into development.
 
