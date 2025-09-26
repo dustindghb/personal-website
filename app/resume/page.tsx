@@ -4,7 +4,7 @@ import { Box, Typography, Button, Paper } from '@mui/material';
 import { Download, OpenInNew } from '@mui/icons-material';
 
 export default function ResumePage() {
-  const resumePath = "/resume.pdf";
+  const resumePath = "/resume/Resume.pdf";
 
   const handleOpenInNewTab = () => {
     window.open(resumePath, '_blank');
