@@ -88,8 +88,8 @@ export default function About() {
           alignItems: 'flex-start'
         }}>
           <Box sx={{ 
-            width: 150,
-            height: 150,
+            width: 187.5,
+            height: 187.5,
             position: 'relative',
           }}>
             {/* Animation wrapper */}

@@ -2,9 +2,50 @@
 
 import { Box, Typography, Button, Paper } from '@mui/material';
 import { Download, OpenInNew } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
 
 export default function ResumePage() {
-  const resumePath = "/resume/Resume.pdf";
+  const [resumePath, setResumePath] = useState<string>('');
+  const [resumeFileName, setResumeFileName] = useState<string>('');
+
+  useEffect(() => {
+    // Function to find the PDF file in the resume folder
+    const findResumeFile = async () => {
+      try {
+        // Try common resume filenames
+        const possibleNames = [
+          'Resume.pdf',
+          'resume.pdf', 
+          '2027DustinDuong.pdf',
+          'Dustin_Duong_Resume.pdf',
+          'DustinDuong_Resume.pdf'
+        ];
+        
+        for (const fileName of possibleNames) {
+          try {
+            const response = await fetch(`/resume/${fileName}`, { method: 'HEAD' });
+            if (response.ok) {
+              setResumePath(`/resume/${fileName}`);
+              setResumeFileName(fileName);
+              return;
+            }
+          } catch (error) {
+            // Continue to next filename
+          }
+        }
+        
+        // If no common names work, default to the first one and let the browser handle the 404
+        setResumePath('/resume/Resume.pdf');
+        setResumeFileName('Resume.pdf');
+      } catch (error) {
+        console.error('Error finding resume file:', error);
+        setResumePath('/resume/Resume.pdf');
+        setResumeFileName('Resume.pdf');
+      }
+    };
+
+    findResumeFile();
+  }, []);
 
   const handleOpenInNewTab = () => {
     window.open(resumePath, '_blank');
@@ -49,7 +90,7 @@ export default function ResumePage() {
               variant="contained"
               startIcon={<Download />}
               href={resumePath}
-              download="Dustin_Duong_Resume.pdf"
+              download={resumeFileName}
               sx={{
                 bgcolor: '#9fc5e8',
                 color: '#333',
