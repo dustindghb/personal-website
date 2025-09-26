@@ -29,7 +29,7 @@ export default function ResumePage() {
               setResumeFileName(fileName);
               return;
             }
-          } catch (error) {
+          } catch {
             // Continue to next filename
           }
         }
