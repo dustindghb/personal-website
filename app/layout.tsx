@@ -15,10 +15,11 @@ const Sidebar = dynamic<Record<string, never>>(
   { ssr: false }
 );
 
-const Terminal = dynamic<Record<string, never>>(
-  () => import('@/components/Terminal').then(mod => mod.default), 
+const MobileMenu = dynamic<{ isOpen: boolean; onClose: () => void }>(
+  () => import('@/components/MobileMenu').then(mod => mod.default), 
   { ssr: false }
 );
+
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -26,6 +27,7 @@ interface RootLayoutProps {
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   const [mounted, setMounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme } = useSafeAppTheme();
   
 
@@ -99,6 +101,14 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
 
             {!isMobile && <Sidebar />}
             
+            {/* Mobile Menu */}
+            {isMobile && (
+              <MobileMenu 
+                isOpen={mobileMenuOpen} 
+                onClose={() => setMobileMenuOpen(!mobileMenuOpen)} 
+              />
+            )}
+            
             {/* Main content area */}
             <Box sx={{ 
               flex: 1,
@@ -106,7 +116,13 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
               flexDirection: 'column',
               marginLeft: isMobile ? 0 : '250px', 
               position: 'relative', 
-              zIndex: 900, 
+              zIndex: 900,
+              ...(isMobile && {
+                transform: 'scale(0.8)',
+                transformOrigin: 'top left',
+                width: '125%', // Compensate for the scale to prevent horizontal scroll
+                height: '125%', // Compensate for the scale to prevent vertical scroll
+              })
             }}>
               <Box sx={{ 
                 flex: 1,
@@ -117,8 +133,6 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
               </Box>
             </Box>
             
-            {/* Terminal component */}
-            <Terminal />
           </Box>
         </Providers>
       </body>
