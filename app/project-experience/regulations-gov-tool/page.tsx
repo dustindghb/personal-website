@@ -6,7 +6,7 @@ import ProjectTemplate from '../../../components/ProjectTemplate';
 export default function RegulationsGovTool() {
   const media = [
     {
-      src: "https://youtu.be/NxaD3FHKtgQ",
+      src: "https://www.youtube.com/watch?v=8r_MLLDKaQ0",
       caption: "Regulations.gov Tool Demo Video - AI-powered civic engagement platform for matching user profiles with regulatory documents",
       type: "youtube" as const,
       alt: "Regulations.gov Tool Demo Video"
