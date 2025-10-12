@@ -39,15 +39,14 @@ export default function SCUScheduleHelper() {
 
   const overview = `Course registration can be a stressful difficult experience, so we designed and developed a Chrome extension for SCU course registration, featuring a course and professor query bar, embedded information within Workday, customizable preferences, and a friend network.
 
-Collaborated on a team of 3 and have been working on it for over a year. Built using modern web technologies including Chrome Extension Manifest V3, Next.js, and AWS Lambda, demonstrating full-stack development capabilities with seamless integration into existing university systems.`;
+Collaborated on a team of 3 and have been working on it for over a year. Built using modern web technologies including Chrome Extension Manifest V3, Next.js, and AWS Lambda, demonstrating full-stack development capabilities with seamless integration into existing university systems. Successfully deployed to the Chrome Web Store with 400+ active users.`;
 
   const bulletPoints = [
-    "Accomplished 400+ active users as measured by user registration metrics by building Chrome extension with professor/course ratings and automated Google Calendar scheduling",
-    "Faced challenge of low user adoption, took action by implementing automated email workflow using N8N and AWS SES, led to 40% increase in user adoption",
-    "Accomplished seamless integration with university systems by developing Workday injection scripts and Next.js popup interface",
-    "Faced challenge of making rating colors accessible to colorblind users, took action by implementing feedback form and modifying color schemes based on user feedback, led to improved accessibility",
-    "Faced challenge of managing user data securely, took action by building RESTful API with JWT authentication using AWS Lambda functions, led to zero security incidents",
-    "Achieved full software development lifecycle documentation by executing requirements documentation, Figma prototypes, UML diagrams, user testing and interviews, Chrome Web Store publication, and automated testing pipelines"
+    "Built Chrome extension with 400+ active users, executing full SDLC including Figma prototypes, UML diagrams, user interviews, user tests, and Chrome Web Store deployment",
+    "Scraped and aggregated data from 60,000+ SCU course evaluation PDFs and RateMyProfessor to provide comprehensive instructor insights",
+    "Developed professor/course rating search page, preference settings, friend network, Google Calendar export, Workday registration page injection with ratings and Next.js interface",
+    "Built RESTful API with CRUD operations using AWS Lambda functions for backend data management",
+    "Increased adoption by 50% through automated newsletters using N8N and AWS SES and campus posters"
   ];
 
   return (
