@@ -69,7 +69,7 @@ export default function About() {
         {/* Text content on the left */}
         <Grid item xs={12} md={7}>
           <Typography variant="h6" gutterBottom>
-            Hi, I&apos;m Dustin and I&apos;m a Computer Science and Management Information Systems double major at Santa Clara University, graduating in June 2027. I also have the option to graduate in June 2026 with a major in Computer Science and minor in MIS.
+            Hi, I&apos;m Dustin and I&apos;m a Computer Science and Management Information Systems double major at Santa Clara University. I have the flexibility to graduate in June 2026 with a major in Computer Science and minor in MIS, or June 2027 with a double major in Computer Science and Management Information Systems.
           </Typography>
 
           <Typography variant="h6" sx={{ mt: 3 }} gutterBottom>
