@@ -47,7 +47,8 @@ export default function Home() {
   const sections: string[] = [
     "Welcome to my website!",
     "I'm a CS and MIS double major at Santa Clara University, graduating in June 2027.",
-    "Here you can find a portfolio of my work and more."
+    "Here you can find a portfolio of my work and more.",
+    "Alternatively, I'm able to graduate in June 2026 with a major in Computer Science and minor in Management Information Systems."
   ];
 
   return (
@@ -87,8 +88,25 @@ export default function Home() {
         </Typography>
         
         <Typography variant="h6" sx={{ mb: 4, minHeight: '6rem', textShadow: '2px 2px 4px rgba(0,0,0,0.7)' }}>
-          {activeSection >= 2 && (
-            <TypedText text={sections[2]} />
+          {activeSection >= 2 ? (
+            activeSection === 2 ? (
+              <TypedText 
+                text={sections[2]} 
+                onComplete={() => setTimeout(() => setActiveSection(3), 500)}
+              />
+            ) : sections[2]
+          ) : ''}
+        </Typography>
+        
+        <Typography variant="body2" sx={{ 
+          mb: 4, 
+          minHeight: '3rem',
+          opacity: 0.9, 
+          fontSize: '0.9rem',
+          textShadow: '1px 1px 2px rgba(0,0,0,0.7)'
+        }}>
+          {activeSection >= 3 && (
+            <TypedText text={sections[3]} />
           )}
         </Typography>
       </Box>
