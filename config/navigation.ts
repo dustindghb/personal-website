@@ -106,6 +106,11 @@ export const siteStructure: FolderNavItem = {
           label: 'Dice-Animations',
           isFolder: false,
         },
+        {
+          id: '/project-experience/dstation',
+          label: 'DStation',
+          isFolder: false,
+        },
       ],
     },
     {
@@ -125,6 +130,7 @@ export const validPaths: PathMap = {
   'project-experience/scu-schedule-helper': ['project-experience', 'scu-schedule-helper'],
   'project-experience/personal-website': ['project-experience', 'personal-website'],
   'project-experience/dice-animations': ['project-experience', 'dice-animations'],
+  'project-experience/dstation': ['project-experience', 'dstation'],
   'resume': ['resume']
 };
 
