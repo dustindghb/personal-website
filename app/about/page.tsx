@@ -4,33 +4,42 @@ import Image from 'next/image';
 import CircleAnimation from '../../components/CircleAnimation';
 
 export default function About() {
-  // Technologies grouped by categories based on project experience
+  // Technologies grouped by categories - combining original and project-based technologies
   const technologyClusters = [
     {
       category: "AI & Machine Learning",
+      symbol: "🤖",
       items: [
         'Ollama',
         'OpenAI',
+        'ChromaDB',
+        'Hugging Face',
         'LangChain',
         'Qdrant',
         'Gemini',
       ]
     },
     {
-      category: "Frontend Development",
+      category: "Web Development",
+      symbol: "🎨",
       items: [
         'React.js',
         'Next.js',
-        'TypeScript',
+        'Node.js',
         'Material UI',
+        'TypeScript',
         'Chrome Extension (Manifest V3)',
       ]
     },
     {
       category: "Backend & APIs",
+      symbol: "⚙️",
       items: [
-        'Express.js',
+        'Spring Boot',
+        'Postman',
         'AWS Lambda',
+        'AWS API Gateway',
+        'Express.js',
         'RESTful APIs',
         'JWT Authentication',
         'RSA Public Key Verification',
@@ -38,8 +47,11 @@ export default function About() {
     },
     {
       category: "Cloud & Infrastructure",
+      symbol: "☁️",
       items: [
+        'Google Cloud',
         'AWS',
+        'Firebase',
         'Docker',
         'N8N',
         'Supabase',
@@ -48,6 +60,7 @@ export default function About() {
     },
     {
       category: "Programming Languages",
+      symbol: "💻",
       items: [
         'Go',
         'Rust',
@@ -58,7 +71,10 @@ export default function About() {
     },
     {
       category: "Databases & Storage",
+      symbol: "🗄️",
       items: [
+        'MySQL Workbench',
+        'DynamoDB',
         'SQLite',
         'Qdrant Vector Database',
         'AWS DynamoDB',
@@ -67,6 +83,7 @@ export default function About() {
     },
     {
       category: "Development Tools",
+      symbol: "🛠️",
       items: [
         'Git',
         'Figma',
@@ -77,6 +94,7 @@ export default function About() {
     },
     {
       category: "Data & Automation",
+      symbol: "📊",
       items: [
         'Web Scraping',
         'N8N Workflows',
@@ -183,8 +201,12 @@ export default function About() {
                   borderBottom: '2px solid #ffffff',
                   paddingBottom: 1,
                   color: '#ffffff', 
-                  fontWeight: 'bold'
+                  fontWeight: 'bold',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1
                 }}>
+                  <span style={{ fontSize: '1.5rem' }}>{cluster.symbol}</span>
                   {cluster.category}
                 </Typography>
                 
