@@ -4,57 +4,85 @@ import Image from 'next/image';
 import CircleAnimation from '../../components/CircleAnimation';
 
 export default function About() {
-  // Clustered technologies by theme
+  // Technologies grouped by categories based on project experience
   const technologyClusters = [
     {
       category: "AI & Machine Learning",
       items: [
-        { name: 'Ollama', logo: '/tech-logos/ollama.png' },
-        { name: 'OpenAI', logo: '/tech-logos/openai.svg' },
-        { name: 'ChromaDB', logo: '/tech-logos/chromadb.png' },
-        { name: 'Hugging Face', logo: '/tech-logos/huggingface.svg' },
-        { name: 'LangChain', logo: '/tech-logos/langchain.png' },
+        'Ollama',
+        'OpenAI',
+        'LangChain',
+        'Qdrant',
+        'Gemini',
       ]
     },
     {
-      category: "Web Development",
+      category: "Frontend Development",
       items: [
-        { name: 'React.js', logo: '/tech-logos/react.png' },
-        { name: 'Next.js', logo: '/tech-logos/nextjs.png' },
-        { name: 'Node.js', logo: '/tech-logos/nodejs.svg' },
-        { name: 'Material UI', logo: '/tech-logos/materialui.svg' },
+        'React.js',
+        'Next.js',
+        'TypeScript',
+        'Material UI',
+        'Chrome Extension (Manifest V3)',
       ]
     },
     {
       category: "Backend & APIs",
       items: [
-        { name: 'Spring Boot', logo: '/tech-logos/spring.png' },
-        { name: 'Postman', logo: '/tech-logos/postman.svg' },
-        { name: 'AWS Lambda', logo: '/tech-logos/awslambda.png' },
-        { name: 'AWS API Gateway', logo: '/tech-logos/aws-api-gateway.svg' },
+        'Express.js',
+        'AWS Lambda',
+        'RESTful APIs',
+        'JWT Authentication',
+        'RSA Public Key Verification',
       ]
     },
     {
       category: "Cloud & Infrastructure",
       items: [
-        { name: 'Google Cloud', logo: '/tech-logos/gcloud.png' },
-        { name: 'AWS', logo: '/tech-logos/aws.png' },
-        { name: 'Firebase', logo: '/tech-logos/firebase.svg' },
-        { name: 'Docker', logo: '/tech-logos/docker.svg' },
+        'AWS',
+        'Docker',
+        'N8N',
+        'Supabase',
+        'AWS SES',
       ]
     },
     {
-      category: "Developer Tools",
+      category: "Programming Languages",
       items: [
-        { name: 'Git', logo: '/tech-logos/git.png' },
-        { name: 'Figma', logo: '/tech-logos/figma.png' },
+        'Go',
+        'Rust',
+        'JavaScript',
+        'TypeScript',
+        'Python',
       ]
     },
     {
-      category: "Databases",
+      category: "Databases & Storage",
       items: [
-        { name: 'MySQL Workbench', logo: '/tech-logos/mysql.svg' },
-        { name: 'DynamoDB', logo: '/tech-logos/aws-dynamodb.svg' },
+        'SQLite',
+        'Qdrant Vector Database',
+        'AWS DynamoDB',
+        'MySQL',
+      ]
+    },
+    {
+      category: "Development Tools",
+      items: [
+        'Git',
+        'Figma',
+        'Postman',
+        'Tauri',
+        'Unity',
+      ]
+    },
+    {
+      category: "Data & Automation",
+      items: [
+        'Web Scraping',
+        'N8N Workflows',
+        'HubSpot Automation',
+        'EDGAR APIs',
+        'Docker Containerization',
       ]
     },
   ];
@@ -160,49 +188,33 @@ export default function About() {
                   {cluster.category}
                 </Typography>
                 
-                <Grid container spacing={2} sx={{ mt: 1 }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, mt: 1 }}>
                   {cluster.items.map((tech) => (
-                    <Grid item xs={6} key={tech.name}>
-                      <Paper 
-                        elevation={2} 
-                        sx={{ 
-                          p: 2, 
-                          display: 'flex', 
-                          flexDirection: 'column', 
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          height: 120,
-                          bgcolor: '#cccccc', 
-                          color: '#333333',    
-                          transition: 'transform 0.2s, box-shadow 0.2s',
-                          '&:hover': {
-                            transform: 'translateY(-5px)',
-                            boxShadow: '0 10px 20px rgba(0,0,0,0.2)',
-                          }
-                        }}
-                      >
-                        <Box sx={{ 
-                          width: 50, 
-                          height: 50, 
-                          position: 'relative',
-                          mb: 1
-                        }}>
-                          <Image
-                            src={tech.logo}
-                            alt={`${tech.name} logo`}
-                            fill
-                            style={{
-                              objectFit: 'contain'
-                            }}
-                          />
-                        </Box>
-                        <Typography variant="body2" align="center">
-                          {tech.name}
-                        </Typography>
-                      </Paper>
-                    </Grid>
+                    <Box 
+                      key={tech}
+                      sx={{ 
+                        p: 1.5,
+                        bgcolor: '#444444',
+                        borderRadius: 1,
+                        border: '1px solid #555555',
+                        transition: 'all 0.2s ease-in-out',
+                        '&:hover': {
+                          bgcolor: '#555555',
+                          borderColor: '#666666',
+                          transform: 'translateY(-2px)',
+                        }
+                      }}
+                    >
+                      <Typography variant="body2" sx={{ 
+                        color: '#ffffff',
+                        fontSize: '0.85rem',
+                        fontWeight: 'medium'
+                      }}>
+                        {tech}
+                      </Typography>
+                    </Box>
                   ))}
-                </Grid>
+                </Box>
               </Paper>
             </Grid>
           ))}
