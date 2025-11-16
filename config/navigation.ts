@@ -87,6 +87,11 @@ export const siteStructure: FolderNavItem = {
       clickable: false,
       children: [
         {
+          id: '/project-experience/virtual-fitting-room',
+          label: 'Virtual-Fitting-Room',
+          isFolder: false,
+        },
+        {
           id: '/project-experience/regulations-gov-tool',
           label: 'Regulations.gov Tool',
           isFolder: false,
@@ -131,6 +136,7 @@ export const validPaths: PathMap = {
   'project-experience/personal-website': ['project-experience', 'personal-website'],
   'project-experience/dice-animations': ['project-experience', 'dice-animations'],
   'project-experience/dstation': ['project-experience', 'dstation'],
+  'project-experience/virtual-fitting-room': ['project-experience', 'virtual-fitting-room'],
   'resume': ['resume']
 };
 
