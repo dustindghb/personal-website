@@ -13,22 +13,19 @@ interface MediaItem {
 export default function VirtualFittingRoom() {
   const media: MediaItem[] = [
     {
-      src: 'https://www.youtube.com/watch?v=1wPN-uc9G60',
+      src: 'https://www.youtube.com/watch?v=wFKQVQxQk4E',
       caption: 'Virtual Fitting Room end-to-end demo',
       type: 'youtube'
     }
   ];
 
-  const overview = `Virtual Fitting Room is a Spring Boot microservice suite that simulates how retailers can deliver personalized size guidance and garment visualization. I split the experience into catalog, fitting, and rendering services so each boundary could scale independently, then exposed them through a consistent HTTP surface backed by DTO-validated APIs and Actuator-powered telemetry.
-
-On the data side, I paired Dockerized PostgreSQL with Spring Data repositories to drive reproducible environments and fast schema iteration. Product sizing charts, shopper body measurements, and recommendation logic all live in transactional services that keep decisions explainable while staying ready for future Gemini-powered experiences.`;
+  const overview = `Virtual Fitting Room is a full-stack virtual try-on platform built with Java Spring Boot backend and Next.js frontend, deployed on Google Cloud Run. Visit the live application at lookr.online to see it in action.`;
 
   const bulletPoints = [
-    "Built a Spring Boot–based backend that decomposed the fitting room features into clear service boundaries, teaching me how Spring’s opinionated structure speeds up microservice design.",
-    "Containerized PostgreSQL in Docker and wired it to Spring Data repositories, which showed me how to keep dev databases reproducible and schema iterations fast.",
-    "Used Spring Boot Web, Validation, and Actuator starters with DTOs to keep APIs type-safe and versioned, revealing how the framework streamlines HTTP pipelines and monitoring.",
-    "Modeled size recommendations with Postgres tables and Spring services combining product charts plus body measurements, giving me practice in data modeling and transactional logic.",
-    "Defined containerized service boundaries for catalog, fitting, and rendering components, helping me understand how to stage Spring Boot microservices for future scaling and Gemini integrations."
+    "Built full-stack virtual try-on platform with Java Spring Boot backend and Next.js frontend on Google Cloud Run, handling 600 requests/min with 99.9% uptime",
+    "Implemented security layer using OAuth2 authentication, Bucket4j rate limiting (600/min standard), and Cloudflare CDN, reducing API response times to 100ms through Caffeine caching",
+    "Designed cloud infrastructure on GCP with Cloud Run serverless compute, Cloud SQL PostgreSQL, and Cloud Storage with signed URLs",
+    "Integrated Stripe payments and PostHog analytics while tracking 8+ custom events"
   ];
 
   return (
