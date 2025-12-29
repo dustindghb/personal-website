@@ -34,6 +34,7 @@ export default function VirtualFittingRoom() {
       media={media}
       overview={overview}
       bulletPoints={bulletPoints}
+      websiteLink="lookr.online"
     />
   );
 }

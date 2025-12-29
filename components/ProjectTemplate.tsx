@@ -35,13 +35,15 @@ interface ProjectTemplateProps {
   media: MediaItem[];
   overview: string;
   bulletPoints: string[];
+  websiteLink?: string;
 }
 
 const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
   title,
   media,
   overview,
-  bulletPoints
+  bulletPoints,
+  websiteLink
 }) => {
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -68,14 +70,14 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
     <Container maxWidth="lg" sx={{ bgcolor: '#0a0a0a', minHeight: '100vh', pt: 2 }}>
       <Box py={4}>
         {/* Project Title */}
-        <Typography 
-          variant="h2" 
-          component="h1" 
-          gutterBottom 
-          align="center" 
-          sx={{ 
-            color: 'white', 
-            mb: 6,
+        <Typography
+          variant="h2"
+          component="h1"
+          gutterBottom
+          align="center"
+          sx={{
+            color: 'white',
+            mb: websiteLink ? 2 : 6,
             fontWeight: 200,
             letterSpacing: '-0.02em',
             background: 'linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%)',
@@ -87,6 +89,42 @@ const ProjectTemplate: React.FC<ProjectTemplateProps> = ({
         >
           {title}
         </Typography>
+
+        {/* Website Link */}
+        {websiteLink && (
+          <Typography
+            variant="h6"
+            align="center"
+            sx={{
+              mb: 6,
+              color: '#b0b0b0',
+              fontWeight: 300
+            }}
+          >
+            Try it out:{' '}
+            <a
+              href={`https://${websiteLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#9fc5e8',
+                textDecoration: 'none',
+                borderBottom: '1px solid #9fc5e8',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#7fb0d7';
+                e.currentTarget.style.borderBottomColor = '#7fb0d7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = '#9fc5e8';
+                e.currentTarget.style.borderBottomColor = '#9fc5e8';
+              }}
+            >
+              {websiteLink}
+            </a>
+          </Typography>
+        )}
 
         {/* Media Carousel */}
         {media.length > 0 && (
