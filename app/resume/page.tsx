@@ -12,29 +12,17 @@ export default function ResumePage() {
     // Function to find the PDF file in the resume folder
     const findResumeFile = async () => {
       try {
-        // Try common resume filenames
-        const possibleNames = [
-          'Resume.pdf',
-          'resume.pdf', 
-          '2027DustinDuong.pdf',
-          'Dustin_Duong_Resume.pdf',
-          'DustinDuong_Resume.pdf'
-        ];
-        
-        for (const fileName of possibleNames) {
-          try {
-            const response = await fetch(`/resume/${fileName}`, { method: 'HEAD' });
-            if (response.ok) {
-              setResumePath(`/resume/${fileName}`);
-              setResumeFileName(fileName);
-              return;
-            }
-          } catch {
-            // Continue to next filename
+        const response = await fetch('/api/resume-file');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.filename) {
+            setResumePath(`/resume/${data.filename}`);
+            setResumeFileName(data.filename);
+            return;
           }
         }
-        
-        // If no common names work, default to the first one and let the browser handle the 404
+
+        // If API fails, default to Resume.pdf
         setResumePath('/resume/Resume.pdf');
         setResumeFileName('Resume.pdf');
       } catch (error) {
