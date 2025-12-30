@@ -15,7 +15,7 @@ export async function GET() {
     } else {
       return NextResponse.json({ error: 'No PDF file found' }, { status: 404 });
     }
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to read resume directory' }, { status: 500 });
   }
 }
