@@ -33,20 +33,36 @@ interface TimelineEntry {
 
 const timelineEntries: TimelineEntry[] = [
   {
+    id: 'virtual-fitting-room',
+    label: 'Virtual Fitting Room',
+    description: 'Built full-stack virtual try-on platform with Java Spring Boot backend and Next.js frontend on Google Cloud Run, handling 600 requests/min with 99.9% uptime. Implemented OAuth2 authentication, Bucket4j rate limiting, and Cloudflare CDN. Designed cloud infrastructure on GCP with Cloud Run, Cloud SQL PostgreSQL, and Cloud Storage. Integrated Stripe payments and PostHog analytics.',
+    year: 'October 2025 - Present',
+    type: 'project',
+    path: '/project-experience/virtual-fitting-room'
+  },
+  {
+    id: 'regulations-gov-tool',
+    label: 'Regulations.gov Document Matcher',
+    description: 'Built privacy-focused desktop app with Tauri (Rust + React/TypeScript) and Ollama for AI-powered government document search and personalized recommendations using local RAG architecture. Engineered automated Docker pipeline with N8N to fetch 1000+ documents weekly from regulations.gov APIs. Implemented force-directed graph matching algorithm achieving 95% accuracy.',
+    year: 'August 2025 - October 2025',
+    type: 'project',
+    path: '/project-experience/regulations-gov-tool'
+  },
+  {
     id: 'stage4-solutions',
     label: 'Stage 4 Solutions - SDE Intern',
-    description: 'Built Chrome extension increasing sales lead generation by 300% to 10+ leads/min. Implemented HubSpot automation workflows to optimize business processes and improved lead conversion rates. Developed RAG agent with knowledge base on potential customer company 10-K and 10-Q SEC filings with EDGAR APIs.',
+    description: 'Engineered lead identification Chrome extension with real-time AI analysis achieving 300% improvement in lead generation speed to 300+ leads/hr. Built data management system with client filtering, LinkedIn degree tracking, and automated CSV export. Authored documentation and contributed HubSpot CRM automation workflow plans.',
     year: 'June 2025 - September 2025',
     type: 'experience',
     path: '/work-experience/stage4solutions'
   },
   {
-    id: 'regulations-gov-tool',
-    label: 'Regulations.gov Tool',
-    description: 'Built desktop application matching user profiles with articles from regulations.gov to improve civic participation while protecting user data through local processing. Features AI-powered document analysis, sentiment analysis of comment boards, and interactive visualizations.',
-    year: 'May 2024 - August 2024',
+    id: 'distributed-agent-system',
+    label: 'Distributed Agent Communication System',
+    description: 'Engineered concurrent UDP server in Go handling real-time agent docking and peer-to-peer invitation routing with JWT-based authentication and RSA public key verification. Implemented NAT traversal using UDP hole punching and keep-alive packets to establish direct peer-to-peer connections between agents behind firewalls.',
+    year: 'June 2025 - July 2025',
     type: 'project',
-    path: '/project-experience/regulations-gov-tool'
+    path: '/project-experience/dstation'
   },
   {
     id: 'personal-website',
@@ -57,19 +73,19 @@ const timelineEntries: TimelineEntry[] = [
     path: '/project-experience/personal-website'
   },
   {
-    id: 'rec-exchange',
-    label: 'REC Exchange - SDE Intern',
-    description: 'Conducted market research on RECs, wrote documentation, and researched potential customers. Contributed a landing page with authorization and persistent authentication.',
-    year: 'April 2023 - June 2023',
-    type: 'experience'
-  },
-  {
     id: 'scu-schedule-helper',
     label: 'SCU Schedule Helper - Chrome Extension',
-    description: 'Increased users by 60% with automated marketing mailing list. Managed team organization and feature development with Jira. Spearheaded frontend/backend development of Chrome extension, helping 400+ users register for courses. Engineered Workday injection scripts, Next.js popup interface, friend network, and AI advisor functionality.',
-    year: 'August 2024 - Present',
+    description: 'Collaborated in 3-person team to build Chrome extension with 800+ active users, executing full SDLC including Figma prototypes, UML diagrams, user interviews, and Chrome Web Store deployment. Developed professor/course rating search page, preference settings, friend network, and Workday registration page injection with ratings. Scraped data from 60,000+ SCU course evaluation PDFs and RateMyProfessor. Built CRUD operations using AWS Lambda functions with DynamoDB. Increased adoption by 200 through automated newsletters.',
+    year: 'August 2024 - September 2025',
     type: 'project',
     externalLink: 'https://chromewebstore.google.com/detail/scu-schedule-helper/feinilelhamnodbmhjhacnajbbhapdhj?hl=en'
+  },
+  {
+    id: 'rec-exchange',
+    label: 'REC Exchange - SDE Intern',
+    description: 'Conducted market research, identified customers, and developed responsive landing page with Next.js.',
+    year: 'April 2024 - June 2024',
+    type: 'experience'
   },
   {
     id: 'viginere-cypher',
